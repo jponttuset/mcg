@@ -7,4 +7,7 @@ MCG is the package code that implements the algorithms presented in:
 
 Please consider citing the paper if you use this code.
 
+More info in the project page:
+http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/mcg/
+
 
