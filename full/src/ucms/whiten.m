@@ -47,6 +47,7 @@ if ~DO_CENTER
 end
 X_zeroed = X - ones(size(X,1),1)*m;
 
+rng('default');
 %s = rand('twister');
 X_sub = X_zeroed(rand(size(X_zeroed,1),1) <= N_cov/size(X_zeroed,1),:);
 C = (X_sub' * X_sub) / size(X_sub,1);
