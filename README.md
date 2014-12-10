@@ -1,0 +1,4 @@
+mcg
+===
+
+Multiscale Combinatorial Grouping
