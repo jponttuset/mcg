@@ -44,7 +44,7 @@ end
 im_ids = database_ids(database,gt_set);
 
 % Sweep all images and process them in parallel
-matlabpool(4);
+matlabpool open;
 num_images = length(im_ids);
 parfor im_id = 1:num_images 
     % File to store the candidates

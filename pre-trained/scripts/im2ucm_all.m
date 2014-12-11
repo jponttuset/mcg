@@ -44,7 +44,7 @@ end
 im_ids = database_ids(database,gt_set);
 
 % Sweep all images and process them in parallel
-matlabpool(4);
+matlabpool open;
 parfor ii=1:length(im_ids)
     % Read image
     im = get_image(database,im_ids{ii});
