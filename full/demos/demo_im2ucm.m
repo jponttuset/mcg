@@ -27,6 +27,4 @@ subplot(1,3,3)
 imshow(imdilate(ucm2_mcg,strel(ones(3))),[]), title('Accurate UCM (MCG)')
 
 
-%% Extract some of the partitions represented in the hierarchy
-
 
