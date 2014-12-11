@@ -13,12 +13,7 @@
 %    Computer Vision and Pattern Recognition (CVPR) 2014.
 % Please consider citing the paper if you use this code.
 % ------------------------------------------------------------------------
-% 
-% This function returns the root directory where the package is installed.
-% Before running the script 'install.m', this directory should be updated
-%
-% ------------------------------------------------------------------------ 
-
 function root_dir = root_dir()
-    root_dir = '/path/to/root/dir';
+    % Change suggested by Ahmad Humayun <ahmadh@gatech.edu>, thank you!
+    root_dir = fileparts(which(mfilename));
 end

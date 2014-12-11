@@ -1,25 +1,19 @@
 % ------------------------------------------------------------------------ 
 %  Copyright (C)
 %  Universitat Politecnica de Catalunya BarcelonaTech (UPC) - Spain
+%  University of California Berkeley (UCB) - USA
 % 
 %  Jordi Pont-Tuset <jordi.pont@upc.edu>
-%  June 2013
+%  Pablo Arbelaez <arbelaez@berkeley.edu>
+%  June 2014
 % ------------------------------------------------------------------------ 
-%  Code obtained from:
-%  https://imatge.upc.edu/web/resources/supervised-evaluation-image-segmentation
+% This file is part of the MCG package presented in:
+%    Arbelaez P, Pont-Tuset J, Barron J, Marques F, Malik J,
+%    "Multiscale Combinatorial Grouping,"
+%    Computer Vision and Pattern Recognition (CVPR) 2014.
+% Please consider citing the paper if you use this code.
 % ------------------------------------------------------------------------
-% This file is part of the SEISM package presented in:
-%    Jordi Pont-Tuset, Ferran Marques,
-%    "Measures and Meta-Measures for the Supervised Evaluation of Image Segmentation,"
-%    Computer Vision and Pattern Recognition (CVPR), 2013.
-% If you use this code, please consider citing the paper.
-% ------------------------------------------------------------------------
-% 
-% This function returns the root directory where the package is installed.
-% Before running the script 'install.m', this directory should be updated
-%
-% ------------------------------------------------------------------------ 
-
 function root_dir = root_dir()
-    root_dir = '/path/to/root/dir/';
+    % Change suggested by Ahmad Humayun <ahmadh@gatech.edu>, thank you!
+    root_dir = fileparts(which(mfilename));
 end

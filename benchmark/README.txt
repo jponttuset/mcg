@@ -15,7 +15,6 @@
 % ------------------------------------------------------------------------
 
 FIRST INSTALL
-- Change root_dir.m to point to the root folder (the one with the file root_dir.m, instal.m, etc.)
 - Change datasets/database_root_dir.m to point to your PASCAL2012 folder (the one with subfolders ImageSets, JPEGImages, etc.)
 - Run install.m from the root dir to add the needed paths and do some checks
 - If you need to re-build the library (the script install.m will tell if needed), run build.m

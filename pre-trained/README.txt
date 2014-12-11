@@ -17,7 +17,6 @@
 MCG_compute is the package to compute MCG object candidates and UCMs, and benchmark object segmentation algorithms.
 
 FIRST INSTALL
-- Change root_dir to point to the MCG root folder (the one with the file root_dir.m, instal.m, etc.)
 - Change datasets/database_root_dir to point to your PASCAL2012 folder (the one with subfolders ImageSets, JPEGImages, etc.)
 - Run install.m from the root dir to add the needed paths and do some checks
 - If you need to re-build the library (the script install.m will tell if needed), run build.m

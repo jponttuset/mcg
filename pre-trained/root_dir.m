@@ -14,7 +14,6 @@
 % Please consider citing the paper if you use this code.
 % ------------------------------------------------------------------------
 function root_dir = root_dir()
-if strcmp(computer(), 'GLNXA64')
-   root_dir = '/path/to/root/dir';
-end
+    % Change suggested by Ahmad Humayun <ahmadh@gatech.edu>, thank you!
+    root_dir = fileparts(which(mfilename));
 end
