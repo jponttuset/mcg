@@ -22,45 +22,48 @@ assert(size(n_cands,2)==n_hiers)
 % Scan all hierarchies
 all_cands = cell(n_hiers,n_r_cand);
 for ii=1:n_hiers
-    n_r_hier = ms{ii}(end,end);
-    assert(length(unique(lps(:,:,ii)))==ms{ii}(1,end)-1)
-    assert(ms{ii}(1,end)-1+size(ms{ii},1)==n_r_hier)
+    if size(ms{ii},1)>0
+        n_r_hier = ms{ii}(end,end);
+        assert(length(unique(lps(:,:,ii)))==ms{ii}(1,end)-1)
+        assert(ms{ii}(1,end)-1+size(ms{ii},1)==n_r_hier)
 
-    % Get all pairs of neighboring leave regions
-    [~, idx_neighbors] = seg2gridbmap(lps(:,:,ii));
-    K = max(idx_neighbors.matrix_max(:)) + 1;
-    neigh_pairs = unique(idx_neighbors.matrix_min+K*idx_neighbors.matrix_max);
-    neigh_pairs(neigh_pairs==0) = [];
-    neigh_pairs_min = mod(neigh_pairs,K);
-    neigh_pairs_max = (neigh_pairs-neigh_pairs_min)/K;
+        % Get all pairs of neighboring leave regions
+        [~, idx_neighbors] = seg2gridbmap(lps(:,:,ii));
+        K = max(idx_neighbors.matrix_max(:)) + 1;
+        neigh_pairs = unique(idx_neighbors.matrix_min+K*idx_neighbors.matrix_max);
+        neigh_pairs(neigh_pairs==0) = [];
+        neigh_pairs_min = mod(neigh_pairs,K);
+        neigh_pairs_max = (neigh_pairs-neigh_pairs_min)/K;
 
-    if isrow(neigh_pairs_min)
-        neigh_pairs_min = neigh_pairs_min';
-    end
-    if isrow(neigh_pairs_max)
-        neigh_pairs_max = neigh_pairs_max';
-    end
+        if isrow(neigh_pairs_min)
+            neigh_pairs_min = neigh_pairs_min';
+        end
+        if isrow(neigh_pairs_max)
+            neigh_pairs_max = neigh_pairs_max';
+        end
 
-    % Get the 'n_cands' top candidates from each hierarchy
-    % Singletons
-    if n_r_hier<=n_cands(1,ii)
-        all_cands{ii,1} = (1:n_r_hier)';
+        % Get the 'n_cands' top candidates from each hierarchy
+        % Singletons
+        if n_r_hier<=n_cands(1,ii)
+            all_cands{ii,1} = (1:n_r_hier)';
+        else
+            all_cands{ii,1} = (n_r_hier-n_cands(1,ii)+1:n_r_hier)';
+        end
+
+    %     % Pairs, triplets
+    %     [all_cands{ii,2}, all_cands{ii,3}] = ...
+    %         mex_get_tree_cands(double(lps(:,:,ii))-1, double(ms{ii})-1,...
+    %                              neigh_pairs_min-1, neigh_pairs_max-1,...
+    %                              [n_cands(2,ii), n_cands(3,ii)]);
+
+        % Pairs, triplets, etc.
+        all_cands(ii,2:n_r_cand) = ...
+        mex_get_tree_cands(double(lps(:,:,ii))-1, double(ms{ii})-1,...
+                             neigh_pairs_min-1, neigh_pairs_max-1,...
+                             n_cands(2:end,ii));
     else
-        all_cands{ii,1} = (n_r_hier-n_cands(1,ii)+1:n_r_hier)';
+        all_cands{1} = 1;
     end
-
-%     % Pairs, triplets
-%     [all_cands{ii,2}, all_cands{ii,3}] = ...
-%         mex_get_tree_cands(double(lps(:,:,ii))-1, double(ms{ii})-1,...
-%                              neigh_pairs_min-1, neigh_pairs_max-1,...
-%                              [n_cands(2,ii), n_cands(3,ii)]);
-                         
-    % Pairs, triplets, etc.
-    all_cands(ii,2:n_r_cand) = ...
-    mex_get_tree_cands(double(lps(:,:,ii))-1, double(ms{ii})-1,...
-                         neigh_pairs_min-1, neigh_pairs_max-1,...
-                         n_cands(2:end,ii));
-                         
 end
 
 % Put all them together (for each hierarchy)
@@ -72,11 +75,16 @@ for ii=1:n_hiers
         n_tot_cand = n_tot_cand + size(all_cands{ii,jj},1);
     end
     full_cands{ii} = zeros(n_tot_cand,n_r_cand);
-    % Store
-    curr_n = 0;
-    for jj=1:n_r_cand
-        full_cands{ii}(curr_n+1:curr_n+size(all_cands{ii,jj},1),1:jj) = all_cands{ii,jj};
-        curr_n = curr_n+size(all_cands{ii,jj},1);
+    
+    if n_tot_cand
+        % Store
+        curr_n = 0;
+        for jj=1:n_r_cand
+            if size(all_cands{ii,jj},1)>0
+                full_cands{ii}(curr_n+1:curr_n+size(all_cands{ii,jj},1),1:jj) = all_cands{ii,jj};
+                curr_n = curr_n+size(all_cands{ii,jj},1);
+            end
+        end
     end
 end
 
@@ -87,7 +95,11 @@ for ii=1:n_hiers
     needed_regs = unique(full_cands{ii}(:));
     needed_regs(needed_regs==0) = [];
 
-    [lps(:,:,ii),ms{ii},luts{ii}] = mex_prune_tree_to_regions(lps(:,:,ii)-1,ms{ii}-1,needed_regs-1);
+    if isempty(needed_regs) || isempty(ms{ii})
+        lps(:,:,ii) = ones(size(lps,1),size(lps,2));
+    else
+        [lps(:,:,ii),ms{ii},luts{ii}] = mex_prune_tree_to_regions(lps(:,:,ii)-1,ms{ii}-1,needed_regs-1);
+    end
 end
 
 % Fuse
@@ -120,9 +132,19 @@ for jj=1:n_hiers
         curr_n_regs = curr_n_regs + ms{jj}(end,end);
         % Sanity check
         assert(ms{jj}(end,end)==length(unique(lps(:,:,jj))) + size(ms{jj},1))
+    else
+        if ~isempty(full_cands{jj})
+            cands = [cands; full_cands{jj}]; %#ok<AGROW>
+        end
     end
 end
-assert(isequal(size(cell2mat(full_cands)), size(cands)))
+
+% Sanity checks
+if ~isempty(cands)
+    assert(isequal(size(cell2mat(full_cands)), size(cands)))
+else
+    assert(isempty(cell2mat(full_cands)))
+end
 
 % Redo ths
 start_ths = zeros(1,n_int);
