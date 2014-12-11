@@ -21,4 +21,7 @@ function ms_struct = ms_matrix2struct( ms_matrix )
         children(children==0) = [];
         ms_struct(ii).children = children; %#ok<AGROW>
     end
+    if size(ms_matrix,1)==0
+        ms_struct = [];
+    end
 end
