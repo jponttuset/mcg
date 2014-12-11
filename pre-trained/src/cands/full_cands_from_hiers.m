@@ -61,6 +61,8 @@ for ii=1:n_hiers
         mex_get_tree_cands(double(lps(:,:,ii))-1, double(ms{ii})-1,...
                              neigh_pairs_min-1, neigh_pairs_max-1,...
                              n_cands(2:end,ii));
+    else
+        all_cands{1} = 1;
     end
 end
 
@@ -78,8 +80,10 @@ for ii=1:n_hiers
         % Store
         curr_n = 0;
         for jj=1:n_r_cand
-            full_cands{ii}(curr_n+1:curr_n+size(all_cands{ii,jj},1),1:jj) = all_cands{ii,jj};
-            curr_n = curr_n+size(all_cands{ii,jj},1);
+            if size(all_cands{ii,jj},1)>0
+                full_cands{ii}(curr_n+1:curr_n+size(all_cands{ii,jj},1),1:jj) = all_cands{ii,jj};
+                curr_n = curr_n+size(all_cands{ii,jj},1);
+            end
         end
     end
 end
@@ -91,7 +95,7 @@ for ii=1:n_hiers
     needed_regs = unique(full_cands{ii}(:));
     needed_regs(needed_regs==0) = [];
 
-    if isempty(needed_regs)
+    if isempty(needed_regs) || isempty(ms{ii})
         lps(:,:,ii) = ones(size(lps,1),size(lps,2));
     else
         [lps(:,:,ii),ms{ii},luts{ii}] = mex_prune_tree_to_regions(lps(:,:,ii)-1,ms{ii}-1,needed_regs-1);
@@ -128,9 +132,19 @@ for jj=1:n_hiers
         curr_n_regs = curr_n_regs + ms{jj}(end,end);
         % Sanity check
         assert(ms{jj}(end,end)==length(unique(lps(:,:,jj))) + size(ms{jj},1))
+    else
+        if ~isempty(full_cands{jj})
+            cands = [cands; full_cands{jj}]; %#ok<AGROW>
+        end
     end
 end
-assert(isequal(size(cell2mat(full_cands)), size(cands)))
+
+% Sanity checks
+if ~isempty(cands)
+    assert(isequal(size(cell2mat(full_cands)), size(cands)))
+else
+    assert(isempty(cell2mat(full_cands)))
+end
 
 % Redo ths
 start_ths = zeros(1,n_int);

@@ -105,8 +105,13 @@ end
 [f_lp,f_ms,cands,start_ths,end_ths] = full_cands_from_hiers(lps,ms,ths,pareto_n_cands);
 
 % Hole filling and complementary candidates
-[cands_hf, cands_comp] = hole_filling(double(f_lp), double(f_ms), cands); %#ok<NASGU>
-        
+if ~isempty(f_ms)
+    [cands_hf, cands_comp] = hole_filling(double(f_lp), double(f_ms), cands); %#ok<NASGU>
+else
+    cands_hf = cands;
+    cands_comp = cands; %#ok<NASGU>
+end
+
 % Select which candidates to keep (Uncomment just one line)
 cands = cands_hf;                       % Just the candidates with holes filled
 % cands = [cands_hf; cands_comp];         % Holes filled and the complementary
@@ -145,9 +150,17 @@ candidates.bboxes = [bboxes(:,2) bboxes(:,1) bboxes(:,4) bboxes(:,3)];
 
 % Get the labels of leave regions that form each candidates
 candidates.superpixels = f_lp;
-candidates.labels = cands2labels(cand_labels,f_ms);
+if ~isempty(f_ms)
+    candidates.labels = cands2labels(cand_labels,f_ms);
+else
+    candidates.labels = {1};
+end
 
 % Transform the results to masks
 if compute_masks
-    candidates.masks = cands2masks(cand_labels, f_lp, f_ms);
+    if ~isempty(f_ms)
+        candidates.masks = cands2masks(cand_labels, f_lp, f_ms);
+    else
+        candidates.masks = true(size(f_lp));
+    end
 end
