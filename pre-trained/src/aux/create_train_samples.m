@@ -32,8 +32,8 @@ im_ids_a = im_ids(ids_a);
 im_ids_b = im_ids(ids_b);
 
 % Write to file
-file_a = fullfile(root_dir,'datasets', 'pascal2012','gt_sets',[full_set '_' id 'a.txt']);
-file_b = fullfile(root_dir,'datasets', 'pascal2012','gt_sets',[full_set '_' id 'b.txt']);
+file_a = fullfile(mcg_root,'datasets', 'pascal2012','gt_sets',[full_set '_' id 'a.txt']);
+file_b = fullfile(mcg_root,'datasets', 'pascal2012','gt_sets',[full_set '_' id 'b.txt']);
 
 dlmwrite(file_a,im_ids_a,'')
 dlmwrite(file_b,im_ids_b,'')

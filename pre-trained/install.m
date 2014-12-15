@@ -14,25 +14,25 @@
 % Please consider citing the paper if you use this code.
 % ------------------------------------------------------------------------
 
-% Check that 'root_dir' has been set
-if ~exist(root_dir,'dir')
-    error('Error installing the package, try updating the value of root_dir in the file "root_dir.m"')
+% Check that 'mcg_root' has been set
+if ~exist(mcg_root,'dir')
+    error('Error installing the package, try updating the value of mcg_root in the file "mcg_root.m"')
 end
 
-% Check that 'root_dir' has the needed folder
-if ~exist(fullfile(root_dir,'lib'),'dir')
+% Check that 'mcg_root' has the needed folder
+if ~exist(fullfile(mcg_root,'lib'),'dir')
     error('Error installing the package, the folder "lib" not found, have you compiled it? See build.m')
 end
-if ~exist(fullfile(root_dir,'src'),'dir')
+if ~exist(fullfile(mcg_root,'src'),'dir')
     error('Error installing the package, the folder "src" not found')
 end
 
 % Install own lib
-addpath(root_dir);
-addpath(fullfile(root_dir,'lib'));
-addpath(fullfile(root_dir,'scripts'));
-addpath(fullfile(root_dir,'datasets'));
-addpath(genpath(fullfile(root_dir,'src')));
+addpath(mcg_root);
+addpath(fullfile(mcg_root,'lib'));
+addpath(fullfile(mcg_root,'scripts'));
+addpath(fullfile(mcg_root,'datasets'));
+addpath(genpath(fullfile(mcg_root,'src')));
 
 %% Check that the needed functions are compiled
 % Included in our code

@@ -37,8 +37,8 @@ else
     method_name = labels_folder(tmp(end)+1:end);
 end
 
-res_dir    = fullfile(root_dir,'results',database, method_name);
-stats_file = fullfile(root_dir,'results',database, [method_name '_' gt_set '.mat']);
+res_dir    = fullfile(mcg_root,'results',database, method_name);
+stats_file = fullfile(mcg_root,'results',database, [method_name '_' gt_set '.mat']);
 
 % Is the result already gathered?
 if exist(stats_file, 'file')

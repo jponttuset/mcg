@@ -36,7 +36,7 @@ if nargin<2
 end
 
 % Load pre-trained Structured Forest model
-sf_model = loadvar(fullfile(root_dir, 'datasets', 'models', 'sf_modelFinal.mat'),'model');
+sf_model = loadvar(fullfile(mcg_root, 'datasets', 'models', 'sf_modelFinal.mat'),'model');
 
 if strcmp(mode,'fast')
     % Which scales to work on (MCG is [2, 1, 0.5], SCG is just [1])

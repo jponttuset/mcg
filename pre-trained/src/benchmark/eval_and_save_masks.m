@@ -29,14 +29,14 @@ end
 tmp = strfind(masks_folder,filesep);
 if isempty(tmp)
     method_name = masks_folder;
-    masks_dir = fullfile(root_dir, 'datasets', database, method_name);
+    masks_dir = fullfile(mcg_root, 'datasets', database, method_name);
 else
     method_name = masks_folder(tmp(end)+1:end);
     masks_dir = masks_folder;
 end
 
 % Results folder
-res_dir   = fullfile(root_dir, 'results', database, method_name);
+res_dir   = fullfile(mcg_root, 'results', database, method_name);
 if ~exist(res_dir,'dir')
     mkdir(res_dir)
 end

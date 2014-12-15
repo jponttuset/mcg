@@ -58,7 +58,7 @@ scg_eval = eval_labels('SCG',database,gt_set,n_cands);
 % my_method = eval_masks('my_method',database,gt_set,n_cands);
 
 % Load pre-computed state-of-the-art results
-soa_file = fullfile(root_dir,'results',database,['soa_cands_' gt_set '.mat']);
+soa_file = fullfile(mcg_root,'results',database,['soa_cands_' gt_set '.mat']);
 if exist(soa_file,'file')
     load(soa_file);
     disp(['Loaded: ' soa_file])

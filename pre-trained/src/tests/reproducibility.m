@@ -17,7 +17,7 @@
 % ------------------------------------------------------------------------
 
 % Read an input image
-I = imread(fullfile(root_dir, 'demos','101087.jpg'));
+I = imread(fullfile(mcg_root, 'demos','101087.jpg'));
 
 % Compute SCG twice
 candidates_scg1 = im2mcg(I,'fast');

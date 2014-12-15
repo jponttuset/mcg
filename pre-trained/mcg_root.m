@@ -13,7 +13,7 @@
 %    Computer Vision and Pattern Recognition (CVPR) 2014.
 % Please consider citing the paper if you use this code.
 % ------------------------------------------------------------------------
-function root_dir = root_dir()
+function mcg_root = mcg_root()
     % Change suggested by Ahmad Humayun <ahmadh@gatech.edu>, thank you!
-    root_dir = fileparts(which(mfilename));
+    mcg_root = fileparts(which(mfilename));
 end

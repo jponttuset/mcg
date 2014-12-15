@@ -30,9 +30,9 @@ end
 
 % Create out folder
 if strcmp(mode,'fast')
-    res_dir = fullfile(root_dir,'datasets',database,'SCG');
+    res_dir = fullfile(mcg_root,'datasets',database,'SCG');
 elseif strcmp(mode,'accurate')
-    res_dir = fullfile(root_dir,'datasets',database,'MCG');
+    res_dir = fullfile(mcg_root,'datasets',database,'MCG');
 else
     error('Unknown mode for MCG: Possibilities are ''fast'' or ''accurate''')
 end

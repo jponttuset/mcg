@@ -47,7 +47,7 @@ if nargin<3
 end
 
 % Load pre-trained Structured Forest model
-sf_model = loadvar(fullfile(root_dir, 'datasets', 'models', 'sf_modelFinal.mat'),'model');
+sf_model = loadvar(fullfile(mcg_root, 'datasets', 'models', 'sf_modelFinal.mat'),'model');
 
 % Level of overlap to erase duplicates
 J_th = 0.95;
@@ -64,10 +64,10 @@ if strcmp(mode,'fast')
     all_ucms = ucm2;
     
     % Load pre-trained pareto point
-    pareto_n_cands = loadvar(fullfile(root_dir, 'datasets', 'models', 'scg_pareto_point_train2012.mat'),'n_cands');
+    pareto_n_cands = loadvar(fullfile(mcg_root, 'datasets', 'models', 'scg_pareto_point_train2012.mat'),'n_cands');
 
     % Load pre-trained random forest regresssor for the ranking of candidates
-    rf_regressor = loadvar(fullfile(root_dir, 'datasets', 'models', 'scg_rand_forest_train2012.mat'),'rf');
+    rf_regressor = loadvar(fullfile(mcg_root, 'datasets', 'models', 'scg_rand_forest_train2012.mat'),'rf');
 
 elseif strcmp(mode,'accurate')
     % Which scales to work on (MCG is [2, 1, 0.5], SCG is just [1])
@@ -78,10 +78,10 @@ elseif strcmp(mode,'accurate')
     all_ucms = cat(3,ucm2,ucms(:,:,3),ucms(:,:,2),ucms(:,:,1)); % Multi, 0.5, 1, 2
 
     % Load pre-trained pareto point
-    pareto_n_cands = loadvar(fullfile(root_dir, 'datasets', 'models', 'mcg_pareto_point_train2012.mat'),'n_cands');
+    pareto_n_cands = loadvar(fullfile(mcg_root, 'datasets', 'models', 'mcg_pareto_point_train2012.mat'),'n_cands');
 
     % Load pre-trained random forest regresssor for the ranking of candidates
-    rf_regressor = loadvar(fullfile(root_dir, 'datasets', 'models', 'mcg_rand_forest_train2012.mat'),'rf');
+    rf_regressor = loadvar(fullfile(mcg_root, 'datasets', 'models', 'mcg_rand_forest_train2012.mat'),'rf');
 else
     error('Unknown mode for MCG: Possibilities are ''fast'' or ''accurate''')
 end
