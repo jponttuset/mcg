@@ -1968,9 +1968,9 @@ This approach decreases the computational load one order of magnitude while keep
 		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_SeSe.txt};
 		\addplot+[black,dashed,mark=none,thick]                                table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_QT.txt};
 
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.53) {$J\!=\!0.5$};
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.33) {$J\!=\!0.7$};
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.15) {$J\!=\!0.85$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.53) {$J\!=\!0.5$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.33) {$J\!=\!0.7$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.15) {$J\!=\!0.85$};
 	\end{axis}
    \end{tikzpicture}
 \end{minipage}
@@ -2028,9 +2028,9 @@ This approach decreases the computational load one order of magnitude while keep
 		\addplot+[black,dashed,mark=none,thick]                                table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_QT.txt};
 
 		
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.5) {$J=0.5$};
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.3) {$J=0.7$};
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.12) {$J=0.85$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.5) {$J=0.5$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.3) {$J=0.7$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.12) {$J=0.85$};
 	\end{axis}
    \end{tikzpicture}\end{minipage}
 \begin{minipage}[b]{0.39\linewidth}
@@ -2109,9 +2109,9 @@ This approach decreases the computational load one order of magnitude while keep
 		\addplot+[black,dashed,mark=none,thick]                                table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_QT.txt};
 
 
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.23) {$J=0.5$};
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.12) {$J=0.7$};
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.05) {$J=0.85$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.23) {$J=0.5$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.12) {$J=0.7$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.05) {$J=0.85$};
 	\end{axis}
    \end{tikzpicture}\end{minipage}}
    \caption{\textbf{Segmented Object Proposals: Recall at different Jaccard levels.} Percentage of annotated objects for which there is a proposal whose overlap with the segmented ground-truth shapes (not boxes) is above $J=0.5$, $J=0.7$, and $J=0.85$, for different number of proposals per image. Results on SegVOC12, SBD, and COCO.}
@@ -2194,9 +2194,9 @@ This approach decreases the computational load one order of magnitude while keep
 	    \addplot+[only marks,black  ,solid,mark=x, thick]                        table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_Obj_boxes.txt};
 	    \addplot+[black,dashed,mark=none,thick]                                  table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_QT_boxes.txt};
 
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.58) {$J=0.5$};
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.37) {$J=0.7$};
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.20) {$J=0.85$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.58) {$J=0.5$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.37) {$J=0.7$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.20) {$J=0.85$};
 	\end{axis}
    \end{tikzpicture}
 \end{minipage}
@@ -2255,9 +2255,9 @@ This approach decreases the computational load one order of magnitude while keep
 	    \addplot+[only marks,black  ,solid,mark=x, thick]                        table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_Obj_boxes.txt};
         \addplot+[black,dashed,mark=none,thick]                                  table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_QT_boxes.txt};
 
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.53) {$J=0.5$};
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.38) {$J=0.7$};
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.2 ) {$J=0.85$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.58) {$J=0.5$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.38) {$J=0.7$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.2 ) {$J=0.85$};
 	\end{axis}
    \end{tikzpicture}\end{minipage}
 \begin{minipage}[b]{0.39\linewidth}
@@ -2347,9 +2347,9 @@ This approach decreases the computational load one order of magnitude while keep
 
 
 
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.28) {$J=0.5$};
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.16) {$J=0.7$};
-	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.08) {$J=0.85$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.28) {$J=0.5$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.16) {$J=0.7$};
+	   \node[draw,fill=white,solid,anchor=north west] at (axis cs:20,0.08) {$J=0.85$};
 	\end{axis}
    \end{tikzpicture}\end{minipage}}
    \caption{\textbf{Bounding-Box Proposals: Recall at different Jaccard levels.} Percentage of annotated objects for which there is a bounding box proposal whose overlap with the ground-truth boxes is above $J=0.5$, $J=0.7$, and $J=0.85$, for different number of proposals per image. Results on SegVOC12, SBD, and COCO.}
@@ -2409,7 +2409,7 @@ seconds and with significant less memory footprint.
 \setlength{\fboxsep}{0pt}
 \fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000192.jpg}}
 \hfill
-\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000192_gt.png}}
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000192_gt.jpg}}
 \hfill
 \fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000192_ucm.png}}
 \hfill
@@ -2421,7 +2421,7 @@ seconds and with significant less memory footprint.
 \hfill\\[1mm]
 \fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000136.jpg}}
 \hfill
-\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000136_gt.png}}
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000136_gt.jpg}}
 \hfill
 \fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000136_ucm.png}}
 \hfill
@@ -2433,7 +2433,7 @@ seconds and with significant less memory footprint.
 \hfill\\[1mm]
 \fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000338.jpg}}
 \hfill
-\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000338_gt.png}}
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000338_gt.jpg}}
 \hfill
 \fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000338_ucm.png}}
 \hfill
@@ -2445,7 +2445,7 @@ seconds and with significant less memory footprint.
 \hfill\\[1mm]
 \fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000015687.jpg}}
 \hfill
-\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000015687_gt.png}}
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000015687_gt.jpg}}
 \hfill
 \fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000015687_ucm.png}}
 \hfill
@@ -2457,7 +2457,7 @@ seconds and with significant less memory footprint.
 \hfill\\[1mm]
 \fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000023995.jpg}}
 \hfill
-\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000023995_gt.png}}
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000023995_gt.jpg}}
 \hfill
 \fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000023995_ucm.png}}
 \hfill
