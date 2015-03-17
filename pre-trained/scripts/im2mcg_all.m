@@ -19,13 +19,13 @@
 % ------------------------------------------------------------------------
 function im2mcg_all(mode, database, gt_set)
 if nargin==0
-    mode = 'fast';
+    mode = 'accurate';
 end
 if nargin<2
-    database = 'pascal2012';
+    database = 'COCO';
 end
 if nargin<3
-    gt_set = 'val2012';
+    gt_set = 'val2014';
 end
 
 % Create out folder
@@ -58,7 +58,7 @@ parfor im_id = 1:num_images
         % Call the MCG code
         candidates = im2mcg(image,mode);
 
-        % Store the masks results  
+        % Store the results  
         parsave(res_file,candidates);
     end
 end
@@ -66,9 +66,9 @@ matlabpool close
 end
 
 function parsave(res_file,candidates)
-    scores = candidates.scores; %#ok<NASGU>
-    bboxes = candidates.bboxes; %#ok<NASGU>
+    scores      = candidates.scores; %#ok<NASGU>
+    bboxes      = candidates.bboxes; %#ok<NASGU>
     superpixels = candidates.superpixels; %#ok<NASGU>
-    labels = candidates.labels; %#ok<NASGU>
+    labels      = candidates.labels; %#ok<NASGU>
     save(res_file,'scores','bboxes','superpixels','labels');
 end

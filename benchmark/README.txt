@@ -15,7 +15,7 @@
 % ------------------------------------------------------------------------
 
 FIRST INSTALL
-- Change datasets/database_root_dir.m to point to your PASCAL2012 folder (the one with subfolders ImageSets, JPEGImages, etc.)
+- Change datasets/database_root_dir.m to point to your PASCAL2012 folder (the one with subfolders ImageSets, JPEGImages, etc.) or the SBD or COCO folders.
 - Run install.m from the root dir to add the needed paths and do some checks
 - If you need to re-build the library (the script install.m will tell if needed), run build.m
 
@@ -24,7 +24,7 @@ USAGE INSTALL
 - If you want to avoid this, add the paths permanently
 
 EVALUATION
-- See benchmark_results for an example of how to evaluate and show the benchmark results
+- See results_segm_proposals.m and results_box_proposals for an example of how to evaluate and show the benchmark results
 
 Enjoy!
 

@@ -38,7 +38,7 @@
 %  DEMO:
 %  - See demos/demo_im2mcg.m
 % ------------------------------------------------------------------------
-function [candidates, ucm2] = im2mcg(image,mode,compute_masks)
+function [candidates, ucm2, times] = im2mcg(image,mode,compute_masks)
 if nargin<2
     mode = 'fast';
 end
@@ -60,7 +60,7 @@ if strcmp(mode,'fast')
     scales = 1;
 
     % Get the hierarchies at each scale and the global hierarchy
-    [ucm2] = img2ucms(image, sf_model, scales);
+    [ucm2,~,times] = img2ucms(image, sf_model, scales);
     all_ucms = ucm2;
     
     % Load pre-trained pareto point
@@ -74,7 +74,7 @@ elseif strcmp(mode,'accurate')
     scales = [2, 1, 0.5];
 
     % Get the hierarchies at each scale and the global hierarchy
-    [ucm2,ucms] = img2ucms(image, sf_model, scales);
+    [ucm2,ucms,times] = img2ucms(image, sf_model, scales);
     all_ucms = cat(3,ucm2,ucms(:,:,3),ucms(:,:,2),ucms(:,:,1)); % Multi, 0.5, 1, 2
 
     % Load pre-trained pareto point

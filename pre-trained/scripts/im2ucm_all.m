@@ -22,10 +22,10 @@ if nargin==0
     mode = 'accurate';
 end
 if nargin<2
-    database = 'pascal2012';
+    database = 'COCO';
 end
 if nargin<3
-    gt_set = 'val2012';
+    gt_set = 'val2014';
 end
 
 % Create out folder
@@ -55,7 +55,7 @@ parfor ii=1:length(im_ids)
         % Call the actual code
         ucm2 = im2ucm(im, mode);
         
-        % Store ucms at each scale separately
+        % Store ucm
         parsave(fullfile(res_dir,[im_ids{ii} '.mat']),ucm2)
     end
 end

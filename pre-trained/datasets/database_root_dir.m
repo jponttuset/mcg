@@ -21,7 +21,9 @@ function db_root_dir = database_root_dir( database )
 if strcmp(database,'pascal2012')
     db_root_dir = '/path/to/PASCAL2012/';
 elseif strcmp(database,'bsds500')
-    db_root_dir = '/path/to/BSDS500/';
+    db_root_dir = '/Users/jpont/Workspace/gt_dbs/BSDS500/';
+elseif strcmp(database,'COCO')
+    db_root_dir = '/Users/jpont/Workspace/gt_dbs/COCO/';
 else
     error(['Unknown database: ' database]);
 end

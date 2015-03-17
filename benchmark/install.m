@@ -35,7 +35,7 @@ addpath(genpath(fullfile(root_dir,'src')));
 
 %% Check that the needed functions are compiled
 % Included in our code
-needed_files = {'mex_eval_labels','mex_eval_masks'};
+needed_files = {'mex_eval_labels','mex_eval_masks','mex_eval_blobs','gasonMex'};
 for ii=1:length(needed_files)
     if exist(needed_files{ii})~=3 %#ok<EXIST>
         error(['The needed function (' needed_files{ii} ') not found. Have you built the package properly?'])
