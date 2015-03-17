@@ -43,6 +43,7 @@ build_file{end+1} = fullfile(mcg_root, 'src', 'cands'    ,'mex_base_perimeters.c
 build_file{end+1} = fullfile(mcg_root, 'src', 'cands'    ,'mex_fast_features.cpp');
 build_file{end+1} = fullfile(mcg_root, 'src', 'cands'    ,'mex_fast_intersections.cpp');
 build_file{end+1} = fullfile(mcg_root, 'src', 'cands'    ,'mex_fast_reduction.cpp');
+build_file{end+1} = fullfile(mcg_root, 'src', 'bboxes'   ,'mex_box_reduction.cpp');
 build_file{end+1} = fullfile(mcg_root, 'src', 'cands'    ,'mex_get_tree_cands.cpp');
 build_file{end+1} = fullfile(mcg_root, 'src', 'cands'    ,'mex_prune_tree_to_regions.cpp');
 build_file{end+1} = fullfile(mcg_root, 'src', 'cands'    ,'mex_max_margin.cpp');
