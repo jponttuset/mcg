@@ -144,9 +144,12 @@ cand_labels = red_cands(new_ids,:);
 candidates.scores = scores(new_ids);
 bboxes = bboxes(new_ids,:); 
 
+% Filter boxes by overlap
+red_bboxes = mex_box_reduction(bboxes, 0.95);
+
 % Change the coordinates of bboxes to be coherent with
 % other results from other sources (sel_search, etc.)
-candidates.bboxes = [bboxes(:,2) bboxes(:,1) bboxes(:,4) bboxes(:,3)];
+candidates.bboxes = [red_bboxes(:,2) red_bboxes(:,1) red_bboxes(:,4) red_bboxes(:,3)];
 
 % Get the labels of leave regions that form each candidates
 candidates.superpixels = f_lp;
