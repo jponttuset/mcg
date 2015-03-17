@@ -1,0 +1,34 @@
+% ------------------------------------------------------------------------ 
+%  Copyright (C)
+%  Universitat Politecnica de Catalunya BarcelonaTech (UPC) - Spain
+%  University of California Berkeley (UCB) - USA
+% 
+%  Jordi Pont-Tuset <jordi.pont@upc.edu>
+%  Pablo Arbelaez <arbelaez@berkeley.edu>
+%  June 2014
+% ------------------------------------------------------------------------ 
+% This file is part of the MCG package presented in:
+%    Arbelaez P, Pont-Tuset J, Barron J, Marques F, Malik J,
+%    "Multiscale Combinatorial Grouping,"
+%    Computer Vision and Pattern Recognition (CVPR) 2014.
+% Please consider citing the paper if you use this code.
+% ------------------------------------------------------------------------
+function  write_boxes_to_file( stats, filename )
+
+% Create the columns for different recall levels
+str_header  = 'ncands\t';
+str_pattern = '%d\t';
+for ii=1:length(stats.overlap_levels)
+    str_header = [str_header '\trec_at_' num2str(stats.overlap_levels(ii))]; %#ok<AGROW>
+    str_pattern = [str_pattern '\t%f']; %#ok<AGROW>
+end
+str_header  = [str_header  '\n'];
+str_pattern = [str_pattern '\n'];
+
+
+fid = fopen(filename,'w');
+fprintf(fid, str_header);
+fprintf(fid, str_pattern, [stats.mean_n_masks; stats.rec_at_overlap]);
+fclose(fid);
+
+

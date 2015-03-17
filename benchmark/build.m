@@ -25,7 +25,7 @@ if ~exist(root_dir,'dir')
 end
 
 %% Include the generic paths and files to compile
-include{1} = fullfile(root_dir, 'src');  % To get matlab_multiarray.hpp
+include{1} = fullfile(root_dir, 'src', 'aux');  % To get matlab_multiarray.hpp
 if (strcmp(computer(),'PCWIN64') || strcmp(computer(),'PCWIN32'))
     include{2} = 'C:\Program Files\boost_1_55_0';  % Boost libraries (change it if necessary)
 else
@@ -37,8 +37,9 @@ for ii=1:length(include)
     include_str = [include_str ' -I''' include{ii} '''']; %#ok<AGROW>
 end
 
-build_file{1} = fullfile(root_dir, 'src','mex_eval_labels.cpp');
-build_file{2} = fullfile(root_dir, 'src','mex_eval_masks.cpp');
+build_file{1} = fullfile(root_dir, 'src', 'segmented', 'mex_eval_labels.cpp');
+build_file{2} = fullfile(root_dir, 'src', 'segmented', 'mex_eval_masks.cpp');
+build_file{3} = fullfile(root_dir, 'src', 'segmented', 'mex_eval_blobs.cpp');
 
 
 %% Build everything
@@ -50,6 +51,8 @@ for ii=1:length(build_file)
     eval(['mex ''' build_file{ii} ''' -outdir ''' fullfile(root_dir, 'lib') '''' include_str])
 end
 
+%% Build COCO
+eval(['mex src/coco/private/gasonMex.cpp src/coco/private/gason.cpp -I/src/coco/private -I/usr/local/include -outdir ''' fullfile(root_dir, 'lib') '''' include_str])
 
 %% Clear variables
 clear build_file ii include include_str

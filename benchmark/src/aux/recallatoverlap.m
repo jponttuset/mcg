@@ -13,11 +13,20 @@
 %    Computer Vision and Pattern Recognition (CVPR) 2014.
 % Please consider citing the paper if you use this code.
 % ------------------------------------------------------------------------
-function  write_jaccard_to_file( stats, filename )
 
-fid = fopen(filename,'w');
-fprintf(fid, 'ncands\tjac_class\tjac_instance\n');
-fprintf(fid, '%d\t%f\t%f\n', [stats.mean_n_masks; stats.jaccard_class; stats.jaccard_object]);
-fclose(fid);
+function all_recalls = recallatoverlap(stats, all_overlaps, n_masks_id)
 
+if nargin<3
+    curr_stats = stats.max_J(:,end);
+else
+    if n_masks_id>size(stats.max_J,2)
+        curr_stats = stats.max_J(:,end);
+    else
+        curr_stats = stats.max_J(:,n_masks_id);
+    end
+end
 
+all_recalls = zeros(size(all_overlaps));
+for ii=1:length(all_overlaps)
+    all_recalls(ii) = sum(curr_stats>all_overlaps(ii))/length(curr_stats);
+end

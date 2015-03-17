@@ -29,7 +29,6 @@ void mexFunction( int nlhs, mxArray *plhs[],
     
     /* Input as a Multiarray */
     ConstMatlabMultiArray3<bool>                masks(prhs[0]); /* Object masks */
-    ConstMatlabMultiArray<unsigned char> ground_truth(prhs[1]); /* Object ground trtuh */
     ConstMatlabMultiArray<bool>          valid_pixels(prhs[2]); /* Pixels to take into account */
     
     /* Input sizes and checks */
@@ -37,16 +36,8 @@ void mexFunction( int nlhs, mxArray *plhs[],
     size_t sy = masks.shape()[1];
     size_t n_masks = masks.shape()[2];
     
-    /* Sweep ground truth to get the number of objects */
-    std::set<unsigned char> obj_ids;
-    for(std::size_t ii=0; ii<sx; ++ii)
-        for(std::size_t jj=0; jj<sy; ++jj)
-            obj_ids.insert(ground_truth[ii][jj]);
-    obj_ids.erase(0);
-    obj_ids.erase(255);
-    std::size_t n_objs = obj_ids.size();
-    
-//     mexPrintf("%d\n", obj_ids.size());
+    /* Get the number of ground-truth objects */
+    size_t n_objs = mxGetNumberOfElements(prhs[1]); 
 
     /* Allocate results */
     plhs[0] = mxCreateDoubleMatrix(1,n_masks,mxREAL);
@@ -56,22 +47,45 @@ void mexFunction( int nlhs, mxArray *plhs[],
     plhs[2] = mxCreateDoubleMatrix(n_objs,n_masks,mxREAL);
     MatlabMultiArray<double> out_fn(plhs[2]);
     
+    /* Store all ground truth objects */
+    std::vector<boost::multi_array<bool,2>> obj_mask(n_objs);
+    for (std::size_t obj_id=0; obj_id<n_objs; ++obj_id)
+    {    
+        ConstMatlabMultiArray<bool> tmp(mxGetCell(prhs[1], obj_id));
+        obj_mask[obj_id].resize(boost::extents[sx][sy]);
+        for (std::size_t ii=0; ii<sx; ++ii)
+            for (std::size_t jj=0; jj<sy; ++jj)
+                obj_mask[obj_id][ii][jj] = tmp[ii][jj];
+    }
+    
+
+    /* Sweep the mask of the object */
     for (std::size_t ii=0; ii<sx; ++ii)
     {
         for (std::size_t jj=0; jj<sy; ++jj)
         {
-            if (valid_pixels[ii][jj]) // Consider only valid pixels
+            /* Consider only valid pixels */
+            if (valid_pixels[ii][jj]) 
             {
+                /* Sweep all proposals */
                 for(std::size_t kk=0; kk<n_masks; ++kk)
                 {
                     if (masks[ii][jj][kk])
                     {
                         out_areas[0][kk]++;
-                        if (ground_truth[ii][jj]>0)
-                            out_int[ground_truth[ii][jj]-1][kk]++;
+
+                        /* Sweep all annotated objects */
+                        for (std::size_t obj_id=0; obj_id<n_objs; ++obj_id)
+                            if (obj_mask[obj_id][ii][jj]>0)
+                                out_int[obj_id][kk]++;
                     }
-                    else if (ground_truth[ii][jj]>0)
-                        out_fn[ground_truth[ii][jj]-1][kk]++;
+                    else
+                    {
+                        /* Sweep all annotated objects */
+                        for (std::size_t obj_id=0; obj_id<n_objs; ++obj_id)
+                            if (obj_mask[obj_id][ii][jj]>0)
+                                out_fn[obj_id][kk]++;
+                    }
                 }
             }
         }

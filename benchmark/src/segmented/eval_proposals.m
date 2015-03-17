@@ -13,32 +13,26 @@
 %    Computer Vision and Pattern Recognition (CVPR) 2014.
 % Please consider citing the paper if you use this code.
 % ------------------------------------------------------------------------
-function stats = eval_labels(labels_folder,database,gt_set,n_cands)
+function stats = eval_proposals(results_folder, database, gt_set, n_proposals)
 
-if nargin<2
-    database = 'pascal2012';
-end
-if nargin<3
-    gt_set = 'val2012';
-end
 if nargin<4
-    % Number of sampled candidates
-    n_cands = [10:5:100,125:25:1000,1500:500:6000,10000];
+    % Number of sampled proposals
+    n_proposals = [10:5:100,125:25:1000,1500:500:6000,10000];
 end
 
 % Get the name of the folder to refer to the method
-if strcmp(labels_folder(end),filesep)
-    labels_folder(end) = [];
+if strcmp(results_folder(end),filesep)
+    results_folder(end) = [];
 end
-tmp = strfind(labels_folder,filesep);
+tmp = strfind(results_folder,filesep);
 if isempty(tmp)
-    method_name = labels_folder;
+    method_name = results_folder;
 else
-    method_name = labels_folder(tmp(end)+1:end);
+    method_name = results_folder(tmp(end)+1:end);
 end
 
 res_dir    = fullfile(root_dir,'results',database, method_name);
-stats_file = fullfile(root_dir,'results',database, [method_name '_' gt_set '.mat']);
+stats_file = fullfile(root_dir,'results',database, [method_name '_' database '_' gt_set '.mat']);
 
 % Is the result already gathered?
 if exist(stats_file, 'file')
@@ -52,15 +46,15 @@ end
 
 if recompute
     %% Evaluate and save each image independently to be able to parallelize
-    % You can adapt the matlabpool to your system
-    eval_and_save_labels(labels_folder,database,gt_set);
-    
+    % You can adapt matlabpool to your system
+    eval_parallel(results_folder, database, gt_set);
+        
     %% Gather and save results
     % Load which images to consider
     im_ids = database_ids(database,gt_set);
     
     % Store and initialize
-    stats.n_cands = n_cands;
+    stats.n_cands = n_proposals;
     stats.gt_set  = gt_set;
     stats.obj_classes = [];
     
@@ -69,25 +63,25 @@ if recompute
     for ii=1:numel(im_ids)
         res_file = fullfile(res_dir, [im_ids{ii} '.mat']);
         if exist(res_file,'file')
-            load(res_file)
+            curr = load(res_file);
             for jj=1:length(stats.n_cands)
-                curr_n_cands = min(stats.n_cands(jj), size(jaccards,2));
+                curr_n_cands = min(stats.n_cands(jj), size(curr.jaccards,2));
                 to_consider = 1:curr_n_cands;
                 stats.all_n_masks(ii,jj) = length(to_consider);
                 if (stats.all_n_masks(ii,jj)>0) 
-                    for kk=1:size(jaccards,1)
-                        [stats.max_J(stats.num_objects+kk,jj), which_one] = max(jaccards(kk,to_consider));
+                    for kk=1:size(curr.jaccards,1)
+                        [stats.max_J(stats.num_objects+kk,jj), which_one] = max(curr.jaccards(kk,to_consider));
                         stats.max_indicator(stats.num_objects+kk,jj) = to_consider(which_one);
-                        stats.max_fp(stats.num_objects+kk,jj) = false_pos(kk,to_consider(which_one));
-                        stats.max_fn(stats.num_objects+kk,jj) = false_neg(kk,to_consider(which_one));
-                        stats.max_inters(stats.num_objects+kk,jj) = inters(kk,to_consider(which_one));
+                        stats.max_fp(stats.num_objects+kk,jj) = curr.false_pos(kk,to_consider(which_one));
+                        stats.max_fn(stats.num_objects+kk,jj) = curr.false_neg(kk,to_consider(which_one));
+                        stats.max_inters(stats.num_objects+kk,jj) = curr.inters(kk,to_consider(which_one));
                     end
                 end
             end
-            stats.obj_classes = [stats.obj_classes; obj_classes(1:size(inters,1))]; 
-            stats.num_objects = stats.num_objects + size(jaccards,1);
+            stats.obj_classes = [stats.obj_classes; curr.obj_classes(1:size(curr.inters,1))'];
+            stats.num_objects = stats.num_objects + size(curr.jaccards,1);
         else
-            error([res_file ' not found']);                
+            error([res_file ' not found']);
         end
     end
    
