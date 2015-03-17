@@ -17,7 +17,7 @@
 MCG_compute is the package to compute MCG object candidates and UCMs, and benchmark object segmentation algorithms.
 
 FIRST INSTALL
-- Change datasets/database_root_dir to point to your PASCAL2012 folder (the one with subfolders ImageSets, JPEGImages, etc.)
+- Change datasets/database_root_dir.m to point to your PASCAL2012 folder (the one with subfolders ImageSets, JPEGImages, etc.) or the SBD or COCO folders.
 - Run install.m from the root dir to add the needed paths and do some checks
 - If you need to re-build the library (the script install.m will tell if needed), run build.m
 
@@ -29,10 +29,6 @@ MCG USAGE
 - To compute MCG candidates, see im2mcg.m (and scripts/im2mcg_all.m)
 - To compute MCG UCMs, see im2ucm.m (and scripts/im2ucm_all.m)
 - For demos about how to use these functions, see the 'demos' folder
-
-EVALUATION
-- See scripts/benchmark_results.m to see how to evaluate the candidates
-  and compare them to the state of the art
 
 NOTE
 - Very big images (around 10 mega-pixels) make the detection of edges at scale 2
