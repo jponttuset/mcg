@@ -52,8 +52,6 @@ build_file{end+1} = fullfile(mcg_root, 'src', 'aux'      ,'mex_intersect_hierarc
 build_file{end+1} = fullfile(mcg_root, 'src', 'aux'      ,'mex_ucm2hier.cpp');
 build_file{end+1} = fullfile(mcg_root, 'src', 'aux'      ,'mex_cands2masks.cpp');
 build_file{end+1} = fullfile(mcg_root, 'src', 'aux'      ,'mex_cands2labels.cpp');
-build_file{end+1} = fullfile(mcg_root, 'src', 'benchmark','mex_eval_masks.cpp');
-build_file{end+1} = fullfile(mcg_root, 'src', 'benchmark','mex_eval_labels.cpp');
 build_file{end+1} = fullfile(mcg_root, 'src', 'external' ,'paretofront','paretofront.cpp');
 
 %% Build everything
