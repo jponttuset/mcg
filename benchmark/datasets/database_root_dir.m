@@ -19,6 +19,10 @@
 function db_root_dir = database_root_dir( database )
 if strcmp(database,'pascal2012')
     db_root_dir ='/path/to/pascal2012';
+elseif strcmp(database,'COCO')
+    db_root_dir = '/path/to/COCO/';
+elseif strcmp(database,'SBD')
+    db_root_dir = '/path/to/SBD/';
 else
     error(['Unknown database: ' database]);
 end

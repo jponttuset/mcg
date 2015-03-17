@@ -18,6 +18,18 @@ function image = get_image( database, image_id )
         image = imread(fullfile(database_root_dir(database), 'JPEGImages', [image_id '.jpg']));
     elseif strcmp(database,'bsds500')
         image = imread(fullfile(database_root_dir(database), 'images', [image_id '.jpg']));
+    elseif strcmp(database,'SBD')
+        image = imread(fullfile(database_root_dir(database), 'PNGImages', [image_id '.png']));
+    elseif strcmp(database,'COCO')
+        if exist(fullfile(database_root_dir(database), 'images', 'train2014', [image_id '.jpg']),'file')
+            image = imread(fullfile(database_root_dir(database), 'images', 'train2014', [image_id '.jpg']));
+        elseif exist(fullfile(database_root_dir(database), 'val2014', [image_id '.jpg']),'file')
+            image = imread(fullfile(database_root_dir(database), 'images', 'val2014', [image_id '.jpg']));
+        elseif exist(fullfile(database_root_dir(database), 'test2014', [image_id '.jpg']),'file')
+            image = imread(fullfile(database_root_dir(database), 'images', 'test2014', [image_id '.jpg']));
+        else
+            error(['Image not found: ' image_id ' in ' database_root_dir(database)]);
+        end
     else
         error(['Unknown database: ' database]);
     end
