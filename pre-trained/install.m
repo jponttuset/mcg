@@ -54,6 +54,24 @@ for ii=1:length(needed_files)
     end
 end
 
+
+%% Check that the databases are available and show a warning if not
+dbs        = {'pascal2012',    'SBD',   'COCO'};
+im_folders = {'JPEGImages', 'images', 'images'};
+all_ok = 1;
+for ii=1:length(dbs)
+    db = dbs{ii};
+    if ~exist(fullfile(database_root_dir(db), im_folders{ii}),'dir')
+        all_ok = 0;
+        disp(['WARNING: Database ' db ' (folder ' im_folders{ii} ') not found in ' database_root_dir(db)])    
+    end
+end
+
+if ~all_ok
+    disp('-- You can disable this warning in install.m --')
+end
+
+
 %% Clear
 clear ii needed_files;
 disp('-- Successful installation of MCG. Enjoy! --');
