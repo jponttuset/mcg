@@ -6,12 +6,12 @@ clear all;close all;home;
 I = imread(fullfile(mcg_root, 'demos','101087.jpg'));
 
 tic;
-% Test the 'fast' version, which takes around 3 seconds in mean
+% Test the 'fast' version, which takes around 3 seconds
 ucm2_scg = im2ucm(I,'fast');
 toc;
 
 tic;
-% Test the 'accurate' version, which tackes around 25 seconds in mean
+% Test the 'accurate' version, which tackes around 15 seconds
 ucm2_mcg = im2ucm(I,'accurate');
 toc;
 
