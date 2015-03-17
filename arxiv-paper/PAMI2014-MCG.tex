@@ -1,0 +1,2601 @@
+\pdfoutput=1
+%% bare_jrnl_compsoc.tex
+%% V1.3
+%% 2007/01/11
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.7 or later) with an IEEE Computer
+%% Society journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex
+%%*************************************************************************
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices can trigger bugs that do  ***
+% *** not appear when using other class files.                            ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+
+
+% Note that the a4paper option is mainly intended so that authors in
+% countries using A4 can easily print to A4 and see how their papers will
+% look in print - the typesetting of the document will not typically be
+% affected with changes in paper size (but the bottom and side margins will).
+% Use the testflow package mentioned above to verify correct handling of
+% both paper sizes by the user's LaTeX system.
+%
+% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
+% should be used if it is desired that the figures are to be displayed in
+% draft mode.
+%
+% The Computer Society usually requires 10pt for submissions.
+%
+\documentclass[10pt,journal,cspaper,compsoc]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[12pt,journal,compsoc]{../sty/IEEEtran}
+
+
+\pdfminorversion 4
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  % \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  % \usepackage{cite}
+\fi
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
+% not currently provide for hyperlinked citations.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+%
+% Note that some packages require special options to format as the Computer
+% Society requires. In particular, Computer Society  papers do not use
+% compressed citation ranges as is done in typical IEEE papers
+% (e.g., [1]-[4]). Instead, they list every citation separately in order
+% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
+% package with the nocompress option which is supported by cite.sty v4.0
+% and later. Note also the use of a CLASSOPTION conditional provided by
+% IEEEtran.cls V1.7 and later.
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at: 
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found as epslatex.ps or
+% epslatex.pdf at: http://www.ctan.org/tex-archive/info/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage[cmex10]{amsmath}
+\usepackage{amssymb,amsthm}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+%\usepackage[algo2e,ruled,lined]{algorithm2e}
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+% LaTeX systems. The lastest version and documentation is available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
+
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%\usepackage[tight,normalsize,sf,SF]{subfigure}
+%\else
+%\usepackage[tight,footnotesize]{subfigure}
+%\fi
+% subfigure.sty was written by Steven Douglas Cochran. This package makes it
+% easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
+% work, it is a good idea to load it with the tight package option to reduce
+% the amount of white space around the subfigures. Computer Society papers
+% use a larger font and \sffamily font for their captions, hence the
+% additional options needed under compsoc mode. subfigure.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/obsolete/macros/latex/contrib/subfigure/
+% subfigure.sty has been superceeded by subfig.sty.
+
+
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false]{caption}
+%  \usepackage[font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false]{caption}
+%  \usepackage[font=footnotesize]{subfig}
+%\fi
+% subfig.sty, also written by Steven Douglas Cochran, is the modern
+% replacement for subfigure.sty. However, subfig.sty requires and
+% automatically loads Axel Sommerfeldt's caption.sty which will override
+% IEEEtran.cls handling of captions and this will result in nonIEEE style
+% figure/table captions. To prevent this problem, be sure and preload
+% caption.sty with its "caption=false" package option. This is will preserve
+% IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later 
+% (recommended due to many improvements over 1.2) of subfig.sty supports
+% the caption=false option directly:
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+%
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+% The latest version and documentation of caption.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Documentation is contained in the stfloats.sty comments as well as in the
+% presfull.pdf file. Do not use the stfloats baselinefloat ability as IEEE
+% does not allow \baselineskip to stretch. Authors submitting work to the
+% IEEE should note that IEEE rarely uses double column equations and
+% that authors should try to avoid such use. Do not be tempted to use the
+% cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
+% not format its papers in such ways.
+
+
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley and Jeff Goldberg.
+% This package may be useful when used in conjunction with IEEEtran.cls'
+% captionsoff option. Some IEEE journals/societies require that submissions
+% have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.3.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% For subfigure.sty:
+% \let\MYorigsubfigure\subfigure
+% \renewcommand{\subfigure}[2][\relax]{\MYorigsubfigure[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat/subfig command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/endfloat/
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
+% Read the url.sty source comments for usage information. Basically,
+% \url{my_url_here}.
+
+\usepackage{flushend}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{plotmarks}
+\pgfplotsset{compat=newest}
+
+\usetikzlibrary{trees,shapes.geometric,arrows,positioning}
+
+\usepackage{booktabs} % Nice tables
+\usepackage{multirow} % Combine multiple rows
+\usepackage{pifont}   % For \ding{}
+\usepackage{paralist, tabularx}
+
+\newcommand*{\etal}{\textit{et al.}\ }
+\DeclareMathOperator*{\argmax}{arg\,max}
+%\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+
+\newcommand{\showodsf}[2]{%
+\mbox{\input{data/pr_curves/#1_#2_ods_f.txt}\hspace{-2.5pt}}%
+}
+
+\newcommand{\showodsfb}[2]{%
+\mbox{\input{data/segm_bsds/test_#1_#2_ods_f.txt}\hspace{-2.5pt}}%
+}
+
+\definecolor{mygreen}{RGB}{69,182,73}
+
+\newcommand{\TODO}[1]{{\color{red}\bf #1}}
+
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{Multiscale Combinatorial Grouping\\for Image Segmentation and\\Object Proposal Generation}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+%
+%\IEEEcompsocitemizethanks is a special \thanks that produces the bulleted
+% lists the Computer Society journals use for "first footnote" author
+% affiliations. Use \IEEEcompsocthanksitem which works much like \item
+% for each affiliation group. When not in compsoc mode,
+% \IEEEcompsocitemizethanks becomes like \thanks and
+% \IEEEcompsocthanksitem becomes a line break with idention. This
+% facilitates dual compilation, although admittedly the differences in the
+% desired content of \author between the different types of papers makes a
+% one-size-fits-all approach a daunting prospect. For instance, compsoc 
+% journal papers have the author affiliations above the "Manuscript
+% received ..."  text while in non-compsoc journals this is reversed. Sigh.
+
+\author{Jordi Pont-Tuset*, %~\IEEEmembership{Member,~IEEE,}
+\and
+Pablo Arbel\'aez*, %~\IEEEmembership{Member,~IEEE,}
+\and
+Jonathan T. Barron,~\IEEEmembership{Member,~IEEE,}\\
+\and
+Ferran Marques,~\IEEEmembership{Senior Member,~IEEE,}
+\and
+Jitendra Malik,~\IEEEmembership{Fellow,~IEEE}% <-this % stops a space
+\IEEEcompsocitemizethanks{\IEEEcompsocthanksitem J. Pont-Tuset and F. Marques are
+with the Department of Signal Theory and Communications, Universitat Polit\`{e}cnica de Catalunya, BarcelonaTech (UPC), Spain.
+E-mail: \{jordi.pont,ferran.marques\}@upc.edu%see http://www.michaelshell.org/contact.html
+\IEEEcompsocthanksitem P. Arbel\'aez is
+with the Department of Biomedical Engineering, Universidad de los Andes, Colombia.
+E-mail: pa.arbelaez@uniandes.edu.co%see http://www.michaelshell.org/contact.html
+\IEEEcompsocthanksitem J. T. Barron, and J. Malik are with the Department of Electrical Engineering and Computer Science,
+University of California at Berkeley, Berkeley, CA 94720.
+E-mail: \{barron,malik\}@eecs.berkeley.edu\protect\\
+% note need leading \protect in front of \\ to get a newline within \thanks as
+% \\ is fragile and will error, could use \hfil\break instead.
+% \IEEEcompsocthanksitem J. Doe and J. Doe are with Anonymous University.
+}% <-this % stops a space
+\thanks{* The first two authors contributed equally}}
+
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+\markboth{}%
+{}% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+% The publisher's ID mark at the bottom of the page is less important with
+% Computer Society journal papers as those publications place the marks
+% outside of the main text columns and, therefore, unlike regular IEEE
+% journals, the available text space is not reduced by their presence.
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2007 IEEE}
+% or like this to get the Computer Society new two part style.
+%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2007 IEEE}%
+%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark (Computer Society jorunal
+% papers don't need this extra clearance.)
+
+
+
+
+% for Computer Society papers, we must declare the abstract and index terms
+% PRIOR to the title within the \IEEEcompsoctitleabstractindextext IEEEtran
+% command as these need to go into the title area created by \maketitle.
+\IEEEcompsoctitleabstractindextext{%
+\begin{abstract}
+We propose a unified approach for bottom-up hierarchical image segmentation and object proposal generation for recognition, called Multiscale Combinatorial Grouping (MCG). 
+For this purpose, we first develop a fast normalized cuts algorithm. We then propose a high-performance hierarchical segmenter that makes effective use of multiscale information. 
+Finally, we propose a grouping strategy that combines our multiscale regions into highly-accurate object proposals by exploring efficiently their combinatorial space.
+We also present Single-scale Combinatorial Grouping (SCG), a faster version of MCG that produces
+competitive proposals in under five second per image.
+We conduct an extensive and comprehensive empirical validation on the BSDS500, SegVOC12, SBD, and COCO datasets, showing that MCG produces state-of-the-art contours, hierarchical regions, and object proposals.
+\end{abstract}
+
+% IEEEtran.cls defaults to using nonbold math in the Abstract.
+% This preserves the distinction between vectors and scalars. However,
+% if the journal you are submitting to favors bold math in the abstract,
+% then you can use LaTeX's standard command \boldmath at the very start
+% of the abstract to achieve this. Many IEEE journals frown on math
+% in the abstract anyway. In particular, the Computer Society does
+% not want either math or citations to appear in the abstract.
+
+% Note that keywords are not normally used for peer review papers.
+\begin{keywords}
+Image segmentation, object proposals, normalized cuts.
+\end{keywords}}
+
+
+% make the title area
+\maketitle
+
+
+% To allow for easy dual compilation without having to reenter the
+% abstract/keywords data, the \IEEEcompsoctitleabstractindextext text will
+% not be used in maketitle, but will appear (i.e., to be "transported")
+% here as \IEEEdisplaynotcompsoctitleabstractindextext when compsoc mode
+% is not selected <OR> if conference mode is selected - because compsoc
+% conference papers position the abstract like regular (non-compsoc)
+% papers do!
+\IEEEdisplaynotcompsoctitleabstractindextext
+% \IEEEdisplaynotcompsoctitleabstractindextext has no effect when using
+% compsoc under a non-conference mode.
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+\section{Introduction}
+\IEEEPARstart{T}{wo} paradigms have shaped the field of object recognition in the last decade. The first one, popularized by the Viola-Jones face detection algorithm~\cite{viola_jones:IJCV04}, formulates object localization as window classification. 
+The basic scanning-window architecture, relying on histograms of gradients and linear support vector machines, was introduced by Dalal and Triggs \cite{dalal_triggs:CVPR05} in the context of pedestrian detection and is still at the core of leading object detectors on the Pascal challenge such as Deformable Part Models \cite{FelzenszwalbTPAMI2010}.
+
+The second paradigm relies on perceptual grouping to provide a limited number of high-quality and category-independent object proposals, which can then be described with richer representations and used as input to more sophisticated learning methods.
+Examples in this family are~\cite{Malisiewicz2007,Gu_etal:cvpr2009}. Recently, this approach has dominated the Pascal segmentation challenge \cite{Carreira2012b,Arbelaez2012,o2p}, improved object detection~\cite{Girshick:cvpr2014}, fine-grained categorization \cite{Zhang2014} and proven competitive in large-scale classification \cite{Uijlings2013}.
+
+Since the power of this second paradigm is critically dependent on the accuracy and the number of object proposals, an increasing body of research has delved into the problem of their generation \cite{Kraehenbuehl2014,Rantalankila2014,Humayun2014,Uijlings2013,Alexe2012,Kim2012,Carreira2012b,Uijlings2013,Endres2014}.
+However, those approaches typically focus on learning generic properties of objects from a set of examples, while reasoning on a fixed set of regions and contours produced by external bottom-up segmenters such as \cite{Arbelaez2011,Felzenszwalb2004}. 
+
+\begin{figure}[t]
+\begin{center}
+\setlength{\fboxsep}{0pt}
+ \fbox{\includegraphics[width=0.32\linewidth]{figures/examples/COCO_val2014_000000391895.png}}
+ \hfill
+ \fbox{\includegraphics[width=0.32\linewidth]{figures/examples/COCO_val2014_000000391895_gt.png}}
+\hfill
+ \fbox{\includegraphics[width=0.32\linewidth]{figures/examples/COCO_val2014_000000391895_ucm.png}}\\[2mm]
+ \fbox{\includegraphics[width=0.32\linewidth]{figures/examples/COCO_val2014_000000391895_obj1.png}}
+ \hfill
+ \fbox{\includegraphics[width=0.32\linewidth]{figures/examples/COCO_val2014_000000391895_obj2.png}}
+\hfill
+ \fbox{\includegraphics[width=0.32\linewidth]{figures/examples/COCO_val2014_000000391895_obj3.png}}
+\end{center}
+\vspace{-1mm}
+   \caption{\textbf{Top:} original image, instance-level ground truth from COCO and our multiscale hierarchical segmentation. \textbf{Bottom:} our best object proposals among 150.}
+\label{fig1}
+\end{figure}
+
+\begin{figure*}[t]
+\begin{center}
+%\fbox{\rule{0pt}{2in} \rule{0.9\linewidth}{0pt}}
+   \includegraphics[width=0.9\linewidth]{figures/overview/overview.pdf}
+\end{center}
+   \caption{\textbf{Multiscale Combinatorial Grouping}. Starting from a multiresolution image pyramid, we perform hierarchical segmentation at each scale independently. 
+We align these multiple hierarchies and combine them into a single multiscale segmentation hierarchy. 
+Our grouping component then produces a ranked list of object proposals by efficiently exploring the combinatorial space of these regions.}
+\label{fig:overview}
+\end{figure*}
+
+
+In this paper, we propose a unified approach to multiscale hierarchical segmentation and object proposal generation called Multiscale Combinatorial Grouping (MCG). 
+Fig.~\ref{fig1} shows an example of our results and Fig.~\ref{fig:overview} an overview of our pipeline. Our main contributions are:
+\begin{itemize}
+\item An efficient normalized cuts algorithm, which in practice provides a $20\times$ speed-up to the eigenvector computation required for contour globalization \cite{Arbelaez2011,renNIPS12} (Sect.~\ref{sec:fast_eigen}).
+\item A state-of-the-art hierarchical segmenter that leverages multiscale information (Sect.~\ref{sect:multi}).
+\item A grouping algorithm that produces accurate object proposals by efficiently exploring the combinatorial space of our multiscale regions (Sect.~\ref{sec:obj_prop}).
+\end{itemize}
+We conduct a comprehensive and large-scale empirical validation.
+On the BSDS500 (Sect.~\ref{sect:bsds}) we report the best results to date in contour detection and hierarchical segmentation. 
+On the VOC2012, SBD, and COCO segmentation datasets (Sect.~\ref{sect:experim_prop}), our proposals obtain overall state-of-the-art accuracy
+both as segmented proposals and as bounding boxes.
+MCG is efficient, its good generalization power makes it parameter free in practice, and it provides a ranked set of proposals that are competitive in all regimes of number of proposals.
+
+
+
+%The rest of this paper is organized as follows. Section~\ref{sec:related_work} reviews existing proposal generation methods. Section~\ref{sect3} presents our multiscale segmenter, which is extensively evaluated on the BSDS500 on Section~\ref{sect4}.
+%In Section~\ref{sec:obj_prop} we describe our combinatorial proposal generation strategy, and evaluate its accuracy in detail on the Pascal segmentation dataset in Section~\ref{sect:experim_prop}. We conclude in Section~\ref{sec:conclu}.
+
+\section{Related Work}
+\label{sec:related_work}
+
+%Contour detection and image segmentation are two of the most widely studied problems in vision. 
+For space reasons, we focus our review on recent normalized cut algorithms and object proposals for recognition.
+
+\paragraph*{\textbf{Fast normalized cuts}} The efficient computation of normalized-cuts eigenvectors has been the subject of recent work, as it is often the computational bottleneck in grouping algorithms. 
+Taylor \cite{TaylorCVPR13} presented a technique for using a simple watershed oversegmentation to reduce the size of the eigenvector problem, sacrificing accuracy for speed. 
+We take a similar approach of solving the eigenvector problem in a reduced space, though we use simple image-pyramid operations on the affinity matrix (instead of a separate segmentation algorithm) and we see no loss in performance despite a 20$\times$ speed improvement. 
+Maire and Yu \cite{MaireICCV2013} presented a novel multigrid solver for producing eigenvectors at multiple scales, which speeds up fine-scale eigenvector computation by leveraging coarse-scale solutions. 
+Our technique also uses the scale-space structure of an image, but instead of solving the problem at multiple scales, we simply reduce the scale of the problem, solve it at a reduced scale, and then upsample the solution while preserving the structure of the image. 
+As such, our technique is faster and much simpler, requiring only a few lines of code wrapped around a standard sparse eigensolver.
+%Our system uses as input local contour cues from \cite{renNIPS12, Arbelaez2011}, which are highly accurate but not optimized for efficiency. 
+%Recent work by Lim \etal \cite{Lim:CVPR13} and Doll\'ar \etal \cite{Dollar:ICCV13} has the potential of delivering even better input in real time. 
+
+\paragraph*{\textbf{Object Proposals}} Class-independent methods that generate object hypotheses can be divided into those whose output is an image window
+and those that generate segmented proposals.
+
+Among the former, Alexe \etal \cite{Alexe2012} propose an \textit{objectness} measure to score randomly-sampled image
+windows based on low-level features computed on the superpixels of~\cite{Felzenszwalb2004}.
+%They introduce the \textit{superpixels straddling} measure based on~\cite{Felzenszwalb2004} to test whether it is likely
+%for an object to lie within a window.
+%Our proposals are formed from combinations of superpixels, so the 
+%\textit{straddling} is always zero.
+%
+Manen \etal \cite{Manen2013} propose to use the Randomized Prim's algorithm, Zitnick \etal \cite{Zitnick2014} group contours directly to produce object windows,
+and Cheng \etal \cite{Cheng2014} generate box proposals at 300 images per second.   
+In contrast to these approaches, we focus on the finer-grained task of pixel-accurate object extraction, rather than on window selection. However, by just taking the bounding box around our segmented proposals, our results
+ are also state of the art as window proposals.  
+
+Among the methods that produce segmented proposals, Carreira and Sminchisescu~\cite{Carreira2012b} hypothesize a set of placements of fore- and background seeds and,
+for each configuration, solve a constrained parametric min-cut (CPMC) problem to generate a pool of object hypotheses.
+%They train a random forest to rank the hypotheses based on mid-level cues and enforce variety via a maximum marginal diversification algorithm.
+Endres and Hoiem~\cite{Endres2014} base their category-independent object proposals on an iterative generation of a hierarchy of regions,
+based on the contour detector of~\cite{Arbelaez2011} and occlusion boundaries of~\cite{Hoiem2011}.
+Kim and Grauman~\cite{Kim2012} propose to match parts of the shape of exemplar objects, regardless of their class,
+to detected contours by~\cite{Arbelaez2011}. 
+They infer the presence and shape of a proposal object by adapting the matched object to the computed superpixels.
+
+Uijlings \etal \cite{Uijlings2013} present a selective search algorithm based on segmentation.
+Starting with the superpixels of~\cite{Felzenszwalb2004} for a variety of color spaces,
+they produce a set of segmentation hierarchies by region merging, which are used
+to produce a set of object proposals. 
+While we also take advantage of different hierarchies to gain diversity, we leverage multiscale information rather than different color spaces.
+
+Recently, two works proposed to train a cascade of classifiers to learn which sets of regions should be merged to form objects.
+Ren and Shankhnarovich~\cite{Ren_2013_CVPR} produce full region hierarchies by iteratively merging pairs of regions and adapting the classifiers
+to different scales. Weiss and Taskar~\cite{weiss2013scalpel} specialize the classifiers also to size and class of the annotated
+instances to produce object proposals.
+
+Malisiewicz and Efros~\cite{Malisiewicz2007} took one of the first steps towards combinatorial grouping, by running multiple segmenters with different parameters and merging up to three adjacent regions.
+In~\cite{Arbelaez2012}, another step was taken by considering hierarchical segmentations at three different scales and combining pairs and triplets of adjacent regions from the two coarser scales to produce object proposals.
+
+The most recent wave of object proposal algorithms is represented by \cite{Kraehenbuehl2014}, \cite{Rantalankila2014}, and~\cite{Humayun2014}, which all keep
+the quality of the seminal proposal works while improving the speed considerably.
+Kr\"ahenb\"uhl and Koltun~\cite{Kraehenbuehl2014} find object proposal by identifying critical level sets in
+geodesic distance transforms, based on seeds placed in learnt places in the image.
+Rantalankila \etal \cite{Rantalankila2014} perform a global and local search in the space of sets of superpixels.
+Humayun \etal \cite{Humayun2014} reuse a graph to perform many parametric min-cuts over different seeds in order to speed the process up.
+
+%They generate multiple image partitions using a variety of parameterizations of three segmentation algorithms.
+%Their object proposals are the merging of up to three adjacent regions of these segmentations.
+
+
+%We also perform a combinatorial merging of adjacent pairs and triplets of regions but we enrich the set of proposals by
+%merging neighbors coming from any level of a hierarchy of regions, instead of from a flat segmentation. 
+
+A substantial difference between our approach and previous work is that, instead of relying on pre-computed hierarchies or superpixels, we propose a unified approach that produces and groups high-quality multiscale regions.
+With respect to the combinatorial approaches of \cite{Malisiewicz2007,Arbelaez2012}, our main contribution is to develop efficient algorithms to explore a much larger combinatorial space by taking into account a set of object examples, increasing the likelihood of having complete objects in the pool of proposals. 
+Our approach has therefore the flexibility to adapt to specific applications and types of objects, and can produce proposals at any trade-off between their number and their accuracy.
+
+
+\section{The Segmentation Algorithm}
+Consider a segmentation of the image into regions that partition its domain $\mathcal{S} = \{ S_i\}_i$. 
+A segmentation hierarchy is a family of partitions $\{\mathcal{S}^*,\mathcal{S}^{1},...,\mathcal{S}^{L}\}$ such that: (1) $\mathcal{S}^{*}$ is the finest set of \emph{superpixels}, (2) $\mathcal{S}^{L}$ is the complete domain, and (3) regions from coarse levels are unions of regions from fine levels.
+A hierarchy where each level $\mathcal{S}^{i}$ is assigned a real-valued index $\lambda_i$ can be represented by a dendrogram, a region tree where the height of each node is its index. 
+Furthermore, it can also be represented as an ultrametric contour map (UCM), an image obtained by weighting the boundary of each pair of adjacent regions in the hierarchy by the index at which they are merged \cite{Najman1996,Arbelaez:POCV06}. 
+This representation unifies the problems of contour detection and hierarchical image segmentation: a threshold at level $\lambda_i$ in the UCM produces the segmentation $\mathcal{S}^i$. 
+%Fig. \ref{fig:hierarchy} schematizes these concepts.
+
+Figure~\ref{fig:hierarchy} schematizes these concepts.
+First, the lower left corner shows the probability of boundary of a UCM.
+One of the main properties of a UCM is that when we threshold the contour strength at a certain value,
+we obtain a closed boundary map, and thus a partition.
+Thresholding at different $\lambda_i$, therefore, we obtain the so-called merging-sequence partitions
+(left column in Figure~\ref{fig:hierarchy}); named after the fact that a step in this sequence
+corresponds to merging the set of regions sharing the boundary of strength exactly $\lambda_i$.
+
+For instance, the boundary between the wheels and the floor has strength $\lambda_1$,
+thus thresholding the contour above $\lambda_1$ makes the wheels \textit{merge} with the floor.
+If we represent the regions in a partition as nodes of a graph, we can then represent the result
+of merging them as their parent in a tree.
+The result of sweeping all $\lambda_i$ values can therefore be represented as a region tree, 
+whose root is the region representing the whole image (right part of Figure~\ref{fig:hierarchy}).
+Given that each \textit{merging} is associated with a contour strength,
+the region tree is in fact a region dendogram.
+
+\begin{figure}[t]
+\includegraphics[width=\linewidth]{figures/hierarchy.pdf}
+\caption{\textbf{Duality between a UCM and a region tree}: Schematic view of the dual representation of a segmentation hierarchy
+as a region dendrogram and as an ultrametric contour map.}
+\label{fig:hierarchy}
+\end{figure}
+
+As an example, in the gPb-ucm algorithm of~\cite{Arbelaez2011}, brightness, color and texture gradients at three fixed disk sizes are first computed. 
+These local contour cues are globalized using spectral graph-partitioning, resulting in the gPb contour detector. 
+Hierarchical segmentation is then performed by iteratively merging adjacent regions based on the average gPb strength on their common boundary. 
+This algorithm produces therefore a tree of regions at multiple levels of homogeneity in brightness, color and texture, and the boundary strength of its UCM can be interpreted as a measure of contrast. 
+
+Coarse-to-fine is a powerful processing strategy in computer vision. 
+We exploit it in two different ways to develop an efficient, scalable and high-performance segmentation algorithm: 
+(1) To speed-up spectral graph partitioning and (2) To create aligned segmentation hierarchies.
+
+\subsection{Fast Downsampled Eigenvector Computation}
+\label{sec:fast_eigen}
+
+The normalized cuts criterion is a key globalization mechanism of recent high-performance contour detectors such as \cite{Arbelaez2011, renNIPS12}.
+Although powerful, such spectral graph partitioning has a significant computational cost and memory footprint that limit its scalability. 
+In this section, we present an efficient normalized cuts approximation which in practice preserves full performance for contour detection, while having low memory requirements and providing a $20\times$ speed-up.
+
+Given a symmetric affinity matrix $A$, we would like to compute the $k$ smallest eigenvectors of the Laplacian of $A$. 
+Directly computing such eigenvectors can be very costly even with sophisticated solvers, due to the large size of $A$. 
+We therefore present a technique for efficiently approximating the eigenvector computation by taking advantage of the multiscale nature of our problem: 
+$A$ models affinities between pixels in an image, and images naturally lend themselves to multiscale or pyramid-like representations and algorithms.
+
+Our algorithm is inspired by two observations: 1) if $A$ is bistochastic (the rows and columns of $A$ sum to 1) then the eigenvectors of the Laplacian $A$ are equal to the eigenvectors of the Laplacian of $A^2$, and 2) because of the scale-similar nature of images, the eigenvectors of a ``downsampled'' version of $A$ in which every other pixel has been removed should be similar to the eigenvectors of $A$.
+Let us define ${\tt pixel\_decimate}\left( A \right)$, which takes an affinity matrix $A$ and returns the indices of rows/columns in $A$ corresponding to a decimated version of the image from which $A$ was constructed.
+That is, if $i = {\tt pixel\_decimate}\left( A \right)$, then $A\left[i,i\right]$ is a decimated matrix in which alternating rows and columns \emph{of the image} have been removed.
+Computing the eigenvectors of $A\left[i,i\right]$ works poorly, as decimation disconnects pixels in the affinity matrix, but the eigenvectors of the decimated squared affinity matrix $A^2 \left[i,i\right]$ are similar to those of $A$, because by squaring the matrix before decimation we intuitively allow each pixel to propagate information to all of its neighbors in the graph, maintaining connections even after decimation.
+Our algorithm works by efficiently computing $A^2 \left[i,i\right]$ as $A\left[:,i\right]^\mathrm{T}A\left[:,i\right]$ (the naive approach of first squaring $A$ and then decimating it is prohibitively expensive), computing the eigenvectors of $A^2 \left[i,i\right]$, and then ``upsampling'' those eigenvectors back to the space of the original image by pre-multiplying by $A\left[:,i\right]$.
+This squaring-and-decimation procedure can be applied recursively several times, each application improving efficiency while slightly sacrificing accuracy. 
+
+%Our algorithm is inspired by the observation that if $A$ is bistochastic (the rows and columns of $A$ sum to 1) then the eigenvectors of the Laplacian $A$ are equal to the eigenvectors of the Laplacian of $A^2$. 
+%Of course, operating on $A^2$ is strictly more expensive than operating on $A$, but one could imagine computing a ``decimated'' version of $A^2$ in which the rows and columns of $A$ corresponding to alternating rows and columns \emph{of the image} have been removed. 
+%This gives us a new decimated matrix which has $3/4$ the number of rows and columns as the original matrix while not being significantly less sparse --- depending on the connectedness of the affinity measure being used. 
+%Our observation is that the eigenvectors of the decimated-and-squared $A$ can be ``upsampled'' back to the space of the original image, and used to approximate the true eigenvectors of $A$. 
+%And of course, this squaring-and-decimation process can be repeated several times, further improving the efficiency of our algorithm while sacrificing more accuracy. 
+%Because our $A$ is not bistochastic and decimation is not an orthonormal operation, some normalization and orthogonalization is required throughout the algorithm to produce accurate eigenvectors.
+%Pseudocode for our algorithm is given in Alg.~\ref{alg:dncuts}.
+
+\begin{algorithm}
+\caption{${\tt dncuts}(A, d, k)$}  
+\begin{algorithmic}[1]
+\State $A_0 \gets A$
+\For{$s = \left[ 1 : d \right]$}
+\State $i_s \gets {\tt pixel\_decimate}\left( A_{s-1} \right)$
+\State $B_s \gets A_{s-1}\left[\,:\,,\, i_s \,\right]$
+\State $C_s \gets {\tt diag}( B_s \vec{1} )^{-1} B_s$
+\State $A_s \gets C_s^\mathrm{T} B_s$
+\EndFor
+\State $X_d \gets {\tt ncuts}(A_d, k)$
+\For{$s = \left[ d : -1 : 1 \right]$} 
+\State $X_{s-1} \gets C_s X_s$
+\EndFor
+\State \Return ${\tt whiten}(X_0)$
+\end{algorithmic}
+\label{alg:dncuts}
+\end{algorithm}
+
+
+%\begin{algorithm}
+%\caption{${\tt dncuts}(A, D, K)$}  
+%\begin{algorithmic}[1]
+%\State $A_0 \gets A$
+%\For{$d = \left[ 1 : D \right]$}
+%\State $B_d \gets {\tt decimate}(A_{d-1})$
+%\State $C_d \gets {\tt diag}( B_d \vec{1} )^{-1} B_d$
+%\State $A_d \gets C_d^\mathrm{T} B_d$
+%\EndFor
+%\State $X \gets {\tt ncuts}(A_D, K)$
+%\For{$d = \left[ D : -1 : 1 \right]$} 
+%\State $X \gets C_d X$
+%\EndFor
+%\State $X \gets {\tt whiten}(X)$
+%\State \Return $X$
+%\end{algorithmic}
+%\label{alg:dncuts}
+%\end{algorithm}
+
+Pseudocode for our algorithm, which we call ``DNCuts'' (Downsampled Normalized Cuts) is given in Algorithm~\ref{alg:dncuts}, where $A$ is our affinity matrix and $d$ is the number of times that our squaring-and-decimation operation is applied.
+Our algorithm repeatedly applies our joint squaring-and-decimation procedure, computes the smallest $k$ eigenvectors of the final ``downsampled'' matrix $A_d$ by using a standard sparse eigensolver ${\tt ncuts}(A_d, k)$, and repeatedly ``upsamples'' those eigenvectors.
+Because our $A$ is not bistochastic and  decimation is not an orthonormal operation, we must do some normalization throughout the algorithm (line $5$) and whiten the resulting eigenvectors (line $10$).
+We found that values of $d=2$ or $d=3$ worked well in practice.
+Larger values of $d$ yielded little speed improvement (as much of the cost is spent downsampling $A_0$) and start negatively affecting accuracy. 
+Our technique is similar to Nystrom's method for computing the eigenvectors of a subset of $A$, but our squaring-and-decimation procedure means that we do not depend on long-range connections between pixels.
+
+
+%and $\tt{ncuts}(A, K)$ is an function that computes the smallest $k$ eigenvectors of the Laplacian of $A$.
+%Because actually squaring and then decimating $A_{d-1}$ is prohibitively expensive, we instead decimate only the columns of $A_{d-1}$ (shown in the pseudocode as ${\tt decimate}(A_{d-1})$ to produce a ``skinny'' half-decimated matrix $B_d$, which we then row-normalize to create $C_d$ (row normalization appears to be necessary to deal with scaling issues). 
+%With these we produce our decimated-and-squared matrix $A_d = C_d^\mathrm{T} B_d$, for which this operation can then be repeated. 
+%After these repeated ``downsampling'' operations we perform standard normalized cuts on our small matrix $A_D$, and then ``upsample'' those eigenvectors by repeatedly multiplying them by our pre-computed $C_d$ matrices. 
+%Because our downsampling and upsampling operations are not orthogonal, our ``upsampled'' eigenvectors are often poorly scaled and heavily correlated, so we whiten them to orthogonalize them.
+
+
+%An overview of our approach is presented in Fig. \ref{fig:overview}. After performing fixed-scale hierarchical segmentation (Sect. \ref{sect3.1}), we rescale and align each hierarchy to a set of fine superpixels, and learn to combine them into a single hierarchy (Sects. \ref{sec:align_seg} and \ref{sect3.3}). 
+%The output of the first component of our system is the combined multiscale segmentation hierarchy and the aligned hierarchies we used for its construction. 
+%These multiscale regions are then grouped into object proposals by our combinatorial merging component, which will be described in detail in Sect.~\ref{sec:obj_prop}.
+
+
+\subsection{Aligning Segmentation Hierarchies}
+\label{sec:align_seg}
+
+
+%For completeness, we start by reminding basic notions of hierarchical segmentation used by  \eg~\cite{Arbelaez2011} and introducing some notations. 
+%Notice that, thanks to the use of gradients computed at three different sizes, gPb has some tolerance to scale variations. However, it remains a single-scale contour detector, using only the information available at a fixed image resolution. 
+%In the next sections, we reexamine this architecture, and show how to improve the quality of its output by leveraging multiscale information and diversifying its inputs. 
+
+
+%\begin{figure}[t]
+%\begin{center}
+%   \includegraphics[width=0.31\linewidth]{figures/ucm_transform/101087.eps}
+% \includegraphics[width=0.31\linewidth]{figures/ucm_transform/ucm.eps}
+% \includegraphics[width=0.36\linewidth]{figures/ucm_transform/ucmT.eps}
+%\end{center}
+%   \caption{Spatially transforming an UCM. We transform an UCM (middle) by transforming recursively the segmentations of the hierarchy, as described in Alg. \ref{alg:ucmT}. The right image shows the result after applying an affine transform ${\tt T}$ with both horizontal and vertical shears.  }
+%\label{fig:ucmT}
+%\end{figure}
+
+%\begin{figure}[t]
+%\begin{center}
+%   \includegraphics[width=0.24\linewidth]{figures/project/seg2a.eps}
+% \includegraphics[width=0.24\linewidth]{figures/project/seg1.eps}
+% %  \includegraphics[width=0.24\linewidth]{figures/project/seg3.eps}
+% \includegraphics[width=0.24\linewidth]{figures/project/seg3c.eps}
+%\end{center}
+%   \caption{\textbf{Example of segmentation projection}. In order to ``snap'' the boundaries of a segmentation $\mathcal{R}$ (left) to those of a segmentation $\mathcal{S}$ (middle), since they do not align, we compute $\pi( \mathcal{R}, \mathcal{S})$ (right) by assigning to each segment in $\mathcal{S}$ its mode among the labels of $\mathcal{R}$.}
+%\label{fig:ucmT}
+%\end{figure}
+
+Spatially transforming an UCM is nontrivial because its boundaries are one-dimensional entities whose topology and strength determine the underlying hierarchy, and an error at a single pixel can have drastic effects. 
+Therefore, instead of manipulating the UCM directly, we opt for sampling uniformly $K$ levels in the hierarchy, transforming them sequentially, and reconstructing from their boundaries a transformed UCM. 
+
+%, as formalized in pseudo-code in Algorithm \ref{alg:ucmT}.
+%\footnote{Note that, by construction, the routines ${\tt sampleHierarchy}$ and ${\tt extractBoundary}$ are fast, as they involve only connected component labeling and thresholding operations. The complexity is thus dominated by the transformation in Step 4, which is computed $K$ times.}
+
+%\begin{algorithm}[h]
+%\caption{Spatial transformation of UCM}
+%\begin{algorithmic}[1]
+%\Require An UCM and a set of levels $\left[ t_1,...,t_K \right]$
+%\Require A spatial transform {\tt T}
+%\State $\textrm{UCM}_{\tt T} \gets 0$
+%\For{$t = \left[ t_1,...,t_K \right]$}
+%\State $\mathcal{S} \gets {\tt sampleHierarchy}(\textrm{UCM},t)$
+%\State $\mathcal{S} \gets {\tt T}(\mathcal{S})$
+%\State $contours \gets {\tt extractBoundary}(\mathcal{S})$  
+%\State $\textrm{UCM}_{\tt T} \gets {\tt max}(\textrm{UCM}_{\tt T}, t*contours)$ 
+%\EndFor
+%\State \Return $\textrm{UCM}_{\tt T}$
+%\end{algorithmic}
+%\label{alg:ucmT}
+%\end{algorithm}
+
+
+%As an example, applying Alg. \ref{alg:ucmT} with the identity as spatial transform amounts to quantizing the hierarchy in $K$ levels. Empirically, we found that $K=100$ preserves the quality of contours and regions for the hierarchies we consider.
+%Figure \ref{fig:ucmT} shows an example of applying an affine transform to an UCM. 
+ 
+%The simplest spatial transform we consider in the experiments is the rescaling of a sub/supersampled segmentation to a target resolution. A second transformation is to align the boundaries of two segmentations. 
+%For this purpose, we ``project'' one segmentation onto the other, as illustrated in Fig. \ref{fig:ucmT}. Formally, w
+We consider two different segmentations $\mathcal{R} = \{ R_i\}_i$ and $\mathcal{S} = \{ S_j\}_j$. 
+We define the projection of the segmentation $\mathcal{R}$ onto a region $S_j \in \mathcal{S}$ as the majority label 
+\begin{equation}
+\pi(\mathcal{R}, S_j) = \argmax_i \frac{| S_j \cap R_i | }{|S_j|}
+\end{equation}
+And the projection of $\mathcal{R}$ onto $\mathcal{S}$ as
+\begin{equation}
+\pi( \mathcal{R}, \mathcal{S}) = \{ \pi(\mathcal{R}, S_j) \}_j.
+\label{proj_eq}
+\end{equation}
+
+In order to project an UCM onto a target segmentation $\mathcal{S}$, which we denote $\pi(\textrm{UCM}, \mathcal{S})$, we project each of the levels in the hierarchy in turn.
+%An example is shown in Fig. \ref{fig:ucm_S}.
+
+In the next section, we will iterate this procedure, and project an UCM recursively to a set of target segmentations $\{\mathcal{S}^{1*},...,\mathcal{S}^{N*}\}$. 
+However, note that the composition of two such projections can be written as :
+\begin{equation}
+\pi(\pi(\textrm{UCM}, \mathcal{S}^1), \mathcal{S}^2) = \pi(\textrm{UCM}, \mathcal{S}^1)\circ \pi(\mathcal{S}^1, \mathcal{S}^2).
+\end{equation}
+In practice, this property means that successive projections of the target segmentations can be pre-computed, the UCM has to be projected only to the first target segmentation, and its final labels are obtained by $N-1$ look-ups. 
+This procedure is summarized in pseudo-code in Algorithm \ref{alg:ucm_S}
+
+%\begin{figure}[t]
+%\begin{center}
+%\includegraphics[width=0.24\linewidth]{figures/ucm_transform/101087.eps}   
+% \includegraphics[width=0.24\linewidth]{figures/ucm_project/ucm_coarse.eps}
+%\includegraphics[width=0.24\linewidth]{figures/ucm_project/superpixels_fine.eps}
+% \includegraphics[width=0.24\linewidth]{figures/ucm_project/ucm_proj.eps}
+%\end{center}
+ %  \caption{\textbf{Transferring the strength of an UCM}. We project a coarse-scale UCM (center-left) to the boundary locations of a finer target segmentation $\mathcal{S}$ (center-right) by projecting recursively the levels of the hierarchy onto $\mathcal{S}$. As a result, the projected UCM (right) preserves the original boundary strength, but at the higher-resolution locations of $\mathcal{S}$.}
+%\label{fig:ucm_S}
+%\end{figure}
+
+
+
+\begin{algorithm}[h]
+\caption{UCM Rescaling and Alignment}
+\begin{algorithmic}[1]
+\Require An UCM and a set of levels $\left[ t_1,...,t_K \right]$
+\Require A set of target segmentations $\{\mathcal{S}^{1*},...,\mathcal{S}^{N*}\}$
+\State Pre-compute target projections with (\ref{proj_eq}) :\\  $\pi(\mathcal{S}^{1*}, \mathcal{S}^{2*})$, $\pi(\pi(\mathcal{S}^{1*}, \mathcal{S}^{2*}),\mathcal{S}^{3*})$, ...
+\State $\textrm{UCM}_\pi \gets 0$
+\For{$t = \left[ t_1,...,t_K \right]$}
+\State $\mathcal{S} \gets {\tt sampleHierarchy}(\textrm{UCM},t)$
+\State $\mathcal{S} \gets {\tt rescaleSegmentation}(\mathcal{S},\mathcal{S}^{1*})$
+\State $\mathcal{S} \gets \pi(\mathcal{S},\mathcal{S}^{1*})$
+\State $\mathcal{S} \gets {\tt readLabels}(\mathcal{S},\{\mathcal{S}^{1*},...,\mathcal{S}^{N*}\})$
+\State $contours \gets {\tt extractBoundary}(\mathcal{S})$  
+\State $\textrm{UCM}_\pi \gets {\tt max}(\textrm{UCM}_\pi, t*contours)$ 
+\EndFor
+\State \Return $\textrm{UCM}_\pi$
+\end{algorithmic}
+\label{alg:ucm_S}
+\end{algorithm}
+
+Note that, by construction, the routines ${\tt sampleHierarchy}$ and ${\tt extractBoundary}$ are fast, as they involve only connected component labeling and thresholding operations. 
+The complexity is thus dominated by the transformations in Steps 6 and 7, which are computed $K$ times.
+
+
+
+\section{Multiscale Hierarchical Segmentation}
+\label{sect:multi}
+
+\paragraph*{\textbf{Single-scale segmentation}} 
+We consider as input the following local contour cues: (1) brightness, color and texture differences in half-disks of three sizes \cite{Martin-etc:PAMI}, (2) sparse coding on patches \cite{renNIPS12}, and (3) structured forest contours \cite{Dollar:ICCV13}.
+We globalize the contour cues independently using our fast eigenvector gradients of Sect. \ref{sec:fast_eigen}, combine global and local cues linearly, and construct an UCM based on the mean contour strength.  
+We tried learning weights using gradient ascent on the F-measure on the
+training set~\cite{Arbelaez2011}, but evaluating the final hierarchies rather than open contours.
+We observed that this objective favors the quality of contours at the expense of regions and obtained better overall results by optimizing the Cover metric.%\footnote{We observed in general a high correlation among all the region-based benchmarks of the BSDS.}.
+
+%Before presenting our multiscale experiments, we describe our reexamination of the fixed-scale segmenter gPb-UCM.  
+%Recent results \cite{renNIPS12} have shown the power of sparse coding for contour detection. Sparse coding gradients are based on learning patches, while gPb contours come from comparing brightness, color and texture in two disk-halves.
+%We would like to combine these two independent sources of information and take advantage of their complementarity. 
+%Table \ref{tab:bsds_benchmarks} shows that, although providing only open contours, on the boundary benchmark the performance of sparse coding gradients (scg) \cite{renNIPS12} on the validation set of the BSDS500 is on-par with gPb-ucm.  
+%Our first baseline is to construct a hierarchy of segmentations using as merging criterion the average strength of scg along the common boundary of regions. 
+%However, we observe that this method, labeled scg-ucm, does not only degrade the quality of the boundaries, but produces regions of significantly inferior quality than those of gPb-ucm.   
+%Hence, we need to examine in depth the architecture of the gPb algorithm. In addition to color and texture gradients, we consider sparse coding gradients in their local and global versions. 
+
+
+
+%The importance of multiscale information was already acknowledged in the early 1980s, when Witkin formalized scale-space theory \cite{Witkin} and Bergholm proposed ``edge focusing'' \cite{Bergholm} to track coarse-scale edges to fine-scale locations.
+%A naive approach to multiscale segmentation would be to preserve the image at its original resolution, apply increasing levels of blurring and use a fixed-scale hierarchical segmenter. 
+%However, since the windows at which gradients are computed remain fixed as the signal is gradually smoothed, all the resulting hierarchies are very similar, while still suffering from boundary misalignment.
+%Additionally, the finest resolution is constrained to be the original image size. Instead, we compute a multiresolution image pyramid and apply a fixed-scale segmenter to rescaled versions of the image. 
+%Hence, the effective area covered by the window of analysis changes, providing more or less context and allowing to take full advantage of the scale-space information.  
+
+\paragraph*{\textbf{Hierarchy Alignment}}
+We construct a multiresolution pyramid with $N$ scales by subsampling / supersampling the original image and applying our single-scale segmenter. 
+%We first apply hierarchical segmentation at each resolution independently resulting in a set of $N$ ultrametric contour maps, using our novel high-performance algorithm described in detail in Sect.~\ref{sect4}. 
+%Since our goal is to combine all these diverse inputs into a single multiscale hierarchical segmenter, we transform the pyramid of UCMs to the original image resolution by applying Alg. \ref{alg:ucmT} with a simple scaling as spatial transform ${\tt T}$. 
+In order to preserve thin structures and details, we declare as set of possible boundary locations the finest superpixels $\mathcal{S}^{N*}$ in the highest-resolution. 
+%As will be shown in Section \ref{sect4}, this choice guarantees full boundary Recall on the BSDS500. 
+We extract the finest superpixels of each hierarchy, rescale them to the original image resolution, pre-compute their successive projections to $\mathcal{S}^{N*}$ and then transfer recursively the strength of all the coarser UCMs by applying Algorithm \ref{alg:ucm_S}.
+
+\paragraph*{\textbf{Multiscale Hierarchy}}
+After alignment, we have a fixed set of boundary locations, and $N$ strengths for each of them, coming from the different scales. We formulate this problem as binary boundary classification and train a classifier that combines these $N$ features into a single probability of boundary estimation.
+We experimented with several learning strategies for combining UCM strengths: (a) Uniform weights transformed into probabilities with Platt's method. 
+(b) SVMs and logistic regression, with both linear and additive kernels. (c) Random Forests. (d) The same algorithm as for single-scale.
+We found the results with all learning methods surprisingly similar, in agreement with the observation reported by \cite{Martin-etc:PAMI}.
+This particular learning problem, with only a handful of dimensions and millions of data points, is relatively easy and performance is mainly driven by our already high-performing and well calibrated features. 
+We therefore use the simplest option (a). 
+
+\section{Experiments on the BSDS500}
+\label{sect:bsds}
+We conduct extensive experiments on the BSDS500 \cite{wwwBSDS}, using the standard evaluation metrics
+and following the best practice rules of that dataset.
+We also report results with a recent evaluation metric $F_\mathit{op}$~\cite{jordi:cvpr2013},
+Precision-Recall for objects and parts, using the publicly-available code.
+
+
+\paragraph*{\textbf{Single-scale Segmentation}}
+Table \ref{tab:bsds_benchmarks}-top shows the performance of our single-scale segmenter for different types of input contours on the validation set of the BSDS500. 
+We obtain high-quality hierarchies for all the cues considered, showing the generality of our approach.
+Furthermore, when using them jointly (row 'Comb.' in top panel), our segmenter outperforms the versions with individual cues, suggesting its ability to leverage diversified inputs.
+In terms of efficiency, our fast normalized cuts algorithm provides an average 20$\times$ speed-up over \cite{Arbelaez2011}, starting from the same local cues, with no significant loss in accuracy and with a low memory footprint. 
+%Table \ref{tab:bsds_benchmarks}-top shows that our single-scale segmenter obtains better results than \cite{renNIPS12, Arbelaez2011} in all the BSDS benchmarks, indicating it leverages effectively diverse inputs. 
+
+% \begin{figure}[t]
+% %\includegraphics[width=0.95\linewidth]{figures/timings2.png}
+% \centering
+% \hspace{-5mm}
+% \scalebox{0.7}{%
+% \begin{tikzpicture}[/pgfplots/width=1.35\linewidth,/pgfplots/height=65.6mm, /pgfplots/legend pos=north west]
+%     \begin{axis}[ymin=0,ymax=450,xmin=0.15,xmax=1.6,
+%         enlargelimits=false,
+%         grid=major,
+%         grid style=dotted,
+%         xlabel shift={-2pt},
+%         ylabel shift={-3pt},
+%         font=\scriptsize,
+%         ytick={0,50,100,150,200,250,300,350,400,450},
+%         xtick={0.25,0.5,0.75,1,1.25,1.5},
+%         xlabel=Scale,
+%         ylabel=Time (s.)]
+%     \addplot+[black, very thick, no markers]  table[x=scale,y=mean_baseline] {data/timing/timings.txt};
+%     \addlegendentry{Baseline}
+%     \addplot+[red, very thick, no markers]  table[x=scale,y=mean_ours] {data/timing/timings.txt};
+%     \addlegendentry{Ours}
+%     \addplot+[black, thick, only marks, mark options={mark=*,fill=black,mark size=1.3},error bars/.cd,y dir=both, y explicit,error bar style={thick}] table[x=scale,y=mean_baseline,y error=std_baseline] {data/timing/timings.txt};
+%     \addplot+[red, thick, only marks, mark options={mark=*,fill=red,mark size=1.3},error bars/.cd,y dir=both, y explicit,error bar style={thick}] table[x=scale,y=mean_ours,y error=std_ours] {data/timing/timings.txt};
+% \addplot[blue,<->,thick] coordinates {(1.5,25) (1.5,385)} node[right] at (axis cs:1.5,200) {22$\times$};
+% \addplot[blue,<->,thick] coordinates {(1.25,19) (1.25,245)} node[right] at (axis cs:1.25,130) {21.3$\times$};
+% \addplot[blue,<->,thick] coordinates {(1,14) (1,140)} node[right] at (axis cs:1,75) {18.8$\times$};
+% \addplot[blue,<->,thick] coordinates {(0.75,11) (0.75,75)} node[right] at (axis cs:0.75,40) {17.2$\times$};
+%     \end{axis}
+% \end{tikzpicture}}
+% \caption{\textbf{Single-scale Segmentation Efficiency}. 
+% Running times for our single-scale segmenter when using the spectralPb of \cite{Arbelaez2011,renNIPS12} (black) or our efficient spectral gradients of Sect. \ref{sec:fast_eigen} (red), starting from the same local contour cues. Results are averaged on the $100$ BSDS val images.}
+% \label{fig:timing}
+% \vspace{-3mm}
+% \end{figure}
+% 
+% We make also a subtle but meaningful change in the gPb pipeline. In~\cite{Arbelaez2011}, the local contour cues are linearly combined and thinned with non-maximum suppression. This signal is used as input for spectral graph partitioning based on intervening contour. 
+% Instead, we use as signal for globalization the boundaries of superpixels after applying the oriented watershed transform. The two signals are very similar, the main difference being that we use closed boundaries of segments rather than open contours.
+% The advantage, however, is that we can compute the intervening contour affinity using  significantly smaller neighborhoods than the code of~\cite{Arbelaez2011} (disks of radius 2 instead of 5), with no loss in performance.   
+% This modification brings a $5X$ improvement in speed for the spectralPb computation on the BSDS. Moreover, as shown in Fig \ref{fig:timimg}, our implementation scales better with the image resolution in terms of speed and memory footprint, a critical property for multiscale segmentation. 
+% \begin{figure}[h]
+% \begin{center}
+%    \includegraphics[width=1.0\linewidth]{figures/bsds/timing.eps}
+% \end{center}
+%    \caption{Comparison of our implementation of spectralPb with~\cite{Arbelaez2011} for different image resolutions. Left: running time, Right: memory.}
+% \label{fig:timimg}
+% \end{figure}
+
+
+\paragraph*{\textbf{Multiscale Segmentation}}
+Table \ref{tab:bsds_benchmarks}-bottom evaluates our full approach in the same experimental conditions as the upper panel. 
+We observe a consistent improvement in performance in all the metrics for all the inputs, which validates our architecture for multiscale segmentation.  
+We experimented with the range of scales and found $N=\{0.5, 1, 2\}$ adequate for our purposes. A finer sampling or a wider range of scales did not provide noticeable improvements.  
+We tested also two degraded versions of our system (not shown in the table). For the first one, we resized contours to the original image resolution, created UCMs and combined them. 
+For the second one, we transformed per-scale UCMs to the original resolution, but omitted the strength transfer to the finest superpixels. 
+The first ablated version produces interpolation artifacts and smooths away details, while the second one suffers from misalignment. 
+Both fail to improve the performance of the single-scale result, which provides additional empirical support for our multiscale approach. 
+%Our system does not only outperform other possible multiscale architectures, but can also take advantage of improved input to produce a higher quality output. 
+
+Since there are no drastic changes in our results when taking as input the different individual cues or their combination, in the sequel we use the version with structured forests for efficiency reasons, which we denote \textit{Ours-multi}.
+
+\begin{figure*}
+\centering
+\mbox{%
+\begin{minipage}[b]{0.46\linewidth}
+\centering
+\scriptsize \hspace{6mm}Boundaries
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.1\linewidth, /pgfplots/legend pos=south west]
+    \begin{axis}[ymin=0,ymax=1,xmin=0,xmax=1,enlargelimits=false,
+        xlabel=Recall,
+        ylabel=Precision,
+        font=\scriptsize, grid=major,
+        grid style=dotted,
+        axis equal image=true,
+        legend columns=5,
+        transpose legend,
+        legend style={at={(0,0)},
+        anchor=south west},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xtick={0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1},
+        ytick={0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}]
+    \addplot[white!85!black,line width=0.2pt,domain=(0.1/(2-0.1)):1,samples=40,forget plot]{(0.1*x)/(2*x-0.1)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.2/(2-0.2)):1,samples=40,forget plot]{(0.2*x)/(2*x-0.2)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.3/(2-0.3)):1,samples=40,forget plot]{(0.3*x)/(2*x-0.3)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.4/(2-0.4)):1,samples=40,forget plot]{(0.4*x)/(2*x-0.4)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.5/(2-0.5)):1,samples=40,forget plot]{(0.5*x)/(2*x-0.5)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.6/(2-0.6)):1,samples=40,forget plot]{(0.6*x)/(2*x-0.6)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.7/(2-0.7)):1,samples=40,forget plot]{(0.7*x)/(2*x-0.7)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.8/(2-0.8)):1,samples=40,forget plot]{(0.8*x)/(2*x-0.8)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.9/(2-0.9)):1,samples=40,forget plot]{(0.9*x)/(2*x-0.9)};
+
+   \addplot+[only marks,red,mark=asterisk,mark size=1.7,thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/fb_human_diff.txt};
+    \addplot+[only marks,red,mark=asterisk,mark size=1.7,thick] table[x=Recall,y=Precision] {data/pr_curves/fb_human.txt};
+    \addlegendentry{Human [\showodsf{fb}{human}-\showodsf{fb}{human_diff}]}
+
+    \addplot+[cyan,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/segm_bsds/test_fb_gt_sp150_ucm2.txt};
+    \addplot+[cyan,solid,mark=star,mark size=1.8, thick] table[x=Recall,y=Precision] {data/segm_bsds/test_fb_gt_sp150_ucm2_ods.txt};
+    \addlegendentry{GTH [\showodsfb{fb}{gt_sp150_ucm2}]}
+
+    \addplot+[black,solid,mark=none,ultra thick,forget plot] table[x=Recall,y=Precision] {data/segm_bsds/test_fb_MCG-ucm.txt};
+    \addplot+[black,solid,mark=o, mark size=1.3,ultra thick] table[x=Recall,y=Precision] {data/segm_bsds/test_fb_MCG-ucm_ods.txt};
+    \addlegendentry{MCG-Our [\showodsfb{fb}{MCG-ucm}]}
+   
+    \addplot+[red,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/segm_bsds/test_fb_SCG-ucm.txt};
+    \addplot+[red,solid,mark=o, mark size=1.3, thick] table[x=Recall,y=Precision] {data/segm_bsds/test_fb_SCG-ucm_ods.txt};
+    \addlegendentry{SCG-Our [\showodsfb{fb}{SCG-ucm}]}
+    
+    \addplot+[blue,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/segm_bsds/test_fb_UCM.txt};
+    \addplot+[blue,solid,mark=triangle, mark size=1.6, thick] table[x=Recall,y=Precision] {data/segm_bsds/test_fb_UCM_ods.txt};
+    \addlegendentry{gPb-UCM [\showodsfb{fb}{UCM}]}
+
+    \addplot+[black,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/segm_bsds/test_fb_iscra.txt};
+    \addplot+[black,solid,mark=+, mark size=1.6, thick] table[x=Recall,y=Precision] {data/segm_bsds/test_fb_iscra_ods.txt};
+    \addlegendentry{ISCRA [\showodsfb{fb}{iscra}]}
+
+    \addplot+[olive,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/fb_NCut.txt};
+    \addplot+[olive,solid,mark=square, mark size=1.25, thick] table[x=Recall,y=Precision] {data/pr_curves/fb_NCut_ods.txt};
+    \addlegendentry{NCuts [\showodsf{fb}{NCut}]}
+    
+       \addplot+[green,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/fb_FelzHutt.txt};
+    \addplot+[green,solid,mark=diamond, mark size=1.5, thick] table[x=Recall,y=Precision] {data/pr_curves/fb_FelzHutt_ods.txt};
+    \addlegendentry{EGB [\showodsf{fb}{FelzHutt}]} 
+    
+    \addplot+[brown,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/fb_MeanShift.txt};
+    \addplot+[brown,solid,mark=+, mark size=1.6, thick] table[x=Recall,y=Precision] {data/pr_curves/fb_MeanShift_ods.txt};
+    \addlegendentry{MShift [\showodsf{fb}{MeanShift}]}
+
+%     \addplot+[blue,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/fb_UCM.txt};
+%     \addplot+[blue,solid,mark=triangle, mark size=1.6, thick] table[x=Recall,y=Precision] {data/pr_curves/fb_UCM_ods.txt};
+%     \addlegendentry{gPb-OWT-UCM [\showodsf{fb}{UCM}]}
+
+%     \addplot+[olive,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/fb_STAT_BPT.txt};
+%     \addplot+[olive,solid,mark=star,mark size=1.8, thick] table[x=Recall,y=Precision] {data/pr_curves/fb_STAT_BPT_ods.txt};
+%     \addlegendentry{IID-KL [\showodsf{fb}{STAT_BPT}]}
+
+
+
+%     \addplot+[cyan,solid,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/fb_NWMC_BPT.txt};
+%     \addplot+[cyan,solid,solid,mark=+,mark size=1.6, thick] table[x=Recall,y=Precision] {data/pr_curves/fb_NWMC_BPT_ods.txt};
+%     \addlegendentry{NWMC [\showodsf{fb}{NWMC_BPT}]}
+
+
+
+
+
+    \addplot+[black,solid,mark=none,solid,thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/fb_QuadTree.txt};
+    \addplot+[black,solid,mark=x,mark size=1.6,solid,thick] table[x=Recall,y=Precision] {data/pr_curves/fb_QuadTree_ods.txt};
+    \addlegendentry{Quadtree [\showodsf{fb}{QuadTree}]}
+  \end{axis}
+\end{tikzpicture}
+\end{minipage}
+\hspace{5mm}
+\begin{minipage}[b]{0.46\linewidth}
+\centering
+\scriptsize \hspace{6mm}Objects and Parts
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.1\linewidth, /pgfplots/legend pos=south west]
+    \begin{axis}[ymin=0,ymax=1,xmin=0,xmax=1,enlargelimits=false,
+        xlabel=Recall,
+        ylabel=Precision,
+        font=\scriptsize, grid=major,
+        legend pos=north east,
+        grid style=dotted,
+        axis equal image=true,
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xtick={0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1},
+        ytick={0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}]
+]
+    \addplot[white!85!black,line width=0.2pt,domain=(0.1/(2-0.1)):1,samples=40,forget plot]{(0.1*x)/(2*x-0.1)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.2/(2-0.2)):1,samples=40,forget plot]{(0.2*x)/(2*x-0.2)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.3/(2-0.3)):1,samples=40,forget plot]{(0.3*x)/(2*x-0.3)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.4/(2-0.4)):1,samples=40,forget plot]{(0.4*x)/(2*x-0.4)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.5/(2-0.5)):1,samples=40,forget plot]{(0.5*x)/(2*x-0.5)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.6/(2-0.6)):1,samples=40,forget plot]{(0.6*x)/(2*x-0.6)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.7/(2-0.7)):1,samples=40,forget plot]{(0.7*x)/(2*x-0.7)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.8/(2-0.8)):1,samples=40,forget plot]{(0.8*x)/(2*x-0.8)};
+    \addplot[white!85!black,line width=0.2pt,domain=(0.9/(2-0.9)):1,samples=40,forget plot]{(0.9*x)/(2*x-0.9)};
+
+       \addplot+[only marks,red,mark=asterisk,mark size=1.7,thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/pro_human_diff.txt};
+    \addplot+[only marks,red,mark=asterisk,mark size=1.7,thick] table[x=Recall,y=Precision] {data/pr_curves/pro_human.txt};
+    \addlegendentry{Human [\showodsf{pro}{human}-\showodsf{pro}{human_diff}]}
+
+    \addplot+[cyan,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/segm_bsds/test_opf_gt_sp150_ucm2.txt};
+    \addplot+[cyan,solid,mark=star,mark size=1.8, thick] table[x=Recall,y=Precision] {data/segm_bsds/test_opf_gt_sp150_ucm2_ods.txt};
+    \addlegendentry{GTH [\showodsfb{opf}{gt_sp150_ucm2}]}
+
+
+    \addplot+[black,solid,mark=none, ultra thick,forget plot] table[x=Recall,y=Precision] {data/segm_bsds/test_fop_MCG-ucm.txt};
+    \addplot+[black,solid,mark=o, mark size=1.3, ultra thick] table[x=Recall,y=Precision] {data/segm_bsds/test_fop_MCG-ucm_ods.txt};
+    \label{bsds:mcg}
+    \addlegendentry{MCG-Our [\showodsfb{fop}{MCG-ucm}]}
+
+    \addplot+[red,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/segm_bsds/test_fop_SCG-ucm.txt};
+    \addplot+[red,solid,mark=o, mark size=1.3, thick] table[x=Recall,y=Precision] {data/segm_bsds/test_fop_SCG-ucm_ods.txt};
+    \label{bsds:scg}
+    \addlegendentry{SCG-Our [\showodsfb{fop}{SCG-ucm}]}
+    
+    \addplot+[black,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/segm_bsds/test_opf_iscra.txt};
+    \addplot+[black,solid,mark=+, mark size=1.6, thick] table[x=Recall,y=Precision] {data/segm_bsds/test_opf_iscra_ods.txt};
+    \label{bsds:iscra}
+    \addlegendentry{ISCRA [\showodsfb{opf}{iscra}]}
+    
+
+    \addplot+[blue,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/segm_bsds/test_opf_UCM.txt};
+    \addplot+[blue,solid,mark=triangle, mark size=1.6, thick] table[x=Recall,y=Precision] {data/segm_bsds/test_opf_UCM_ods.txt};
+    \label{bsds:gpb}
+    \addlegendentry{gPb-UCM [\showodsfb{opf}{UCM}]}
+
+
+    \addplot+[brown,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/pro_MeanShift.txt};
+    \addplot+[brown,solid,mark=+,mark size=1.6, thick] table[x=Recall,y=Precision] {data/pr_curves/pro_MeanShift_ods.txt};
+    \addlegendentry{MShift [\showodsf{pro}{MeanShift}]}
+
+%     \addplot+[cyan,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/pro_NWMC_BPT.txt};
+%     \addplot+[cyan,solid,mark=+,mark size=1.6, thick] table[x=Recall,y=Precision] {data/pr_curves/pro_NWMC_BPT_ods.txt};
+%     \addlegendentry{NWMC [\showodsf{pro}{NWMC_BPT}]}
+
+    \addplot+[olive,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/pro_NCut.txt};
+    \addplot+[olive,solid,mark=square, mark size=1.25, thick] table[x=Recall,y=Precision] {data/pr_curves/pro_NCut_ods.txt};
+    \addlegendentry{NCuts [\showodsf{pro}{NCut}]}
+
+%     \addplot+[olive,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/pro_STAT_BPT.txt};
+%     \addplot+[olive,solid,mark=star,mark size=1.8, thick] table[x=Recall,y=Precision] {data/pr_curves/pro_STAT_BPT_ods.txt};
+%     \addlegendentry{IID-KL [\showodsf{pro}{STAT_BPT}]}
+
+    \addplot+[green,solid,mark=none, thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/pro_FelzHutt.txt};
+    \addplot+[green,solid,mark=diamond, mark size=1.5, thick] table[x=Recall,y=Precision] {data/pr_curves/pro_FelzHutt_ods.txt};
+    \addlegendentry{EGB [\showodsf{pro}{FelzHutt}]}
+
+
+    \addplot+[black,solid,mark=none,solid,thick,forget plot] table[x=Recall,y=Precision] {data/pr_curves/pro_QuadTree.txt};
+    \addplot+[black,solid,mark=x,mark size=1.6,solid,thick] table[x=Recall,y=Precision] {data/pr_curves/pro_QuadTree_ods.txt};
+    \addlegendentry{Quadtree [\showodsf{pro}{QuadTree}]}
+
+    \end{axis}
+\end{tikzpicture}
+\end{minipage}\hspace{3mm}}
+\caption{\textbf{BSDS500 test set.} Precision-Recall curves for boundaries~\cite{wwwBSDS} (left) and for objects and parts~\cite{jordi:cvpr2013} (right). The marker on each curve is placed on the Optimal Dataset Scale (ODS).
+The isolated red asterisks refer to the human performance assessed on the same image and on a swapped image.
+In the legend, the F measure of the marked point on each curve is presented in brackets.}
+\label{fig:pr_curves}
+\end{figure*}
+
+
+\begin{table}
+\begin{center}
+\scalebox{0.65}{%
+\begin{tabular}{cl||cc||cc|cc|cc|cc}
+\cmidrule[\heavyrulewidth](l{-2pt}){3-12}
+&\multicolumn{1}{c}{} &   \multicolumn{2}{c||}{Boundary}&  \multicolumn{8}{c}{Region} \\
+\cmidrule(l{-2pt}){3-12}
+&\multicolumn{1}{c}{} &   \multicolumn{2}{c||}{$F_b$}&  \multicolumn{2}{c|}{$F_{op}$} & \multicolumn{2}{c|}{SC}&  \multicolumn{2}{c|}{PRI} &  \multicolumn{2}{c}{VI} \\
+&\multicolumn{1}{c}{Input} &   ODS & OIS & ODS & OIS & ODS & OIS & ODS & OIS & ODS & OIS\\
+\midrule[\heavyrulewidth]
+%scg \cite{renNIPS12}                 & 0.71             & 0.73              & -             & -  & -             & -  & -             & -              & -             & -  \\
+%scg{\tiny{-}}UCM                     & 0.70 & 0.73 & 0.25 & 0.28 & 0.52 & 0.57 & 0.75 & 0.81 & 2.01 & 1.84\\
+%gPb{\tiny{-}}UCM~\cite{Arbelaez2011} & 0.71 & 0.74            &0.33 & 0.38  & 0.61 & 0.66 & 0.81 & 0.85 & 1.65 & 1.48  \\
+%Ours-single & 0.72 & 0.75 & 0.34 & 0.39 & 0.62 & 0.67 & 0.81 & 0.85 & 1.64 & 1.43\\
+%\midrule
+%multi-cont & 0.70 & 0.73 & 0.33 & 0.38 & 0.62 & 0.67 & 0.81 & 0.85 & 1.63 & 1.44\\
+%multi-noalign & 0.70 & 0.73 & 0.33 & 0.37 & 0.61 & 0.66 & 0.80 & 0.85 & 1.65 & 1.46\\
+%Ours-multi & \textbf{0.73} & \textbf{0.76} & \textbf{0.38} & \textbf{0.42} & \textbf{0.62} & \textbf{0.68} & \textbf{0.81} & \textbf{0.86} & \textbf{1.56} & \textbf{1.36}\\
+%\multirow{4}{*}{\rotatebox{90}{\small Single-Scale}\vspace{-0.02in}} &Pb \cite{Martin-etc:PAMI} & 0.714 & 0.735 & 0.334 & 0.370 & 0.599 & 0.653 & 0.801 & 0.846 & 1.694 & 1.498\\
+%&SF \cite{Dollar:ICCV13} & 0.720 & 0.745 & 0.338 & 0.399 & 0.611 & 0.665 & 0.801 & 0.847 & 1.612 & 1.441\\
+%&SC \cite{renNIPS12}& 0.701 & 0.730 & 0.264 & 0.306 & 0.571 & 0.620 & 0.776 & 0.832 & 1.833 & 1.664\\
+%&Comb. & 0.726 & 0.758 & 0.358 & 0.403 & 0.618 & 0.673 & 0.808 & 0.854 & 1.616 & 1.413\\
+%\midrule
+%\multirow{4}{*}{\rotatebox{90}{\small Multiscale}\vspace{-0.02in}} &Pb \cite{Martin-etc:PAMI} & 0.725 & 0.747 & 0.350 & 0.389 & 0.615 & 0.669 & 0.807 & 0.854 & 1.602 & 1.425\\
+%&SF \cite{Dollar:ICCV13} & 0.727 & 0.753 & 0.370 & \textbf{0.420} & 0.618 & 0.672 & 0.810 & 0.852 & 1.560 & 1.397\\
+%&SC \cite{renNIPS12} & 0.712 & 0.739 & 0.331 & 0.384 & 0.604 & 0.660 & 0.799 & 0.849 & 1.640 & 1.466\\
+%&Comb.  & \textbf{0.732} & \textbf{0.761} & \textbf{0.371} & 0.408 & \textbf{0.626} & \textbf{0.681} & \textbf{0.813} & \textbf{0.861} & \textbf{1.551} & \textbf{1.377}\\
+\multirow{4}{*}{\rotatebox{90}{\footnotesize Single-Scale}\vspace{-0.02in}} &Pb \cite{Martin-etc:PAMI} & 0.702 & 0.733 & 0.334 & 0.370 & 0.577 & 0.636 & 0.801 & 0.847 & 1.692 & 1.490\\[1mm]
+&SC \cite{renNIPS12}& 0.697 & 0.725 & 0.264 & 0.306 & 0.540 & 0.607 & 0.777 & 0.835 & 1.824 & 1.659\\[1mm]
+&SF \cite{Dollar:ICCV13} & 0.719 & 0.737 & 0.338 & 0.399 & 0.582 & 0.651 & 0.803 & 0.851 & 1.608 & 1.432\\[1mm]
+&Comb. & 0.719 & 0.750 & 0.358 & 0.403 & 0.602 & 0.655 & 0.809 & 0.855 & 1.619 & 1.405\\
+\midrule
+\multirow{4}{*}{\rotatebox{90}{\small Multiscale}\vspace{-0.02in}} &Pb \cite{Martin-etc:PAMI} & 0.713 & 0.745 & 0.350 & 0.389 & 0.598 & 0.656 & 0.807 & 0.856 & 1.601 & 1.418\\[1mm]
+&SC \cite{renNIPS12} & 0.705 & 0.734 & 0.331 & 0.384 & 0.579 & 0.647 & 0.799 & 0.851 & 1.637 & 1.460\\[1mm]
+&SF \cite{Dollar:ICCV13} & 0.725 & 0.744 & 0.370 & \textbf{0.420} & 0.600 & 0.660 & 0.810 & 0.854 & 1.557 & 1.390\\[1mm]
+&Comb.  & \textbf{0.725} & \textbf{0.757} & \textbf{0.371} & 0.408 & \textbf{0.611} & \textbf{0.670} & \textbf{0.813} & \textbf{0.862} & \textbf{1.548} & \textbf{1.367}\\
+\bottomrule
+\end{tabular}}
+\end{center}
+   \caption{\textbf{BSDS500 val set.} Control experiments for single-scale (top) and multiscale (bottom) hierarchical segmentation with different input contour detectors}
+   \label{tab:bsds_benchmarks}
+\end{table}
+
+
+
+\paragraph*{\textbf{Comparison with state-of-the-art.}}
+Figure~\ref{fig:pr_curves} compares our multiscale hierarchical segmenter MCG~(\ref{bsds:mcg}) and our
+single-scale hierarchical segmenter SCG~(\ref{bsds:scg}) on the BSDS500 test set against all the methods for
+which there is publicly available code. 
+We also compare to the recent ISCRA~\cite{Ren_2013_CVPR} hierarchies~(\ref{bsds:iscra}), provided precomputed by the authors.
+We obtain consistently the best results to date on BSDS500 for all operating regimes, both in terms of boundary and region quality.
+
+Note that the range of object scales in the BSDS500 is limited, which translates into modest absolute gains
+from MCG~(\ref{bsds:mcg}) with respect to SCG~(\ref{bsds:scg}) in terms of boundary evaluation (left-hand plot),
+but more significant improvements in terms of objects and parts (right-hand plot). 
+We will also observe more substantial improvements with respect to gPb-UCM~(\ref{bsds:gpb}) when we move to Pascal, SBD, and COCO in Section~\ref{sect:experim_prop} (e.g.\ see Fig. \ref{fig:J_i}).
+
+\paragraph*{\textbf{Ground-Truth Hierarchy}}
+In order to gain further insights, %we conduct a last experiment on the BSDS: 
+we transfer the strength of each ground-truth segmentation to our highest-resolution superpixels $\mathcal{S}^{N*}$ and construct a combined hierarchy.
+This approximation to the semantic hierarchy, Ground-Truth Hierarchy (GTH) in Fig.~\ref{fig:pr_curves}, is an upper-bound for our approach as both share the same boundary locations and the only difference is their strength. 
+%The results have the label ``GTH'' in Fig. \ref{fig:pr_curves} and Table \ref{table:bound_reg_bench}.
+%A first observation is that its performance on all the metrics is much higher than the standard human performance on the BSDS. 
+%This is expected, as the gt-UCM combines the inputs from all humans instead of evaluating each of them against the others. 
+%A second observation is that the Precision-Recall curve is perfect which means that, up to discrepancies in the exact location of boundaries, \emph{all the human segmentations are perfectly consistent}.
+%Furthermore, this implies that full performance on the BSDS is possible.  
+Since the strength of GTH is proportional to the number of subjects marking it, it provides naturally the correct semantic ordering, where outer object boundaries are stronger than internal parts. 
+
+Recently, Maire \etal \cite{Maire-etal:BMVC13} developed an annotation tool where the user encodes explicitly the ``perceptual strength'' of each contour. 
+Our approach provides an alternative where the semantic hierarchy is reconstructed by sampling flat annotations from multiple subjects.
+%A large number of  qualitative results and examples of ground-truth hierarchies can be found in the supplemental material.
+
+\section{Object Proposal Generation}
+\label{sec:obj_prop}
+The image segmentation algorithm presented in the previous sections builds on low-level features,
+so its regions are unlikely to represent accurately complete objects with heterogeneous parts.
+In this context, object proposal techniques create a set of hypotheses, possibly overlapping,
+which are more likely to represent full object instances.
+
+Our approach to object proposal generation is to combinatorially look for sets of regions from our segmentation hierarchies 
+that merged together are likely to represent complete objects.
+In this section, we first describe the efficient computation of certain region descriptors on a segmentation tree.
+Then, we describe how we use these techniques to efficiently explore the sets of merged regions from the hierarchy.
+Finally, we explain how we train the parameters of our algorithm for object proposals and
+how we rank the candidates by their probability of representing an object.
+
+\paragraph*{\textbf{Fast computation of descriptors}}
+%One of the main advantages of the dendogram representation is the fast computation of
+%descriptors of the regions.
+Let us assume, for instance, we want to compute the area of all regions in the hierarchy.
+Intuitively, working strictly on the merging-sequence partitions, we would need to scan all pixels
+in all partitions.
+On the other hand, working on the region tree allows us to scan the image only once to compute the area of the leaves,
+and then propagate the area to all parents as the addition of the areas of their children.
+
+As a drawback, the algorithms become intricate in terms of coding and necessary data structures.
+Take, for instance, the computation of the neighbors of a certain region,
+which is trivial via scanning the partition on the merging sequence (look for region labels in the adjacent boundary pixels),
+but need tailored data structures and algorithms in the region tree.
+
+Formally, let us assume the image has $p$ pixels, and we build a hierarchy based on $s$ superpixels
+(leaves of the tree), and $m$ mergings (different UCM strength values).
+The cost of computing the area on all regions using the merging-sequence partitions
+will be the cost of scanning all pixels in these partitions, thus $p\!\cdot\!(m\!+\!1)$.
+In contrast, the cost using the region tree will involve scanning the image once, and then
+propagating the area values, so $p\!+\!m$, which is notably faster.
+
+We have built tailored algorithms and data structures to compute the
+bounding box, perimeter, and neighbors of a region using the region tree representation. 
+
+\paragraph*{\textbf{Combinatorial Grouping of Proposals}}
+\label{sec:comb_cands}
+We can cast object segmentation as \textit{selecting} some regions in the hierarchy, or in other words,
+as a combinatorial optimization problem on the hierarchy.
+To illustrate this principle, Figure~\ref{fig:reg_sel_examples}(a) shows the simplified representation
+of the hierarchy in Figure~\ref{fig:hierarchy}.
+Figure~\ref{fig:reg_sel_examples}(b) and (c) show two object proposals,
+and their representation in the region hierarchy.
+
+\begin{figure}[h]
+\input{figures/reg_sel_examples.tikz}
+\caption{\textbf{Object segmentation as combinatorial optimization}: Examples of objects (b), (c), formed by selecting regions from a hierarchy (a).}
+\label{fig:reg_sel_examples}
+\end{figure}
+
+Since hierarchies are built taking only low-level features into account, and do not use semantic information,
+objects will usually not be optimally represented using a single region in the hierarchy.
+As an example, Figure~\ref{fig:reg_sel_examples}(c) shows the optimum representation of the car, consisting of three regions.
+
+A sensible approach to create object proposals is therefore to explore the set of $n$-tuples of regions.
+The main idea behind MCG is to explore this set efficiently, taking advantage of the region tree representation,
+via the fast computation of region neighbors.
+
+The whole set of tuples, however, is huge, and so it is not feasible to explore it exhaustively.
+Our approach ranks the proposals using the height of their regions in the tree (UCM strength)
+and explores the tree from the top, but only down to a certain threshold.
+To speed the process up, we design a top-down algorithm to compute the region neighbors and thus only
+compute them down to a certain depth in the tree.
+
+To further improve the results, we not only consider the $n$-tuples from the resulting Ours-multi hierarchy, but also
+the rest of hierarchies computed at different scales.
+As we will show in the experiments, this diversity significantly improves the proposal results.
+
+
+
+\paragraph*{\textbf{Parameter Learning via Pareto Front Optimization}}
+MCG takes a set of diverse hierarchies and computes the $n$-tuples up to a certain UCM strength. 
+We can interpret the $n$-tuples from each hierarchy as a ranked list of $N_i$ proposals that are put
+together to create the final set of $N_p$ proposals.
+
+At training time, we would like to find, for different values of $N_p$, the number of proposals
+from each ranked list $\overline{N}_i$ such that 
+the joint pool of $N_p$ proposals has the best achievable quality.
+We frame this learning problem as a Pareto front optimization~\cite{Everingham2006,Ehrgott2005} with two conflicting objective functions:
+number of proposals and achievable quality.
+At test time, we select a working point on the Pareto front, represented by the $\left\{\overline{N}_i\right\}$ values,
+based either on the number of proposals $N_p$ we can handle or on the minimum achievable quality our application needs,
+and we combine the $\overline{N}_i$ top proposals from each hierarchy list.
+
+Formally, assuming $R$ ranked lists $L_i$, an exhaustive learning algorithm would consider
+all possible values of the $R$-tuple $\left\{N_1,\dots,N_R\right\}$, where $N_i\in\left\{0,\dots,|L_i|\right\}$;
+adding up to $\prod_1^R \left|L_i\right|$ parameterizations to try,
+which is intractable in our setting.
+
+Figure~\ref{fig:pareto} illustrates the learning process.
+To reduce the dimensionality of the search space, we start by selecting two ranked lists $L_1$, $L_2$ (green curves)
+and we sample the list at $S$ levels of number of proposals (green dots).
+We then scan the full $S^2$ different parameterizations to combine the proposals from both (blue dots).
+In other words, we analyze the sets of proposals created by combining the top $N_1$ from $L_1$ (green dots) and
+the top $N_2$ from $L_2$.
+%Each of these sets is analyzed in the plane of number of proposals-achievable quality, so the full combination
+%can be assessed as $S^2$ points in this plane (blue dots in the right-hand plot).
+
+\begin{figure}[h!]
+   \includegraphics[width=\linewidth]{figures/pareto.pdf}
+   \caption{\textbf{Pareto front learning}:
+   Training the combinatorial generation of proposals using the Pareto front}
+   \label{fig:pareto}
+\end{figure}
+
+The key step of the optimization consists in discarding those parameterizations whose quality point is not
+in the Pareto front (red curve).
+(i.e., those parameterizations that can be substituted by another with better quality
+with the same number of proposals, or by one with the same quality with less proposals.)
+We sample the Pareto front to $S$ points and we iterate the process until all the ranked lists are combined.
+
+Each point in the final Pareto front corresponds to a particular parameterization $\left\{N_1,\dots,N_R\right\}$.
+% This curve provides a set of solutions of the trade-off between number of proposals and achievable quality.
+At train time, we choose a point on this curve, either at a given number of proposals $N_c$ or at the achievable
+quality we are interested in (black triangle) and store the parameters $\left\{\overline{N}_1,\dots,\overline{N}_R\right\}$.
+At test time, we combine the $\left\{\overline{N}_1,\dots,\overline{N}_R\right\}$ top proposals from each ranked list.
+The number of sampled configurations using the proposed algorithm is $(R\!-\!1)S^2$, that is, we have reduced an
+exponential problem ($S^R$) to a quadratic one.
+
+\paragraph*{\textbf{Regressed Ranking of Proposals}}
+\label{sec:ranking}
+To further reduce the number of proposals, we train a regressor from low-level features, as in~\cite{Carreira2012b}.
+Since the proposals are all formed by a set of regions from a reduced set of hierarchies,
+we focus on features that can be computed efficiently in a bottom-up fashion, as explained previously.
+
+We compute the following features:
+%\begin{itemize}
+\begin{asparaitem}
+\item\textbf{Size and location}: Area and perimeter of the candidate; area, position, and aspect ratio of the bounding box; and the
+area balance between the regions in the candidate.
+\item\textbf{Shape}: Perimeter (and sum of contour strength) divided by the squared root of the area; and
+area of the region divided by that of the bounding box.
+\item\textbf{Contours}: Sum of contour strength at the boundaries, mean contour strength at the boundaries; minimum and maximum UCM threshold of appearance and disappearance of the regions forming the candidate.
+%\end{itemize}
+\end{asparaitem}
+We train a Random Forest using these features to regress the object overlap with the ground truth, and
+diversify the ranking based on Maximum Marginal Relevance measures~\cite{Carreira2012b}.
+We tune the random forest learning on half training set and validating on the other half.
+For the final results, we train on the training set and evaluate our proposals on the validation set of Pascal  2012.
+
+
+\section{Experiments on Pascal VOC, SBD, and COCO}
+This section presents our large-scale empirical validation of the object proposal algorithm described in the previous section.
+We perform experiments in three annotated databases, with a variety of measures that demonstrate the state-of-the-art 
+performance of our algorithm.
+
+\label{sect:experim_prop}
+\paragraph*{\textbf{Datasets and Evaluation Measures}}
+We conduct experiments in the following three annotated datasets:
+the segmentation challenge of Pascal 2012 Visual Object Classes (SegVOC12)~\cite{Everingham2012},
+the Berkeley Semantic Boundaries Dataset (SBD)~\cite{Hariharan2011}, and the Microsoft Common Objects in Context (COCO)~\cite{Lin2014}.
+They all consist in images with annotated objects of different categories.
+Table~\ref{tab:dbs} summarizes the number of images and object instances in each database.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|ccc}
+\cmidrule[\heavyrulewidth](l{-2pt}){2-4}
+\multicolumn{1}{c}{}    & Number of  & Number of  & Number of  \\
+\multicolumn{1}{c}{}    & Classes    &  Images    & Objects    \\
+    \midrule
+SegVOC12             &    20 &  \,\,\,2\,913  &   \,\,\,9\,847        \\
+SBD                  &    20 &  12\,031  &  32\,172   \\
+COCO                 &    80 &  123\,287\,\,\,  &    910\,983\,\,\,   \\
+ \bottomrule
+\end{tabular}
+\caption{Sizes of the databases}
+\label{tab:dbs}
+\end{table}
+
+Regarding the performance metrics, we measure the achievable quality with respect to the number of proposals, that is,
+the quality we would have if an oracle selected the best proposal among the pool.
+This aligns with the fact that object proposals are a preprocessing step for other algorithms that will represent and classify them.
+We want, therefore, the achievable quality within the proposals to be as high as possible, while reducing the number of proposals to make the
+final system as fast as possible.
+
+As a measure of quality of a specific object proposal with respect to an annotated object, we will consider the Jaccard index,
+also known as covering, or overlap, which is defined as the size of the intersection of the two pixel sets over the size of their union.
+
+When computing the overall quality for the whole database, we will consider three different metrics.
+First, we select the best proposal for each annotated instance with respect to $J$.
+To compute the \textit{Jaccard index at Class level} ($J_c$), we first add all false
+positive, true positive, and false negative pixels of all best proposals of each class.
+We then compute a \textit{global} Jaccard over all pixels of the same class and
+$J_c$ is the mean over classes of this global Jaccard (the segmentation accuracy of Pascal~\cite{Everingham2012}).
+Since all pixels of a certain class for all the database are considered together in the $J_c$ computation, 
+small instances do not affect the result significantly, so $J_c$ favors methods focusing on large objects.
+To avoid this bias, we define the \textit{Jaccard index at instance level} ($J_i$) as the mean best overlap for all the ground-truth instances in the database,
+also known as Best Spatial Support score (BSS)~\cite{Malisiewicz2007}.
+
+Computing the mean of the best overlap on all objects, as done by $J_i$, masks the distribution of quality among different objects.
+As an example, $J_i\!=\!0.5$ can mean that the algorithm covers half the objects perfectly and completely misses the other half, or
+can also mean that all the objects are covered exactly at $J\!=\!0.5$. 
+This information might be useful to decide which algorithm to use.
+Computing a histogram of the best overlap would provide very rich information, but then the resulting plot would be 3D
+(number of proposals, bins, and bin counts).
+Alternatively, we propose to plot different percentiles of the histogram.
+
+Interestingly, a certain percentile of the histogram of best overlaps consists in
+computing the number of objects whose best overlap is above a certain
+Jaccard threshold, which can be interpreted as the best achievable recall of the technique
+over a certain threshold.
+We compute the recall at three different thresholds: $J\!=\!0.5$, $J\!=\!0.7$, and $J\!=\!0.85$.
+
+
+
+\paragraph*{\textbf{Learning Strategy Evaluation}}
+We first estimate the loss in performance due to not sweeping all the possible
+values of $\left\{N_1,\dots,N_R\right\}$ in the combination of proposal lists via the proposed greedy strategy.
+To do so, we will compare this strategy with the full combination on a reduced problem to make
+the latter feasible.
+Specifically, we combine the 4 ranked lists coming from the singletons at all scales,
+instead of the full 16 lists coming from singletons, pairs, triplets, and 4-tuples.
+We also limit the search to 20\,000 proposals, further speeding the process up.
+%We limit the search to 20\,000 proposals, allowing us to discard all those solutions above this value,
+%and thus speeding the process up.
+
+In this situation, the mean loss in achievable quality along the full curve of parameterization
+is $J_i\!=\!0.0002$, with a maximum loss of $J_i\!=\!0.004$ ($0.74\%$) (similar results for $J_c$).
+In exchange, our proposed learning strategy on the full 16 ranked lists takes about 1 minute to compute
+on the training set of SegVOC12, while the singleton-limited full combination takes 4 days
+(the full combination would take months).
+
+\paragraph*{\textbf{Combinatorial Grouping}}
+We now evaluate the Pareto front optimization strategy in the training set of SegVOC12.
+As before, we extract the lists of proposals from the three scales and the multiscale hierarchy,
+for singletons, pairs, triplets, and 4-tuples of regions, leading to 16 lists, ranked
+by the minimum UCM strength of the regions forming each proposal.
+
+%Table~\ref{table:full_comb} shows the number of proposals and achievable quality
+%when combining the full 7 ranked lists on up to 1, 2, or 3 regions per proposal.
+%Both the achievable quality and the number of proposals
+%notably increase when considering pairs and triplets, proving that the original hierarchies
+%over-segment some objects.
+
+%\begin{table}[b]
+%\begin{center}
+%\scalebox{0.8}{%
+%\begin{tabular}{l|rrr}
+%\toprule
+%Number of regions per cand. & 1 & $\leq$2 & $\leq$3\\
+%\midrule[\heavyrulewidth]
+%Number of proposals ($N_p$) & $21\,775$ & $352\,022$ & $15\,211\,858$ \\
+%\midrule
+%Jaccard at instance level ($J_i$) & 0.73 & 0.84 & 0.88    \\
+%Jaccard at class level ($J_c$) & 0.75 & 0.85 & 0.89   \\
+%% 21775.1824 & 352022.6325 & 15211858.9344
+%% 0.72951 & 0.83937 & 0.87766
+%% 0.74571 & 0.84797 & 0.88835
+%\bottomrule
+%\end{tabular}}
+%\end{center}
+%\caption{Maximum achievable quality and number of proposals  per image 
+%on Pascal 2012 segmentation training set
+%for the full combination of up to $n=1,2,3$ regions per proposal}
+%\label{table:full_comb}
+%\end{table}
+
+Figure~\ref{fig:obj_cands_train} shows the Pareto front evolution of $J_c$ with respect to the
+number of proposals for up to 1, 2, 3, and 4 regions per proposal
+(4, 8, 12, and 16 lists, respectively) at training time on SegVOC12.
+As baselines, we plot the raw singletons from Ours-multi, gPb-UCM, and Quadtree.
+
+\begin{figure}
+\scalebox{0.87}{\input{figures/jacc_pascal_train.tikz}}
+\caption{\textbf{SegVOC12 training set.} Achievable quality of our proposals for singletons, pairs, triplets, and 4-tuples; and the raw proposals from the hierarchies}
+\label{fig:obj_cands_train}
+\vspace{-2mm}
+\end{figure}
+
+
+
+
+\begin{figure*}
+\scalebox{0.76}{\hspace{-2mm}\begin{minipage}[b]{0.39\linewidth}
+\centering
+\scriptsize \hspace{5mm}Pascal SegVOC12\\[1mm]
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.3\linewidth]
+    \begin{axis}[ymin=0.25,ymax=0.9,xmin=20,xmax=15000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Jaccard index at instance level ($J_i$),
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0,0.1,...,1},
+        minor ytick={0,0.025,...,1},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+		  \addplot+[black,solid,mark=none, ultra thick]                          table[x=ncands,y=jac_instance] {data/obj_cands/val2012_mcg.txt};
+		  \addplot+[red,solid,mark=none, thick]                                  table[x=ncands,y=jac_instance] {data/obj_cands/pascal2012_val2012_SCG.txt};
+	  	  \addplot+[cyan,solid,mark=none, thick]                                 table[x=ncands,y=jac_instance] {data/obj_cands/pascal2012_val2012_CPMC.txt};
+	      \addplot+[only marks,red,solid,mark size=1.75,mark=asterisk, thick]    table[x=ncands,y=jac_instance] {data/obj_cands/pascal2012_val2012_RIGOR.txt};
+	      \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    table[x=ncands,y=jac_instance] {data/obj_cands/pascal2012_val2012_GOP.txt};
+	      \addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]      table[x=ncands,y=jac_instance] {data/obj_cands/pascal2012_val2012_GLS.txt};
+          \addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=jac_instance] {data/obj_cands/pascal2012_val2012_ShSh.txt};
+	  	  \addplot+[olive,solid,mark=none, thick]                                table[x=ncands,y=jac_instance] {data/obj_cands/pascal2012_val2012_CI.txt};
+		  \addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=jac_instance] {data/obj_cands/pascal2012_val2012_SeSe.txt};
+		  \addplot+[red,dashed,mark=none, thick]                                 table[x=ncands,y=jac_instance] {data/obj_cands/val2012_sf_mUCM_multi_3sc_u_4r_12k_single_multi.txt};
+%		  \addplot+[blue,dashed,mark=none, thick]                                table[x=ncands,y=jaco] {data/obj_cands/val2012_iscra.txt};
+    	  \addplot+[green,dashed,mark=none, thick]                               table[x=ncands,y=jaco] {data/obj_cands/val2012_ucm.txt};
+		  \addplot+[black,dashed,mark=none, thick]                               table[x=ncands,y=jac_instance] {data/obj_cands/pascal2012_val2012_QT.txt};
+%          \addplot+[magenta,dashed,mark=none, thick]                             table[x=ncands,y=jac_instance] {data/obj_cands/val2012_sf_mUCM_multi_3sc_u_4r_12k_cpmc_jaccard_object.txt};
+%		  \addplot+[red,only marks,solid,mark=+, thick]                          table[x=ncands,y=jac_instance] {data/obj_cands/val2012_multi_3sc_u_4r_filt_point.txt};
+	\end{axis}
+   \end{tikzpicture}
+\end{minipage}
+\begin{minipage}[b]{0.39\linewidth}
+\centering
+\scriptsize \hspace{5mm}SBD\\[1mm]
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.3\linewidth]
+    \begin{axis}[ymin=0.25,ymax=0.9,xmin=20,xmax=15000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Jaccard index at instance level ($J_i$),
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0,0.1,...,1},
+        minor ytick={0,0.025,...,1},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+		\addplot+[black,solid,mark=none, ultra thick]                          table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_MCG.txt};
+%		\addplot+[black,dashed,mark=none, thick]                               table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_MCG2.txt};
+        \addplot+[red,solid,mark=none, thick]                                  table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_SCG.txt};
+%        \addplot+[red,dashed,mark=none, thick]                                 table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_SCG2.txt};
+	    \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_GOP.txt};
+%       \addplot+[cyan,solid,mark=none, thick]                                 table[x=ncands,y=jaco] {data/obj_cands/val2012_cpmc.txt};
+	    \addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]   table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_RIGOR.txt};
+	    \addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]      table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_GLS.txt};
+%       \addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=jaco] {data/obj_cands/val2012_shape_share.txt};
+%	  	\addplot+[olive,solid,mark=none, thick]                                table[x=ncands,y=jaco] {data/obj_cands/val2012_cat_indep.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_SeSe.txt};
+		\addplot+[black,dashed,mark=none, thick]                               table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_QT.txt};
+
+	\end{axis}
+   \end{tikzpicture}\end{minipage}
+\begin{minipage}[b]{0.39\linewidth}
+\centering
+\scriptsize \hspace{5mm}COCO\\[1mm]
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.3\linewidth]
+    \begin{axis}[ymin=0.25,ymax=0.9,xmin=20,xmax=15000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Jaccard index at instance level ($J_i$),
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        legend pos= outer north east,
+        ytick={0,0.1,...,1},
+        minor ytick={0,0.025,...,1},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+        \addplot[black,solid,mark=none, ultra thick] coordinates {( 1, 0.7)( 1, 0.8)};
+        \addplot[red,solid,mark=none, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[cyan,solid,mark=none, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[olive,solid,mark=none, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+        \addplot[only marks,blue,solid,mark=triangle,mark size=1.9, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	  	\addplot[only marks,cyan,solid,mark=square,mark size=1.5, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[only marks,red,solid,mark=asterisk, mark size=1.75, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+  	    \addplot[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[only marks,black,solid,mark=square, mark size=1.5, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[red,dashed,mark=none, thick]  coordinates {( 1, 0.7)( 1, 0.8)};
+    	\addplot[green,dashed,mark=none, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+		\addplot[black,dashed,mark=none, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+		  
+		\addlegendentry{MCG-Our}
+        \addlegendentry{SCG-Our}
+   	    \addlegendentry{CPMC~\cite{Carreira2012b}}
+	   \addlegendentry{CI~\cite{Endres2014}}
+        \addlegendentry{GOP~\cite{Kraehenbuehl2014}}
+		\addlegendentry{GLS~\cite{Rantalankila2014}}
+	   \addlegendentry{RIGOR~\cite{Humayun2014}}
+	   \addlegendentry{ShSh~\cite{Kim2012}}
+	   \addlegendentry{SeSe~\cite{Uijlings2013}}
+	   \addlegendentry{Ours-multi}
+	   \addlegendentry{gPb-UCM}
+	   \addlegendentry{Quadtree}
+	   
+	    \addplot+[black,solid,mark=none, ultra thick]                        table[x=ncands,y=jac_instance] {data/obj_cands/COCO_val2014_MCG.txt};
+        \addplot+[red,solid,mark=none, thick]                                table[x=ncands,y=jac_instance] {data/obj_cands/COCO_val2014_SCG.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]  table[x=ncands,y=jac_instance] {data/obj_cands/COCO_val2014_GOP.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]    table[x=ncands,y=jac_instance] {data/obj_cands/COCO_val2014_GLS.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]  table[x=ncands,y=jac_instance] {data/obj_cands/COCO_val2014_SeSe.txt};
+	    \addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=jac_instance] {data/obj_cands/COCO_val2014_RIGOR.txt};
+		\addplot+[black,dashed,mark=none, thick]                             table[x=ncands,y=jac_instance] {data/obj_cands/COCO_val2014_QT.txt};
+
+	\end{axis}
+   \end{tikzpicture}\end{minipage}}
+   \caption{\textbf{Object Proposals: Jaccard index at instance level.} Results on SegVOC12, SBD, and COCO.}
+   \label{fig:J_i}
+\end{figure*}
+
+The improvement of considering the combination of all 1-region proposals (\ref{fig:train:singletons}) from the 3 scales
+and the Ours-multi with respect to the raw Ours-multi (\ref{ours-multi-singletons}) is significant,
+which corroborates the gain in diversity obtained from hierarchies at different scales.
+In turn, the addition of 2- and 3-region proposals (\ref{fig:train:pairs}~and~\ref{fig:train:triplets})
+noticeably improves the achievable quality. 
+This shows that hierarchies do not get full objects in single regions, which makes sense given that
+they are built using low-level features only.
+The improvement when adding 4-tuples (\ref{fig:train:4tuples}) is marginal at the number of proposals we are considering.
+
+
+\begin{figure*}
+\scalebox{0.76}{\hspace{-2mm}\begin{minipage}[b]{0.39\linewidth}
+\centering
+\scriptsize \hspace{5mm}Pascal SegVOC12\\[1mm]
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.3\linewidth]
+    \begin{axis}[ymin=0.25,ymax=0.9,xmin=20,xmax=15000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Jaccard index at class level ($J_c$),
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0,0.1,...,1},
+        minor ytick={0,0.025,...,1},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+		\addplot+[black,solid,mark=none,ultra thick]                           table[x=ncands,y=jac_class] {data/obj_cands/pascal2012_val2012_MCG.txt};
+	  	\addplot+[red,solid,mark=none,thick]                                   table[x=ncands,y=jac_class] {data/obj_cands/pascal2012_val2012_SCG.txt};
+	  	\addplot+[cyan,solid,mark=none, thick]                                 table[x=ncands,y=jac_class] {data/obj_cands/pascal2012_val2012_CPMC.txt};
+	  	\addplot+[olive,solid,mark=none, thick]                                table[x=ncands,y=jac_class] {data/obj_cands/pascal2012_val2012_CI.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]   table[x=ncands,y=jac_class] {data/obj_cands/pascal2012_val2012_RIGOR.txt};
+		\addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    table[x=ncands,y=jac_class] {data/obj_cands/pascal2012_val2012_GOP.txt};
+		\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]      table[x=ncands,y=jac_class] {data/obj_cands/pascal2012_val2012_GLS.txt};
+        \addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=jac_class] {data/obj_cands/pascal2012_val2012_ShSh.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=jac_class] {data/obj_cands/pascal2012_val2012_SeSe.txt};
+		\addplot+[red,dashed,mark=none, thick]                                 table[x=ncands,y=jac_class] {data/obj_cands/val2012_sf_mUCM_multi_3sc_u_4r_12k_single_multi.txt};
+    	\addplot+[green,dashed,mark=none, thick]                               table[x=ncands,y=jacp] {data/obj_cands/val2012_ucm.txt};
+		\addplot+[black,dashed,mark=none, thick]                               table[x=ncands,y=jac_class] {data/obj_cands/pascal2012_val2012_QT.txt};
+	\end{axis}
+   \end{tikzpicture}
+\end{minipage}
+\begin{minipage}[b]{0.39\linewidth}
+\centering
+\scriptsize \hspace{5mm}SBD\\[1mm]
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.3\linewidth]
+    \begin{axis}[ymin=0.25,ymax=0.9,xmin=20,xmax=15000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Jaccard index at class level ($J_c$),
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0,0.1,...,1},
+        minor ytick={0,0.025,...,1},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+	       \addplot+[black,solid,mark=none, ultra thick]                        table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_MCG.txt}; 
+%           \addplot+[black,dashed,mark=none,thick]                              table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_MCG2.txt};
+	  	   \addplot+[red,solid,mark=none,thick]                                 table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_SCG.txt};
+%	  	   \addplot+[red,dashed,mark=none,thick]                                table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_SCG2.txt};
+	       \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]  table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_GOP.txt};
+	   	   \addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_RIGOR.txt};
+		   \addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]    table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_GLS.txt};
+		   \addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]  table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_SeSe.txt};
+		   \addplot+[black,dashed,mark=none, thick]                             table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_QT.txt};
+
+
+	\end{axis}
+   \end{tikzpicture}\end{minipage}
+\begin{minipage}[b]{0.39\linewidth}
+\centering
+\scriptsize \hspace{5mm}COCO\\[1mm]
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.3\linewidth]
+    \begin{axis}[ymin=0.25,ymax=0.9,xmin=20,xmax=15000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Jaccard index at class level ($J_c$),
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        legend pos= outer north east,
+        ytick={0,0.1,...,1},
+        minor ytick={0,0.025,...,1},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+        \addplot[black,solid,mark=none, ultra thick] coordinates {( 1, 0.7)( 1, 0.8)};
+        \addplot[red,solid,mark=none, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[cyan,solid,mark=none, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[olive,solid,mark=none, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+        \addplot[only marks,blue,solid,mark=triangle,mark size=1.9, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	  	\addplot[only marks,cyan,solid,mark=square,mark size=1.5, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[only marks,red,solid,mark=asterisk, mark size=1.75, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+  	    \addplot[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[only marks,black,solid,mark=square, mark size=1.5, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[red,dashed,mark=none, thick]  coordinates {( 1, 0.7)( 1, 0.8)};
+    	\addplot[green,dashed,mark=none, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+		\addplot[black,dashed,mark=none, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+		  
+		\addlegendentry{MCG-Our}
+        \addlegendentry{SCG-Our}
+   	    \addlegendentry{CPMC~\cite{Carreira2012b}}
+	   \addlegendentry{CI~\cite{Endres2014}}
+        \addlegendentry{GOP~\cite{Kraehenbuehl2014}}
+		\addlegendentry{GLS~\cite{Rantalankila2014}}
+	   \addlegendentry{RIGOR~\cite{Humayun2014}}
+	   \addlegendentry{ShSh~\cite{Kim2012}}
+	   \addlegendentry{SeSe~\cite{Uijlings2013}}
+	   \addlegendentry{Ours-multi}
+	   \addlegendentry{gPb-UCM}
+	   \addlegendentry{Quadtree}
+	   
+	    \addplot+[black,solid,mark=none, ultra thick]                        table[x=ncands,y=jac_class] {data/obj_cands/COCO_val2014_MCG.txt};
+        \addplot+[red,solid,mark=none, thick]                                table[x=ncands,y=jac_class] {data/obj_cands/COCO_val2014_SCG.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]  table[x=ncands,y=jac_class] {data/obj_cands/COCO_val2014_GOP.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]    table[x=ncands,y=jac_class] {data/obj_cands/COCO_val2014_GLS.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]  table[x=ncands,y=jac_class] {data/obj_cands/COCO_val2014_SeSe.txt};
+	    \addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=jac_class] {data/obj_cands/COCO_val2014_RIGOR.txt};
+	    \addplot+[black,dashed,mark=none, thick]                             table[x=ncands,y=jac_class] {data/obj_cands/COCO_val2014_QT.txt};
+
+	\end{axis}
+   \end{tikzpicture}\end{minipage}}
+   \caption{\textbf{Object Proposals: Jaccard index at class level.} Results on SegVOC12, SBD, and COCO.}
+   \label{fig:J_c}
+\end{figure*}
+
+
+
+
+The red asterisk (\ref{marker:jacc_train:sel_pareto}) marks the selected configuration
+$\left\{\overline{N}_1,\dots,\overline{N}_R\right\}$ in the Pareto front (black triangle in Figure~\ref{fig:pareto}),
+which is selected at a practical level of proposals.
+The red plus sign (\ref{marker:jacc_train:filt_pareto}) represents the set of proposals
+after removing those duplicate proposals whose overlap leads to a Jaccard higher than 0.95.
+The proposals at this point are the ones that are ranked by the learnt regressor (\ref{marker:jacc_train:regressed}).
+Please note that this curve is evaluated on the training set: the flat behavior is not realistic in the test set, as we will
+observe below.
+
+At test time, we directly combine the learnt $\left\{\overline{N}_1,\dots,\overline{N}_R\right\}$ proposals from each ranked list and 
+we remove duplicates.
+In the validation set of SegVOC12, the full set of proposals (i.e., combining the full 16 lists)
+would contain millions of proposals per image.
+The multiscale combinatorial grouping allows us to reduce the number of proposals to $5\,086$
+with a very high achievable $J_c$ of $0.84$.
+The regressed ranking allows us to further reduce the number of proposals below this point.
+
+% Comment on which scales selected.
+
+\paragraph*{\textbf{Segmented Proposals: Comparison with State of the Art}}
+We first compare our results against those methods that produce segmented object proposals~\cite{Kraehenbuehl2014,Rantalankila2014,Humayun2014,Uijlings2013,Alexe2012,Kim2012,Carreira2012b,Uijlings2013,Endres2014},
+using the implementations from the respective authors.
+We train MCG on the training set of SegVOC12, and we use the learnt parameters on the validation sets of SegVOC12, SBD, and COCO.
+
+Figures~\ref{fig:J_i}~and~\ref{fig:J_c} show the achievable quality at instance level ($J_i$) and class level ($J_c$), respectively,
+of all methods on the validation set of SegVOC12, SBD, and COCO.
+We plot the raw regions of Ours-multi, gPb-UCM, and QuadTree as baselines where available.
+
+We also evaluate a faster single-scale version of MCG (\textit{Single-scale Combinatorial Grouping - SCG}),
+which takes the hierarchy at the native scale only and combines up to 4 regions per proposal.   
+This approach decreases the computational load one order of magnitude while keeping competitive results.
+
+
+\begin{figure*}
+\scalebox{0.76}{\hspace{-2mm}\begin{minipage}[b]{0.39\linewidth}
+\centering
+\scriptsize \hspace{5mm}Pascal SegVOC12\\[1mm]
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.5\linewidth]
+    \begin{axis}[ymin=0,ymax=1,xmin=20,xmax=15000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Recall,
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0,0.1,...,1},
+        minor ytick={0,0.025,...,1},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log,
+        legend style={
+		at={(2.39,0.98)},
+		fill=white,
+		fill opacity=1,
+		anchor=north west}]
+        \addplot+[black,solid,mark=none, ultra thick]                          table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_MCG.txt};
+        \addplot+[red,solid,mark=none, thick]                                  table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_SCG.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_GOP.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]      table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_GLS.txt};
+	    \addplot+[cyan,solid,mark=none, thick]                                 table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_CPMC.txt};
+	  	\addplot+[olive,solid,mark=none, thick]                                table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_CI.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]   table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_RIGOR.txt};
+  	    \addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_ShSh.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_SeSe.txt};
+	    \addplot+[black,dashed,mark=none,thick]                                table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_QT.txt};
+
+		\addplot+[black,solid,mark=none, ultra thick]                          table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_MCG.txt};
+        \addplot+[red,solid,mark=none, thick]                                  table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_SCG.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_GOP.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]      table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_GLS.txt};
+        \addplot+[cyan,solid,mark=none, thick]                                 table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_CPMC.txt};
+	  	\addplot+[olive,solid,mark=none, thick]                                table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_CI.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]   table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_RIGOR.txt};
+  	    \addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_ShSh.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_SeSe.txt};
+		\addplot+[black,dashed,mark=none,thick]                                table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_QT.txt};
+        
+        \addplot+[black,solid,mark=none, ultra thick]                          table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_MCG.txt};
+        \addplot+[red,solid,mark=none, thick]                                  table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_SCG.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_GOP.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]      table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_GLS.txt};
+	    \addplot+[cyan,solid,mark=none, thick]                                 table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_CPMC.txt};
+	  	\addplot+[olive,solid,mark=none, thick]                                table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_CI.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]   table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_RIGOR.txt};
+  	    \addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_ShSh.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_SeSe.txt};
+		\addplot+[black,dashed,mark=none,thick]                                table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_QT.txt};
+
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.53) {$J\!=\!0.5$};
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.33) {$J\!=\!0.7$};
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.15) {$J\!=\!0.85$};
+	\end{axis}
+   \end{tikzpicture}
+\end{minipage}
+\begin{minipage}[b]{0.39\linewidth}
+\centering
+\scriptsize \hspace{5mm}SBD\\[1mm]
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.5\linewidth]
+    \begin{axis}[ymin=0,ymax=1,xmin=20,xmax=15000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Recall,
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0,0.1,...,1},
+        minor ytick={0,0.025,...,1},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+        \addplot+[black,solid,mark=none, ultra thick]                          table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_MCG.txt};
+        \addplot+[red,solid,mark=none, thick]                                  table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_SCG.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_GOP.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]      table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_GLS.txt};
+	   %\addplot+[cyan,solid,mark=none, thick]                                 table[x=ncands,y=rec_at_0.5] {data/obj_cands/val2012_cpmc.txt};
+	   %\addplot+[olive,solid,mark=none, thick]                                table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_CI.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]   table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_RIGOR.txt};
+  	   %\addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_ShSh.txt};
+   	   %\addplot+[blue,only marks,solid,mark=o, thick]                         table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_RP.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_SeSe.txt};
+		\addplot+[black,dashed,mark=none,thick]                                table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_QT.txt};
+
+		\addplot+[black,solid,mark=none, ultra thick]                          table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_MCG.txt};
+        \addplot+[red,solid,mark=none, thick]                                  table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_SCG.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_GOP.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]      table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_GLS.txt};
+       %\addplot+[cyan,solid,mark=none, thick]                                 table[x=ncands,y=rec_at_0.7] {data/obj_cands/val2012_cpmc.txt};
+	   %\addplot+[olive,solid,mark=none, thick]                                table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_CI.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]   table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_RIGOR.txt};
+  	   %\addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_ShSh.txt};
+   	   %\addplot+[blue,only marks,solid,mark=o, thick]                         table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_RP.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_SeSe.txt};
+		\addplot+[black,dashed,mark=none,thick]                                table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_QT.txt};
+
+        \addplot+[black,solid,mark=none, ultra thick]                          table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_MCG.txt};
+        \addplot+[red,solid,mark=none, thick]                                  table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_SCG.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_GOP.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]      table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_GLS.txt};
+	   %\addplot+[cyan,solid,mark=none, thick]                                 table[x=ncands,y=rec_at_0.85] {data/obj_cands/val2012_cpmc.txt};
+	   %\addplot+[olive,solid,mark=none, thick]                                table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_CI.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]   table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_RIGOR.txt};
+  	   %\addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_ShSh.txt};
+   	   %\addplot+[blue,only marks,solid,mark=o, thick]                         table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_RP.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_SeSe.txt};
+		\addplot+[black,dashed,mark=none,thick]                                table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_QT.txt};
+
+		
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.5) {$J=0.5$};
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.3) {$J=0.7$};
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.12) {$J=0.85$};
+	\end{axis}
+   \end{tikzpicture}\end{minipage}
+\begin{minipage}[b]{0.39\linewidth}
+\centering
+\scriptsize \hspace{5mm}COCO\\[1mm]
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.5\linewidth]
+    \begin{axis}[ymin=0,ymax=1,xmin=20,xmax=15000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Recall,
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        legend pos= outer north east,
+        ytick={0,0.1,...,1},
+        minor ytick={0,0.025,...,1},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+        \addplot[black,solid,mark=none, ultra thick]                          coordinates {( 1, 0.7)( 1, 0.8)};
+        \label{fig:recall:mcg}
+        \addplot[red,solid,mark=none, thick]                                  coordinates {( 1, 0.7)( 1, 0.8)};
+        \label{fig:recall:scg}
+	    \addplot[cyan,solid,mark=none, thick]                                 coordinates {( 1, 0.7)( 1, 0.8)};
+	    \label{fig:recall:cpmc}
+	    \addplot[olive,solid,mark=none, thick]                                coordinates {( 1, 0.7)( 1, 0.8)};
+	    \label{fig:recall:ci}
+        \addplot[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    coordinates {( 1, 0.7)( 1, 0.8)};
+        \label{fig:recall:gop}
+	  	\addplot[only marks,cyan,solid,mark=square,mark size=1.5, thick]      coordinates {( 1, 0.7)( 1, 0.8)};
+		\label{fig:recall:gls}
+	    \addplot[only marks,red,solid,mark=asterisk, mark size=1.75, thick]   coordinates {( 1, 0.7)( 1, 0.8)};
+	    \label{fig:recall:rigor}
+  	    \addplot[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	    \label{fig:recall:shsh}
+	    \addplot[only marks,black,solid,mark=square, mark size=1.5, thick]    coordinates {( 1, 0.7)( 1, 0.8)};
+	    \label{fig:recall:sese}
+	    \addplot[black,dashed,mark=none,thick]                                coordinates {( 1, 0.7)( 1, 0.8)};
+        \label{fig:recall:qt}
+        
+		\addlegendentry{MCG-Our}
+        \addlegendentry{SCG-Our}
+        \addlegendentry{CPMC~\cite{Carreira2012b}}
+	    \addlegendentry{CI~\cite{Endres2014}}
+        \addlegendentry{GOP~\cite{Kraehenbuehl2014}}
+		\addlegendentry{GLS~\cite{Rantalankila2014}}
+	    \addlegendentry{RIGOR~\cite{Humayun2014}}
+	    \addlegendentry{ShSh~\cite{Kim2012}}
+	    \addlegendentry{SeSe~\cite{Uijlings2013}}
+	   	\addlegendentry{Quadtree}
+
+	   
+        \addplot+[black,solid,mark=none, ultra thick]                          table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_MCG.txt};
+        \addplot+[red,solid,mark=none, thick]                                  table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_SCG.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_GOP.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]      table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_GLS.txt};
+	    \addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]   table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_RIGOR.txt};
+	    \addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_SeSe.txt};
+		\addplot+[black,dashed,mark=none,thick]                                table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_QT.txt};
+
+		\addplot+[black,solid,mark=none, ultra thick]                          table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_MCG.txt};
+        \addplot+[red,solid,mark=none, thick]                                  table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_SCG.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_GOP.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]      table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_GLS.txt};
+	    \addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]   table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_RIGOR.txt};
+	    \addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_SeSe.txt};
+		\addplot+[black,dashed,mark=none,thick]                                table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_QT.txt};
+
+        \addplot+[black,solid,mark=none, ultra thick]                          table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_MCG.txt};
+        \addplot+[red,solid,mark=none, thick]                                  table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_SCG.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]    table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_GOP.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]      table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_GLS.txt};
+	    \addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]   table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_RIGOR.txt};
+	    \addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_SeSe.txt};
+		\addplot+[black,dashed,mark=none,thick]                                table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_QT.txt};
+
+
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.23) {$J=0.5$};
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.12) {$J=0.7$};
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.05) {$J=0.85$};
+	\end{axis}
+   \end{tikzpicture}\end{minipage}}
+   \caption{\textbf{Segmented Object Proposals: Recall at different Jaccard levels.} Percentage of annotated objects for which there is a proposal whose overlap with the segmented ground-truth shapes (not boxes) is above $J=0.5$, $J=0.7$, and $J=0.85$, for different number of proposals per image. Results on SegVOC12, SBD, and COCO.}
+   \label{fig:recall_segmented}
+\end{figure*}
+
+
+
+
+
+
+
+
+\begin{figure*}
+\scalebox{0.76}{\hspace{-2mm}\begin{minipage}[b]{0.39\linewidth}
+\centering
+\scriptsize \hspace{5mm}Pascal SegVOC12\\[1mm]
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.5\linewidth]
+    \begin{axis}[ymin=0,ymax=1,xmin=20,xmax=40000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Recall,
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0,0.1,...,1},
+        minor ytick={0,0.025,...,1},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log,
+        legend style={
+		at={(2.39,0.98)},
+		fill=white,
+		fill opacity=1,
+		anchor=north west}]
+        \addplot+[black,solid,mark=none, ultra thick]                            table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_MCG_boxes.txt};
+
+        \addplot+[red,solid,mark=none, thick]                                    table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_SCG_boxes.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]      table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_GOP_boxes.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]        table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_GLS_boxes.txt};
+	    \addplot+[cyan,solid,mark=none, thick]                                   table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_CPMC_boxes.txt};
+	    \addplot+[olive,solid,mark=none, thick]                                  table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_CI_boxes.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]     table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_RIGOR_boxes.txt};
+  	    %\addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick]  table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_ShSh.txt};
+   	    \addplot+[blue,only marks,solid,mark=o, mark size=1.6, thick]            table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_RP_boxes.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]      table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_SeSe_boxes.txt};
+		\addplot+[only marks,olive  ,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_EB_boxes.txt};
+	    \addplot+[only marks,red    ,solid,mark=+, mark size=1.75, thick]        table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_BING_boxes.txt};
+	    \addplot+[only marks,black  ,solid,mark=x, thick]                        table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_Obj_boxes.txt};
+	    \addplot+[black,dashed,mark=none,thick]                                  table[x=ncands,y=rec_at_0.5] {data/obj_cands/pascal2012_val2012_QT_boxes.txt};
+
+		\addplot+[black,solid,mark=none, ultra thick]                            table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_MCG_boxes.txt};
+        \addplot+[red,solid,mark=none, thick]                                    table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_SCG_boxes.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]      table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_GOP_boxes.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]        table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_GLS_boxes.txt};
+	    \addplot+[cyan,solid,mark=none, thick]                                   table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_CPMC_boxes.txt};
+	  	\addplot+[olive,solid,mark=none, thick]                                  table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_CI_boxes.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]     table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_RIGOR_boxes.txt};
+  	    %\addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick]  table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_ShSh.txt};
+   	    \addplot+[blue,only marks,solid,mark=o, mark size=1.6, thick]            table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_RP_boxes.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]      table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_SeSe_boxes.txt};
+	    \addplot+[only marks,olive  ,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_EB_boxes.txt};
+	    \addplot+[only marks,red    ,solid,mark=+, mark size=1.75, thick]        table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_BING_boxes.txt};
+	    \addplot+[only marks,black  ,solid,mark=x, thick]                        table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_Obj_boxes.txt};
+	    \addplot+[black,dashed,mark=none,thick]                                  table[x=ncands,y=rec_at_0.7] {data/obj_cands/pascal2012_val2012_QT_boxes.txt};
+
+        \addplot+[black,solid,mark=none, ultra thick]                            table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_MCG_boxes.txt};
+        \addplot+[red,solid,mark=none, thick]                                    table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_SCG_boxes.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]      table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_GOP_boxes.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]        table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_GLS_boxes.txt};
+	    \addplot+[cyan,solid,mark=none, thick]                                   table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_CPMC_boxes.txt};
+	  	\addplot+[olive,solid,mark=none, thick]                                  table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_CI_boxes.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]     table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_RIGOR_boxes.txt};
+  	    %\addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick]  table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_ShSh.txt};
+   	    \addplot+[blue,only marks   ,solid,mark size=1.6,mark=o, thick]          table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_RP_boxes.txt};
+		\addplot+[only marks,black  ,solid,mark=square, mark size=1.5, thick]    table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_SeSe_boxes.txt};
+	    \addplot+[only marks,olive  ,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_EB_boxes.txt};
+	    \addplot+[only marks,red    ,solid,mark=+, mark size=1.75, thick]        table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_BING_boxes.txt};
+	    \addplot+[only marks,black  ,solid,mark=x, thick]                        table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_Obj_boxes.txt};
+	    \addplot+[black,dashed,mark=none,thick]                                  table[x=ncands,y=rec_at_0.85] {data/obj_cands/pascal2012_val2012_QT_boxes.txt};
+
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.58) {$J=0.5$};
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.37) {$J=0.7$};
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.20) {$J=0.85$};
+	\end{axis}
+   \end{tikzpicture}
+\end{minipage}
+\begin{minipage}[b]{0.39\linewidth}
+\centering
+\scriptsize \hspace{5mm}SBD\\[1mm]
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.5\linewidth]
+    \begin{axis}[ymin=0,ymax=1,xmin=20,xmax=40000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Recall,
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0,0.1,...,1},
+        minor ytick={0,0.025,...,1},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+        \addplot+[black,solid,mark=none, ultra thick]                            table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_MCG_boxes.txt};
+        \addplot+[red,solid,mark=none, thick]                                    table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_SCG_boxes.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]      table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_GOP_boxes.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]        table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_GLS_boxes.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]     table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_RIGOR_boxes.txt};
+   	    \addplot+[blue,only marks,solid,mark=o, mark size=1.6, thick]            table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_RP_boxes.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]      table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_SeSe_boxes.txt};
+		\addplot+[only marks,olive  ,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_EB_boxes.txt};
+    	\addplot+[only marks,red    ,solid,mark=+, mark size=1.75, thick]        table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_BING_boxes.txt};
+	   \addplot+[only marks,black  ,solid,mark=x, thick]                         table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_Obj_boxes.txt};
+	    \addplot+[black,dashed,mark=none,thick]                                  table[x=ncands,y=rec_at_0.5] {data/obj_cands/SBD_val_QT_boxes.txt};
+
+
+		\addplot+[black,solid,mark=none, ultra thick]                            table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_MCG_boxes.txt};
+        \addplot+[red,solid,mark=none, thick]                                    table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_SCG_boxes.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]      table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_GOP_boxes.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]        table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_GLS_boxes.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]     table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_RIGOR_boxes.txt};
+   	    \addplot+[blue,only marks,solid,mark size=1.6,mark=o, thick]             table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_RP_boxes.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]      table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_SeSe_boxes.txt};
+	    \addplot+[only marks,olive  ,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_EB_boxes.txt};
+		\addplot+[only marks,red    ,solid,mark=+, mark size=1.75, thick]        table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_BING_boxes.txt};
+	    \addplot+[only marks,black  ,solid,mark=x, thick]                        table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_Obj_boxes.txt};
+        \addplot+[black,dashed,mark=none,thick]                                  table[x=ncands,y=rec_at_0.7] {data/obj_cands/SBD_val_QT_boxes.txt};
+
+
+        \addplot+[black,solid,mark=none, ultra thick]                            table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_MCG_boxes.txt};
+        \addplot+[red,solid,mark=none, thick]                                    table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_SCG_boxes.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]      table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_GOP_boxes.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]        table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_GLS_boxes.txt};
+		\addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]     table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_RIGOR_boxes.txt};
+   	    \addplot+[blue,only marks,solid,mark=o, mark size=1.6, thick]            table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_RP_boxes.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]      table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_SeSe_boxes.txt};
+		\addplot+[only marks,olive  ,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_EB_boxes.txt};
+		\addplot+[only marks,red    ,solid,mark=+, mark size=1.75, thick]        table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_BING_boxes.txt};
+	    \addplot+[only marks,black  ,solid,mark=x, thick]                        table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_Obj_boxes.txt};
+        \addplot+[black,dashed,mark=none,thick]                                  table[x=ncands,y=rec_at_0.85] {data/obj_cands/SBD_val_QT_boxes.txt};
+
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.53) {$J=0.5$};
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.38) {$J=0.7$};
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.2 ) {$J=0.85$};
+	\end{axis}
+   \end{tikzpicture}\end{minipage}
+\begin{minipage}[b]{0.39\linewidth}
+\centering
+\scriptsize \hspace{5mm}COCO\\[1mm]
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1.5\linewidth]
+    \begin{axis}[ymin=0,ymax=1,xmin=20,xmax=40000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Recall,
+         grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        legend pos=outer north east,
+        ytick={0,0.1,...,1},
+        minor ytick={0,0.025,...,1},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+        \addplot[black,solid,mark=none, ultra thick]                            coordinates {( 1, 0.7)( 1, 0.8)};
+        \addplot[red,solid,mark=none, thick]                                    coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[cyan,solid,mark=none, thick]                                   coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[olive,solid,mark=none, thick]                                  coordinates {( 1, 0.7)( 1, 0.8)};
+        \addplot[only marks,blue   ,solid,mark=triangle,mark size=1.9, thick]   coordinates {( 1, 0.7)( 1, 0.8)};
+	  	\addplot[only marks,cyan   ,solid,mark=square,mark size=1.5, thick]     coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[only marks,red    ,solid,mark=asterisk, mark size=1.75, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+   	    \addplot[only marks,black  ,solid,mark=square, mark size=1.5, thick]    coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[only marks,blue   ,solid,mark=o,mark size=1.6, thick]          coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[only marks,olive  ,solid,mark=asterisk, mark size=1.75, thick] coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[only marks,red    ,solid,mark=+, mark size=1.75, thick]        coordinates {( 1, 0.7)( 1, 0.8)};
+	    \addplot[only marks,black  ,solid,mark=x, thick]                        coordinates {( 1, 0.7)( 1, 0.8)};
+        \addplot[black,dashed,mark=none,thick]                                  coordinates {( 1, 0.7)( 1, 0.8)};
+
+		\addlegendentry{MCG-Our}
+        \addlegendentry{SCG-Our}
+        \addlegendentry{CPMC~\cite{Carreira2012b}}
+	    \addlegendentry{CI~\cite{Endres2014}}
+        \addlegendentry{GOP~\cite{Kraehenbuehl2014}}
+		\addlegendentry{GLS~\cite{Rantalankila2014}}
+	   \addlegendentry{RIGOR~\cite{Humayun2014}}
+	   \addlegendentry{SeSe~\cite{Uijlings2013}}
+	   \addlegendentry{RP~\cite{Manen2013}}
+	   \addlegendentry{EB~\cite{Zitnick2014}}
+	   \addlegendentry{BING~\cite{Cheng2014}}
+	   \addlegendentry{Obj~\cite{Alexe2012}}
+	   \addlegendentry{Quadtree}
+	   
+        \addplot+[black,solid,mark=none, ultra thick]                            table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_MCG_boxes.txt};
+        \addplot+[red,solid,mark=none, thick]                                    table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_SCG_boxes.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]      table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_GOP_boxes.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]        table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_GLS_boxes.txt};
+	    \addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]     table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_RIGOR_boxes.txt};
+   	    \addplot+[blue,only marks,solid,mark=o, mark size=1.6, thick]            table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_RP_boxes.txt};
+	    \addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]      table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_SeSe_boxes.txt};
+		\addplot+[only marks,olive  ,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_EB_boxes.txt};
+		\addplot+[only marks,red    ,solid,mark=+, mark size=1.75, thick]        table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_BING_boxes.txt};
+	    \addplot+[only marks,black  ,solid,mark=x, thick]                        table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_Obj_boxes.txt};
+        \addplot+[black,dashed,mark=none,thick]                                  table[x=ncands,y=rec_at_0.5] {data/obj_cands/COCO_val2014_QT_boxes.txt};
+
+
+
+		\addplot+[black,solid,mark=none, ultra thick]                            table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_MCG_boxes.txt};
+        \addplot+[red,solid,mark=none, thick]                                    table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_SCG_boxes.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]      table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_GOP_boxes.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]        table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_GLS_boxes.txt};
+	    \addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]     table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_RIGOR_boxes.txt};
+   	    \addplot+[blue,only marks,solid,mark=o, mark size=1.6, thick]            table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_RP_boxes.txt};
+	    \addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]      table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_SeSe_boxes.txt};
+		\addplot+[only marks,olive  ,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_EB_boxes.txt};
+		\addplot+[only marks,red    ,solid,mark=+, mark size=1.75, thick]        table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_BING_boxes.txt};
+	    \addplot+[only marks,black  ,solid,mark=x, thick]                        table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_Obj_boxes.txt};
+        \addplot+[black,dashed,mark=none,thick]                                  table[x=ncands,y=rec_at_0.7] {data/obj_cands/COCO_val2014_QT_boxes.txt};
+
+
+        \addplot+[black,solid,mark=none, ultra thick]                            table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_MCG_boxes.txt};
+        \addplot+[red,solid,mark=none, thick]                                    table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_SCG_boxes.txt};
+        \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick]      table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_GOP_boxes.txt};
+	  	\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick]        table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_GLS_boxes.txt};
+	    \addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick]     table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_RIGOR_boxes.txt};
+   	    \addplot+[blue,only marks,solid,mark=o, mark size=1.6,thick]             table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_RP_boxes.txt};
+	    \addplot+[only marks,black,solid,mark=square, mark size=1.5, thick]      table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_SeSe_boxes.txt};
+	    \addplot+[only marks,olive  ,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_EB_boxes.txt};
+	    \addplot+[only marks,red    ,solid,mark=+, mark size=1.75, thick]        table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_BING_boxes.txt};
+	    \addplot+[only marks,black  ,solid,mark=x, thick]                        table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_Obj_boxes.txt};
+        \addplot+[black,dashed,mark=none,thick]                                  table[x=ncands,y=rec_at_0.85] {data/obj_cands/COCO_val2014_QT_boxes.txt};
+
+
+
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.28) {$J=0.5$};
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.16) {$J=0.7$};
+	   \node[draw,fill=white,anchor=north west] at (axis cs:20,0.08) {$J=0.85$};
+	\end{axis}
+   \end{tikzpicture}\end{minipage}}
+   \caption{\textbf{Bounding-Box Proposals: Recall at different Jaccard levels.} Percentage of annotated objects for which there is a bounding box proposal whose overlap with the ground-truth boxes is above $J=0.5$, $J=0.7$, and $J=0.85$, for different number of proposals per image. Results on SegVOC12, SBD, and COCO.}
+   \label{fig:recall_boxes}
+\end{figure*}
+
+
+
+At instance level ($J_i$), MCG proposals (\ref{fig:recall:mcg}) significantly outperform the state-of-the-art at all regimes.
+At class level ($J_c$), our proposals practically achieve the same quality as RIGOR (\ref{fig:recall:rigor}) and CPMC (\ref{fig:recall:cpmc}) in SegVOC12.
+The bigger the database is, the better MCG results are with respect to RIGOR, outperforming all methods in COCO.
+This shows that our techniques better generalize to unseen images
+(recall that MCG is trained only in SegVOC12).
+Selective Search (SeSe - \ref{fig:recall:sese}) is the method with best generalization power,
+since their achievable quality is almost the same in the three databases,
+although the huge number of proposals possibly makes it easier.
+
+As commented on the measures description, $J_i$ and $J_c$ show mean aggregate results, so they can mask
+the distribution of quality among objects in the database.
+To gain more insight, Figure~\ref{fig:recall_segmented} shows the recall at three different Jaccard levels.
+First, these plots further highlight how challenging COCO is, since we observe a significant drop in performance,
+more pronounced than when measured by $J_i$ and $J_c$.
+
+Another interesting result comes from observing the evolution of the plots for the three different Jaccard values.
+Take for instance the performance of GOP~(\ref{fig:recall:gop}) against MCG-Our (\ref{fig:recall:mcg}) in SBD.
+While for $J\!=\!0.5$ GOP slightly outperforms MCG, the higher the threshold, the better MCG.
+Overall, MCG has specially good results at higher $J$ values.
+In other words, if one looks for proposals of very high accuracy, MCG is the method with highest recall,
+at all regimes and in all databases.
+In all measures and databases, SCG (\ref{fig:recall:scg}) obtains very competitive results, especially if we take into account that it is 7$\times$ faster than MCG,
+as we will see in next sections.
+
+\paragraph*{\textbf{Boxes Proposals: Comparison with State of the Art}}
+Although focused in providing segmented object proposals, MCG may also be used to provide boxes proposals, by taking the bounding 
+box of the segmented proposals and deduplicating them.
+We add the state of the art in boxes proposals~\cite{Zitnick2014}, \cite{Cheng2014}, \cite{Manen2013}, and~\cite{Alexe2012} to the comparison.
+Figure~\ref{fig:recall_boxes} shows the recall values of the boxes results when compared to the bounding boxes of the annotated objects, for three different
+Jaccard thresholds.
+
+While many of the techniques specifically tailored to boxes proposals are competitive at $J\!=\!0.5$, their performance drops 
+significantly at higher Jaccard thresholds.
+Despite being tailored to segmented proposals, MCG clearly outperforms the state of the art if you look for
+precise localization of the bounding boxes.
+Again, SCG is very competitive, especially taking its speed into account.
+
+
+\paragraph*{\textbf{MCG and SCG Time per Image}}
+Table~\ref{timing} shows the time per image of the main steps of our approach,
+from the raw image to the contours, the hierarchical segmentation, and the proposal generation.
+All times are computed using a single core on a Linux machine.
+Our full MCG takes about 25 s. per image to compute the multiscale hierarchies, and 17 s. to generate and
+rank the $5\,038$ proposals on the validation set of SegVOC12.
+Our single-scale SCG produces a segmentation hierarchy of better quality than gPb-ucm~\cite{Arbelaez2011} in less than 3
+seconds and with significant less memory footprint.
+
+\begin{figure*}
+\setlength{\fboxsep}{0pt}
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000192.jpg}}
+\hfill
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000192_gt.png}}
+\hfill
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000192_ucm.png}}
+\hfill
+\fbox{\includegraphics[width=0.127\linewidth]{figures/examples/COCO_val2014_000000000192_obj1.png}}
+\hfill
+\fbox{\includegraphics[width=0.127\linewidth]{figures/examples/COCO_val2014_000000000192_obj2.png}}
+\hfill
+\fbox{\includegraphics[width=0.127\linewidth]{figures/examples/COCO_val2014_000000000192_obj4.png}}
+\hfill\\[1mm]
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000136.jpg}}
+\hfill
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000136_gt.png}}
+\hfill
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000136_ucm.png}}
+\hfill
+\fbox{\includegraphics[width=0.127\linewidth]{figures/examples/COCO_val2014_000000000136_obj1.png}}
+\hfill
+\fbox{\includegraphics[width=0.127\linewidth]{figures/examples/COCO_val2014_000000000136_obj3.png}}
+\hfill
+\fbox{\includegraphics[width=0.127\linewidth]{figures/examples/COCO_val2014_000000000136_obj4.png}}
+\hfill\\[1mm]
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000338.jpg}}
+\hfill
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000338_gt.png}}
+\hfill
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000000338_ucm.png}}
+\hfill
+\fbox{\includegraphics[width=0.127\linewidth]{figures/examples/COCO_val2014_000000000338_obj1.png}}
+\hfill
+\fbox{\includegraphics[width=0.127\linewidth]{figures/examples/COCO_val2014_000000000338_obj4.png}}
+\hfill
+\fbox{\includegraphics[width=0.127\linewidth]{figures/examples/COCO_val2014_000000000338_obj5.png}}
+\hfill\\[1mm]
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000015687.jpg}}
+\hfill
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000015687_gt.png}}
+\hfill
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000015687_ucm.png}}
+\hfill
+\fbox{\includegraphics[width=0.127\linewidth]{figures/examples/COCO_val2014_000000015687_obj1.png}}
+\hfill
+\fbox{\includegraphics[width=0.127\linewidth]{figures/examples/COCO_val2014_000000015687_obj2.png}}
+\hfill
+\fbox{\includegraphics[width=0.127\linewidth]{figures/examples/COCO_val2014_000000015687_obj3.png}}
+\hfill\\[1mm]
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000023995.jpg}}
+\hfill
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000023995_gt.png}}
+\hfill
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000023995_ucm.png}}
+\hfill
+\fbox{\includegraphics[width=0.19\linewidth]{figures/examples/COCO_val2014_000000023995_obj1.png}}
+\hfill
+\fbox{\includegraphics[width=0.095\linewidth]{figures/examples/COCO_val2014_000000023995_obj2.png}}
+\hfill
+\fbox{\includegraphics[width=0.095\linewidth]{figures/examples/COCO_val2014_000000023995_obj3.png}}
+\hfill
+\caption{\textbf{COCO Qualitative Results}: Image, ground truth, multi-scale UCM and best MCG proposals among the 500 best ranked. (More qualitative examples in the supplemental material.)}
+\label{fig:qualitative_examples}
+\end{figure*}
+
+
+\begin{table}[h]
+\centering
+\scalebox{0.95}{\begin{tabular}{l|ccc|c}
+\cmidrule[\heavyrulewidth](l{-2pt}){2-5}
+\multicolumn{1}{c}{}    & Contour   & Hierarchical & Candidate  & \multirow{2}{*}{Total}\\
+\multicolumn{1}{c}{}    & Detection & Segmentation & Generation &                       \\
+    \midrule
+MCG                     &    4.6$\,\pm\,$1.3 &    20.5$\,\pm\,$5.6       &   17.0$\,\pm\,$9.8     &     42.2$\,\pm\,$14.8  \\
+SCG                     &    1.0$\,\pm\,$0.3&     \,\,\,2.7$\,\pm\,$0.7 &   \,\,\,2.6$\,\pm\,$0.4     &      \,\,\,6.2$\,\pm\,\,\,\,$1.1  \\
+ \bottomrule
+\end{tabular}}
+\caption{Time in seconds per image of MCG and SCG}
+\label{timing}
+\end{table}
+
+Table~\ref{timing_soa} shows the time-per-image results compared to the rest of state of the art in segmented proposals generation,
+all run on the same single-core Linux machine.
+
+\begin{table}[h]
+\centering
+\scalebox{0.95}{\begin{tabular}{l|c}
+\cmidrule[\heavyrulewidth](l{-2pt}){2-2}
+\multicolumn{1}{c}{}    &  Proposal  \\
+\multicolumn{1}{c}{}    &  Generation \\
+    \midrule
+MCG (Our) &    \,\,\,42.2$\,\pm\,$14.8  \\
+SCG (Our) &     \,\,\,\,\,\,6.2$\,\pm\,\,\,\,$1.1 \\
+\midrule
+GOP~\cite{Kraehenbuehl2014}&     \,\,\,\,\,\,1.0$\,\pm\,\,\,\,$0.3 \\
+GLS~\cite{Rantalankila2014}&    \,\,\,\,\,\,7.9$\,\pm\,\,\,\,$1.7 \\
+SeSe~\cite{Uijlings2013}&     \,\,\,15.9$\,\pm\,\,\,\,$5.2 \\
+RIGOR~\cite{Humayun2014}&     \,\,\,60.8$\,\pm\,$24.8 \\
+CPMC~\cite{Carreira2012b}&    $\geq$120 \\
+CI~\cite{Endres2014}&     $\geq$120 \\
+ShSh~\cite{Kim2012}&     $\geq$120 \\
+\bottomrule
+\end{tabular}}
+\caption{Time comparison for all considered state-of-the-art techniques that produce segmented proposals. All run on the same single-core Linux machine.}
+\label{timing_soa}
+\end{table}
+
+\paragraph*{\textbf{Practical considerations}}
+One of the key aspects of object proposals is the size of the pool they generate. 
+Depending on the application, one may need more precision and thus a bigger pool,
+or one might need speed and thus a small pool in exchange for some loss of quality.
+MCG and SCG provide a \textit{ranked} set of around
+5\,000 and 2\,000 proposals, respectively, and one can take the $N$ first
+in case the specific application needs a smaller pool.
+From a practical point of view, this means that one does not need to re-parameterize them for the specific
+needs of a certain application.
+
+In contrast, the techniques that do not provide a ranking of the proposals,
+need to be re-parameterized to adapt them to a different number of proposals, which 
+is not desirable in practice.
+
+On top of that, the results show that MCG and SCG have outstanding generalization power to unseen images
+(recall that the results for SBD and COCO have been obtained using the learnt parameters on SegVOC12),
+meaning that MCG and SCG offer the best chance to obtain competitive results in an unseen database without need to re-train.
+
+Figure~\ref{fig:qualitative_examples} shows some qualitative results on COCO.
+
+\section{Conclusions}
+\label{sec:conclu}
+We proposed Multiscale Combinatorial Grouping (MCG), a unified approach for bottom-up segmentation and
+object proposal generation.
+Our approach produces state-of-the-art contours, hierarchical regions, and object proposals. 
+At its core are a fast eigenvector computation for normalized-cut segmentation and an efficient algorithm for combinatorial merging of hierarchical regions.
+We also present Single-scale Combinatorial Grouping (SCG), a speeded up version of our technique that produces competitive results in under five seconds per image. 
+
+We perform an extensive validation in BSDS500, SegVOC12, SBD, and COCO, showing the quality, robustness and scalability of MCG.
+Recently, two independent studies~\cite{schiele:bmvc14, Hosang2015} provided further evidence to the interest of MCG among the current state-of-the-art in object proposal generation. 
+Moreover, our object candidates have already been employed as integral part of high performing recognition systems \cite{BharathECCV2014}.
+
+In order to promote reproducible research on perceptual grouping,
+all the resources of this project -- code, results, and evaluation protocols -- are publicly available\footnote{\scriptsize{www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/mcg/}}.\vspace{4mm}
+
+\paragraph*{\textbf{Acknowledgements}}
+This work has been partly developed in the framework of the project BIGGRAPH-TEC2013-43935-R and the FPU grant AP2008-01164; financed by the \textit{Spanish Ministerio de Econom\'ia y 
+Competitividad}, and the European Regional Development Fund (ERDF).
+This work was partially supported by ONR MURI N000141010933.
+
+
+%---------------------------------------------------------------------------------------------------------
+
+\bibliographystyle{IEEEtran}
+\bibliography{PAMI2014-MCG}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/authors/jordi_color.png}}]
+{Jordi Pont-Tuset} is a post-doctoral researcher at ETHZ, Switzerland,
+in Prof. Luc Van Gool's computer vision group (2015).
+He received the degree in Mathematics in 2008, the degree in Electrical Engineering 
+in 2008, the M.Sc. in Research on Information and Communication Technologies in 2010, and the Ph.D in
+2014; all from the Universitat Polit\`{e}cnica de Catalunya, BarcelonaTech (UPC).
+He worked at Disney Research, Z\"urich (2014).
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/authors/pablo_color.png}}]
+{Pablo Arbel\'{a}ez} received a PhD with honors in Applied Mathematics from the Universite Paris-Dauphine in 2005. 
+He was a Research Scientist with the Computer Vision group at UC Berkeley from 2007 to 2014. 
+He currently holds a faculty position at Universidad de los Andes in Colombia.
+His research interests are in computer vision, where he has worked on a number of problems, including perceptual grouping,
+object recognition and the analysis of biomedical images.
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/authors/barron_color.png}}]
+{Jonathan T. Barron} is a senior research scientist at Google, working on computer vision and computational photography. He received a PhD in Computer Science from the University of California, Berkeley in 2013, where he was advised by Jitendra Malik, and he received a Honours BSc in Computer Science from the University of Toronto in 2007. His research interests include computer vision, machine learning, computational photography, shape reconstruction, and biological image analysis. He received a National Science Foundation Graduate Research Fellowship in 2009, and the C.V. Ramamoorthy Distinguished Research Award in 2013.
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/authors/ferran_color.png}}]
+{Ferran Marques} received the degree in Electrical Engineering and the Ph.D. from the Universitat Polit\`{e}cnica de Catalunya, BarcelonaTech (UPC),
+where he is currently Professor at the department of Signal Theory and Communications.
+In the term 2002-2004, he served as President of the European Association for Signal Processing (EURASIP).
+He has served as Associate Editor of the IEEE Transactions on Image Processing 
+(2009-2012) and as Area Editor for Signal Processing: Image 
+Communication, Elsevier (2010-2014). In 2011, he received the 
+Jaume Vicens Vives distinction for University Teaching Quality. 
+Currently, he serves as Dean of the Electrical Engineering School 
+(ETSETB-TelecomBCN) at UPC. He has published over 150 conference and 
+journal papers, 2 books, and holds 4 international patents.  
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/authors/jitendra_color.png}}]
+{Jitendra Malik} is Arthur J. Chick Professor in the Department of Electrical Engineering and Computer Science at the University of California at Berkeley, where he also holds appointments in vision science and cognitive science. He received the PhD degree in Computer Science from Stanford University in 1985. In January 1986, he joined UC Berkeley as a faculty member in the EECS department where he served as Chair of the Computer Science Division during 2002-2006, and of the Department of EECS during 2004-2006. Jitendra Malik's group has worked on computer vision, computational modeling of biological vision, computer graphics and machine learning. Several well-known concepts and algorithms arose in this work, such as anisotropic diffusion, normalized cuts, high dynamic range imaging, shape contexts and poselets. According to Google Scholar, ten of his papers have received more than a thousand citations each. He has graduated 33 PhD students. Jitendra was awarded the Longuet-Higgins Award for ``A Contribution that has Stood the Test of Time'' twice, in 2007 and 2008. He is a Fellow of the IEEE and the ACM, a member of the National Academy of Engineering, and a fellow of the American Academy of  Arts and Sciences. He received the PAMI Distinguished Researcher Award in computer vision in 2013 and the K.S. Fu prize in 2014.
+\end{IEEEbiography}
+
+\end{document}
+

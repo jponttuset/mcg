@@ -1,0 +1,93 @@
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\scriptsize \hspace{6mm}Instance level
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1\linewidth]
+    \begin{axis}[ymin=0.35,ymax=0.9,xmin=20,xmax=9000,enlargelimits=false,
+        xlabel=Number of candidates,
+        ylabel=Jaccard index at instance level ($J_i$),
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9},
+        minor ytick={0.2,0.225,...,0.9},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+		  \addplot+[black,solid,mark=none, ultra thick] table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_MCG.txt};
+		  		  \addplot+[black,dashed,mark=none, thick] table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_MCG2.txt};
+		  \addplot+[red,solid,mark=none, thick] table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_SCG.txt};
+		  \addplot+[red,dashed,mark=none, thick] table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_SCG2.txt};
+	  \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_gop.txt};
+%    	  \addplot+[cyan,solid,mark=none, thick] table[x=ncands,y=jaco] {data/obj_cands/val2012_cpmc.txt};
+	   \addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_rigor.txt};
+	  \addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick] table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_GLS.txt};
+%        \addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=jaco] {data/obj_cands/val2012_shape_share.txt};
+%	  	\addplot+[olive,solid,mark=none, thick] table[x=ncands,y=jaco] {data/obj_cands/val2012_cat_indep.txt};
+		\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick] table[x=ncands,y=jac_instance] {data/obj_cands/SBD_val_SeSe.txt};
+%		  \addplot+[blue,dashed,mark=none, thick] table[x=ncands,y=jaco] {data/obj_cands/val2012_iscra.txt};
+%    	\addplot+[green,dashed,mark=none, thick] table[x=ncands,y=jaco] {data/obj_cands/val2012_ucm.txt};
+%		  \addplot+[blue,only marks,solid,mark=o, thick] table[x=ncands,y=jaco] {data/obj_cands/val2012_arbelaez2012.txt};
+%		  \addplot+[black,dashed,mark=none, thick] table[x=ncands,y=jaco] {data/obj_cands/val2012_quadtree.txt};
+	\end{axis}
+   \end{tikzpicture}
+\end{minipage}
+\hspace{2mm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\scriptsize \hspace{6mm}Class level
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1\linewidth]
+    \begin{axis}[ymin=0.35,ymax=0.9,xmin=20,xmax=9000,enlargelimits=false,
+        xlabel=Number of candidates,
+        ylabel=Jaccard index at class level ($J_c$),
+        font=\scriptsize, grid=both,
+        legend pos=outer north east,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9},
+        minor ytick={0.2,0.225,...,0.9},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+	       	  \addplot+[black,solid,mark=none, ultra thick] table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_MCG.txt};
+	  \addlegendentry{MCG-Our (full)}
+	  	       	  \addplot+[black,dashed,mark=none,thick] table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_MCG2.txt};
+	  \addlegendentry{MCG-Our (seg)}
+	  	      \addplot+[red,solid,mark=none,thick] table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_SCG.txt};
+	  \addlegendentry{SCG-Our (full)}
+	  	  	      \addplot+[red,dashed,mark=none,thick] table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_SCG2.txt};
+	  \addlegendentry{SCG-Our (seg)}
+%	  	  \addplot+[cyan,solid,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/val2012_cpmc.txt};
+%		  \addlegendentry{CPMC~\cite{Carreira2012b}}
+%	  	\addplot+[olive,solid,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/val2012_cat_indep.txt};
+%   		\addlegendentry{Categ. indep.~\cite{Endres2014}}
+	   \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_gop.txt};
+	   \addlegendentry{Geod. Obj. Prop.~\cite{Kraehenbuehl2014}}
+	   	   \addplot+[only marks,red,solid,mark=asterisk, mark size=1.75, thick] table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_rigor.txt};
+\addlegendentry{RIGOR~\cite{Humayun2014}}
+		\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick] table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_GLS.txt};
+		\addlegendentry{Glob. Loc. Search~\cite{Rantalankila2014}}
+%        \addplot+[only marks,magenta,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=jacp] {data/obj_cands/val2012_shape_share.txt};
+%   		\addlegendentry{Shape sharing~\cite{Kim2012}}
+%		  \addplot+[blue,only marks,solid,mark=o, thick] table[x=ncands,y=jaco] {data/obj_cands/val2012_arbelaez2012.txt};
+%\addlegendentry{Regions and parts~\cite{Arbelaez2012}}
+			\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick] table[x=ncands,y=jac_class] {data/obj_cands/SBD_val_SeSe.txt};
+    		\addlegendentry{Selective search~\cite{Uijlings2013}}
+%		  \addplot+[red,dashed,mark=none, thick] table[x=ncands,y=jac_class] {data/obj_cands/val2012_sf_mUCM_multi_3sc_u_4r_12k_single_multi.txt};
+%   		\addlegendentry{Ours-multi}
+%		  \addplot+[blue,dashed,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/val2012_iscra.txt};
+%   		\addlegendentry{ISCRA~\cite{Ren_2013_CVPR}}
+%    	\addplot+[green,dashed,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/val2012_ucm.txt};
+%    		\addlegendentry{gPb-UCM~\cite{Arbelaez2011}}
+%		  \addplot+[black,dashed,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/val2012_quadtree.txt};
+%		  \addlegendentry{Quadtree}
+%            \addplot+[magenta,dashed,mark=none, thick] table[x=ncands,y=jac_class] {data/obj_cands/val2012_sf_mUCM_multi_3sc_u_4r_12k_cpmc_jaccard_class.txt};
+%\label{marker:jacc_val:mcg_cpmc}
+%          \addlegendentry{MCG and CPMC}
+%	  \addplot+[red,only marks,solid,mark=+, thick] table[x=ncands,y=jac_class] {data/obj_cands/val2012_multi_3sc_u_4r_filt_point.txt};
+	 \end{axis}
+   \end{tikzpicture}
+\end{minipage}

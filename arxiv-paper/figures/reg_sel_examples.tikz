@@ -1,0 +1,87 @@
+\mbox{\footnotesize
+%--------------------------------------------------------------------------------------------------------
+\begin{minipage}[t]{.24\linewidth}
+\centering
+\includegraphics[page=1,width=0.8\linewidth]{figures/mer_seq_parts_regs.pdf}\\[-7mm]
+\large
+\scalebox{0.45}{\begin{tikzpicture}[scale=0.65,every node/.style={inner sep=1.8pt,circle,draw}]
+\node {$R_9$}
+  child[sibling distance=30mm] {node {$R_7$}
+    child[sibling distance=15mm] {node {$R_1$}}
+    child[sibling distance=15mm] {node {$R_2$}}
+    child[sibling distance=15mm] {node {$R_3$}}
+    }
+  child[level distance=30mm,sibling distance=30mm] {node {$R_4$}}
+  child[sibling distance=22mm] {node {$R_8$}
+    child[sibling distance=15mm] {node {$R_5$}}
+    child[sibling distance=15mm] {node {$R_6$}}
+    };
+\end{tikzpicture}}\vspace{-1.5mm}
+{\scriptsize(a)}\hspace{-5mm}\vspace{1mm}
+\end{minipage}
+\hspace{5mm}
+\rule[-5mm]{0.75pt}{22mm}
+\hspace{2mm}
+%--------------------------------------------------------------------------------------------------------
+\begin{minipage}[t]{.24\linewidth}
+\centering
+\includegraphics[page=2,width=0.8\linewidth]{figures/reg_sel_examples.pdf}\\[-7mm]
+\large
+\scalebox{0.45}{\begin{tikzpicture}[scale=0.65,every node/.style={inner sep=1.8pt,circle,draw}]
+\node[opacity=0.6] {$R_9$}
+  child[sibling distance=30mm] {node[opacity=0.6] {$R_7$} edge from parent[opacity=0.6]
+    child[sibling distance=15mm] {node[opacity=0.6] {$R_1$}}
+    child[sibling distance=15mm] {node[opacity=0.5] {$R_2$}}
+    child[sibling distance=15mm] {node[opacity=0.6] {$R_3$}}
+    }
+  child[level distance=30mm,sibling distance=30mm] {node[opacity=0.6] {$R_4$} edge from parent[opacity=0.5]}
+  child[sibling distance=22mm] {node[fill=mygreen] {$R_8$} edge from parent[opacity=0.6]
+    child[sibling distance=15mm] {node[opacity=0.6] {$R_5$}}
+    child[sibling distance=15mm] {node[opacity=0.6] {$R_6$}}
+    };
+\end{tikzpicture}}\vspace{-1.5mm}
+{\scriptsize(b)}\hspace{-5mm}\vspace{1mm}
+\end{minipage}
+\hspace{6mm}
+%%--------------------------------------------------------------------------------------------------------
+\begin{minipage}[t]{.24\linewidth}
+\centering
+\includegraphics[page=1,width=0.8\linewidth]{figures/reg_sel_examples.pdf}\\[-7mm]
+\large
+\scalebox{0.45}{\begin{tikzpicture}[scale=0.65,every node/.style={inner sep=1.8pt,circle,draw}]
+\node[opacity=0.6] {$R_9$}
+  child[sibling distance=30mm] {node[opacity=0.6] {$R_7$} edge from parent[opacity=0.6]
+    child[sibling distance=15mm] {node[opacity=0.6] {$R_1$}}
+    child[sibling distance=15mm] {node[fill=mygreen,opacity=1] {$R_2$} edge from parent[opacity=0.5]}
+    child[sibling distance=15mm] {node[fill=mygreen,opacity=1] {$R_3$} edge from parent[opacity=0.6]}
+    }
+  child[level distance=30mm,sibling distance=30mm] {node[opacity=0.6] {$R_4$} edge from parent[opacity=0.5]}
+  child[sibling distance=22mm] {node[fill=mygreen] {$R_8$} edge from parent[opacity=0.6]
+    child[sibling distance=15mm] {node[opacity=0.6] {$R_5$} edge from parent[opacity=0.6]}
+    child[sibling distance=15mm] {node[opacity=0.6] {$R_6$} edge from parent[opacity=0.6]}
+    };
+\end{tikzpicture}}\vspace{-1.5mm}
+{\scriptsize(c)}\hspace{-5mm}\vspace{1mm}
+\end{minipage}
+%%--------------------------------------------------------------------------------------------------------
+%\begin{minipage}[t]{.24\linewidth}
+%\centering
+%\includegraphics[page=1,width=0.8\linewidth]{figures/reg_sel_examples.pdf}\\[-7mm]
+%\large
+%\scalebox{0.5}{\begin{tikzpicture}[scale=0.65,every node/.style={inner sep=1.8pt,circle,draw}]
+%\node[opacity=0.6] {$R_9$}
+%  child[sibling distance=30mm] {node[opacity=0.6] {$R_7$} edge from parent[opacity=0.6]
+%    child[sibling distance=15mm] {node[opacity=0.6] {$R_1$}}
+%    child[sibling distance=15mm] {node[fill=mygreen,opacity=1] {$R_2$} edge from parent[opacity=0.5]}
+%    child[sibling distance=15mm] {node[fill=mygreen,opacity=1] {$R_3$} edge from parent[opacity=0.6]}
+%    }
+%  child[level distance=30mm,sibling distance=30mm] {node[opacity=0.6] {$R_4$} edge from parent[opacity=0.5]}
+%  child[sibling distance=22mm] {node[opacity=0.6] {$R_8$} edge from parent[opacity=0.6]
+%    child[sibling distance=15mm] {node[fill=mygreen,opacity=1] {$R_5$} edge from parent[opacity=0.6]}
+%    child[sibling distance=15mm] {node[fill=mygreen,opacity=1] {$R_6$} edge from parent[opacity=0.6]}
+%    };
+%\end{tikzpicture}}\vspace{-1mm}
+%{\scriptsize(d)}\vspace{-2mm}
+%\end{minipage}
+%%--------------------------------------------------------------------------------------------------------
+}

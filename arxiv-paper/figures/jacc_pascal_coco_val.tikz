@@ -1,0 +1,58 @@
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\scriptsize \hspace{6mm}Instance level
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1\linewidth]
+    \begin{axis}[ymin=0.35,ymax=0.9,xmin=20,xmax=15000,enlargelimits=false,
+        xlabel=Number of candidates,
+        ylabel=Jaccard index at instance level ($J_i$),
+        font=\scriptsize, grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9},
+        minor ytick={0.2,0.225,...,0.9},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+        \addplot+[black,solid,mark=none, ultra thick] table[x=ncands,y=jac_instance] {data/obj_cands/COCO_val2014_MCG.txt};
+        		  \addplot+[red,solid,mark=none, thick] table[x=ncands,y=jac_instance] {data/obj_cands/COCO_val2014_SCG.txt};
+        	  \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=jac_instance] {data/obj_cands/COCO_val2014_GOP.txt};
+	  	   		\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick] table[x=ncands,y=jac_instance] {data/obj_cands/COCO_val2014_GLS.txt};
+			\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick] table[x=ncands,y=jac_instance] {data/obj_cands/COCO_val2014_SeSe.txt};
+
+	\end{axis}
+   \end{tikzpicture}
+\end{minipage}
+\hspace{2mm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+\scriptsize \hspace{6mm}Class level
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1\linewidth]
+    \begin{axis}[ymin=0.35,ymax=0.9,xmin=20,xmax=15000,enlargelimits=false,
+        xlabel=Number of candidates,
+        ylabel=Jaccard index at class level ($J_c$),
+        font=\scriptsize, grid=both,
+        legend pos=outer north east,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9},
+        minor ytick={0.2,0.225,...,0.9},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+        	       	  \addplot+[black,solid,mark=none, ultra thick] table[x=ncands,y=jac_class] {data/obj_cands/COCO_val2014_MCG.txt};
+	  \addlegendentry{MCG-Our}
+        	  	      \addplot+[red,solid,mark=none,thick] table[x=ncands,y=jac_class] {data/obj_cands/COCO_val2014_SCG.txt};
+	  \addlegendentry{SCG-Our}
+        	   \addplot+[only marks,blue,solid,mark=triangle,mark size=1.9, thick] table[x=ncands,y=jac_class] {data/obj_cands/COCO_val2014_GOP.txt};
+	   \addlegendentry{Geod. Obj. Prop.~\cite{Kraehenbuehl2014}}
+	   		\addplot+[only marks,cyan,solid,mark=square,mark size=1.5, thick] table[x=ncands,y=jac_class] {data/obj_cands/COCO_val2014_GLS.txt};
+		\addlegendentry{Glob. Loc. Search~\cite{Rantalankila2014}}
+					\addplot+[only marks,black,solid,mark=square, mark size=1.5, thick] table[x=ncands,y=jac_class] {data/obj_cands/COCO_val2014_SeSe.txt};
+    		\addlegendentry{Selective search~\cite{Uijlings2013}}
+	 \end{axis}
+   \end{tikzpicture}
+\end{minipage}

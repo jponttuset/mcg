@@ -1,0 +1,85 @@
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\small  \hspace{6mm}Object level
+\begin{tikzpicture}[/pgfplots/width=1.05\linewidth, /pgfplots/height=0.95\linewidth]
+    \begin{axis}[ymin=0.3,ymax=0.9,xmin=20,xmax=10000,enlargelimits=false,
+        xlabel=Number of candidates,
+        ylabel=Jaccard index at object level ($J_o$),
+        font=\small , grid=both,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9},
+        minor ytick={0.2,0.225,...,0.9},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+        \addplot+[black,solid,mark=none, ultra thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_mcg_hf.txt};
+	  	  \addplot+[cyan,solid,mark=none, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_cpmc.txt};
+        \addplot+[only marks,red,solid,mark=diamond, mark size=1.8, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_scalpel.txt};
+
+        \addplot+[only marks,magenta,solid,mark=triangle,mark size=1.8, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_shape_share.txt};
+	  	\addplot+[olive,solid,mark=none, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_cat_indep.txt};
+			\addplot+[only marks,black,solid,mark=square, mark size=1.25, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_sel_search.txt};
+    	\addplot+[only marks,black,solid,mark=o, mark size=1.3, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_sel_search_adapt.txt};
+	   	\addplot+[only marks,cyan,solid,mark=+,mark size=1.8, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_objectness.txt};
+		  \addplot+[red,solid,mark=none, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_ucm_multi.txt};
+		  \addplot+[blue,solid,mark=none, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_iscra.txt};
+    	\addplot+[green,solid,mark=none, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_ucm.txt};
+		  \addplot+[blue,only marks,solid,mark=o, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_arbelaez2012.txt};
+		  \addplot+[black,dashed,mark=none, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_quadtree.txt};
+         \addplot+[magenta,dashed,mark=none, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_cpmc_mcg_meanmax.txt};
+	\end{axis}
+   \end{tikzpicture}
+\end{minipage}
+\hspace{2mm}
+\begin{minipage}[b]{0.5\linewidth}
+\centering
+\small  \hspace{6mm}Pixel level
+\begin{tikzpicture}[/pgfplots/width=1\linewidth, /pgfplots/height=0.95\linewidth]
+    \begin{axis}[ymin=0.3,ymax=0.9,xmin=20,xmax=10000,enlargelimits=false,
+        xlabel=Number of candidates,
+        ylabel=Jaccard index at pixel level ($J_p$),
+        font=\small , grid=both,
+        legend pos=outer north east,
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9},
+        minor ytick={0.2,0.225,...,0.9},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+     	  \addplot+[black,solid,mark=none, ultra thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_mcg_hf.txt};
+          \addlegendentry{Ours-MCG}
+	  \addplot+[cyan,solid,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_cpmc.txt};
+	  \addlegendentry{CPMC}
+	  	\addplot+[olive,solid,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_cat_indep.txt};
+   		\addlegendentry{Categ. indep.}
+        \addplot+[only marks,red,solid,mark=diamond, mark size=1.8, thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_scalpel.txt};
+          \addlegendentry{Scalpel}
+        \addplot+[only marks,magenta,solid,mark=triangle,mark size=1.8, thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_shape_share.txt};
+   		\addlegendentry{Shape sharing}
+		  \addplot+[blue,only marks,solid,mark=o, thick] table[x=ncands,y=jaco] {data/obj_cands/val2010_arbelaez2012.txt};
+\addlegendentry{Regions and parts}
+			\addplot+[only marks,black,solid,mark=square, mark size=1.25, thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_sel_search.txt};
+    		\addlegendentry{Selective search}
+    	\addplot+[only marks,black,solid,mark=o, mark size=1.3, thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_sel_search_adapt.txt};
+   	  \addlegendentry{Adapted sel. search}
+	   	\addplot+[only marks,cyan,solid,mark=+,mark size=1.8, thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_objectness.txt};
+    	  \addlegendentry{Objectness}
+		  \addplot+[red,solid,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_ucm_multi.txt};
+   		\addlegendentry{Ours-multi}
+		  \addplot+[blue,solid,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_iscra.txt};
+   		\addlegendentry{ISCRA}
+    	\addplot+[green,solid,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_ucm.txt};
+    		\addlegendentry{gPb-UCM}
+		  \addplot+[black,dashed,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_quadtree.txt};
+		  \addlegendentry{Quadtree}
+            \addplot+[magenta,dashed,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/val2010_cpmc_mcg_global_mean.txt};
+          \addlegendentry{MCG and CPMC}
+	 \end{axis}
+   \end{tikzpicture}
+\end{minipage}

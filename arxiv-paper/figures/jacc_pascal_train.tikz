@@ -1,0 +1,63 @@
+\begin{minipage}[b]{1.03\linewidth}
+\centering
+\begin{tikzpicture}[/pgfplots/width=1.1\linewidth, /pgfplots/height=1\linewidth]
+    \begin{axis}[ymin=0.35,ymax=0.9,xmin=20,xmax=1000000,enlargelimits=false,
+        xlabel=Number of proposals,
+        ylabel=Jaccard index at class level ($J_c$),
+        font=\scriptsize, grid=both,
+        legend style={legend pos=south east,font=\scriptsize},
+        grid style=dotted,
+        axis equal image=false,
+        ytick={0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9},
+        minor ytick={0.2,0.225,...,0.9},
+        major grid style={white!20!black},
+        minor grid style={white!70!black},
+        xlabel shift={-2pt},
+        ylabel shift={-3pt},
+        xmode=log]
+          \addplot+[black,solid,mark=none, thick] table[x=ncands,y=jac_class] {data/obj_cands/train2012_multi_3sc_u_4r_pareto_4tuples.txt};
+\addlegendentry{Pareto up to 4-tuples}
+\label{fig:train:4tuples}
+          \addplot+[magenta,solid,mark=none, thick] table[x=ncands,y=jac_class] {data/obj_cands/train2012_multi_3sc_u_4r_pareto_triplets.txt};
+          \label{fig:train:triplets}
+\addlegendentry{Pareto up to triplets}
+     	  \addplot+[cyan,solid,mark=none, thick] table[x=ncands,y=jac_class] {data/obj_cands/train2012_multi_3sc_u_4r_pareto_pairs.txt};
+	  \label{fig:train:pairs}
+\addlegendentry{Pareto up to pairs}
+     	  \addplot+[olive,solid,mark=none, thick] table[x=ncands,y=jac_class] {data/obj_cands/train2012_multi_3sc_u_4r_pareto_singletons.txt};
+	  \label{fig:train:singletons}
+\addlegendentry{Pareto only singletons}
+
+%             	  \addplot+[magenta,dashed,mark=none, thick] table[x=ncands,y=jac_class] {data/obj_cands/train2012_3regs_3sc_multi_pareto_triplets.txt};
+%\addlegendentry{Up to triplets}
+%     	  \addplot+[cyan,dashed,mark=none, thick] table[x=ncands,y=jac_class] {data/obj_cands/train2012_3regs_3sc_multi_pareto_pairs.txt};
+%\addlegendentry{Up to pairs}
+%     	  \addplot+[olive,dashed,mark=none, thick] table[x=ncands,y=jac_class] {data/obj_cands/train2012_3regs_3sc_multi_pareto_singletons.txt};
+%\addlegendentry{Only singletons}
+%     	  \addplot+[magenta,solid,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/train2012_ucm_all_3.txt};
+%\addlegendentry{Up to triplets}
+%     	  \addplot+[cyan,solid,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/train2012_ucm_all_2.txt};
+%\addlegendentry{Up to pairs}
+%     	  \addplot+[olive,solid,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/train2012_ucm_all_1.txt};
+%\addlegendentry{Only singletons}
+		  \addplot+[red,dashed,mark=none, thick] table[x=ncands,y=jac_class] {data/obj_cands/train2012_sf_mUCM_multi_3sc_u_4r_12k_single_multi.txt};
+		  \label{ours-multi-singletons}
+\addlegendentry{Raw Ours-multi singl.}
+		  \addplot+[green,dashed,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/train2012_ucm.txt};
+\addlegendentry{Raw gPb-UCM singl.}
+		  \addplot+[black,dashed,mark=none, thick] table[x=ncands,y=jacp] {data/obj_cands/train2012_quadtree.txt};
+\addlegendentry{Raw Quadtree singl.}
+		  \addplot+[red,only marks,solid,mark=asterisk, thick] table[x=ncands,y=jac_class] {data/obj_cands/train2012_multi_3sc_u_4r_pareto_selected_point.txt};
+\label{marker:jacc_train:sel_pareto}
+\addlegendentry{Selected configuration}
+
+		  \addplot+[red,only marks,solid,mark=+, thick] table[x=ncands,y=jac_class] {data/obj_cands/train2012_multi_3sc_u_4r_filt_point.txt};
+\label{marker:jacc_train:filt_pareto}
+\addlegendentry{Filtered candidates}
+
+		  \addplot+[black,solid,ultra thick,mark=none] table[x=ncands,y=jac_class] {data/obj_cands/train2012_sf_mUCM_multi_3sc_u_4r_12k.txt};
+\label{marker:jacc_train:regressed}
+\addlegendentry{Regressed ranking}
+	 \end{axis}
+   \end{tikzpicture}
+\end{minipage}

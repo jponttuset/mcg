@@ -1,0 +1,2 @@
+ncands	jac_class	jac_instance
+3.321221e+04	0.860904	0.818617
