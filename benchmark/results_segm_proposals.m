@@ -38,18 +38,21 @@ n_cands   = {nc_ranked, nc_single};
 
 %% Sweep all databases and load pre-computed results
 for db_id = 1:length(databases)
-   database = databases{db_id};
-
-   % Sweep all soa methods and store the results
-   for s_id=1:length(soa_which{db_id})
-       soa_id = soa_ids{soa_which{db_id}(s_id)};
-       soa_tp = soa_type{soa_which{db_id}(s_id)};
-       
-       % Load pre-computed results
-       soa(db_id).(soa_id) = eval_proposals(soa_id, database, gt_sets{db_id}, n_cands{soa_tp}); %#ok<SAGROW>
-   end   
+    database = databases{db_id};
+    
+    % Sweep all soa methods and store the results
+    for s_id=1:length(soa_which{db_id})
+        soa_id = soa_ids{soa_which{db_id}(s_id)};
+        soa_tp = soa_type{soa_which{db_id}(s_id)};
+        
+        % Load pre-computed results
+        if ~exist(fullfile(root_dir,'results',database, [soa_id '_' database '_' gt_sets{db_id} '.mat']),'file')
+            error('Precomputed results not found: Have you downloaded them? Visit the MCG website and download the ''results'' folder')
+        else
+            soa(db_id).(soa_id) = eval_proposals(soa_id, database, gt_sets{db_id}, n_cands{soa_tp}); %#ok<SAGROW>
+        end
+    end
 end
-
 
 %% Plot segmented candidate results
 measures  = {'jaccard_object', 'jaccard_class'};
@@ -119,11 +122,11 @@ for db_id = 1:length(databases)
 end
 
 %% Write values to file
-out_dir = '/Users/jpont/Publications/2014_PAMI_UCB/LaTeX-UPC/data/obj_cands';
-for db_id = 1:length(databases)
-    for s_id=1:length(soa_which{db_id})
-        database = databases{db_id};
-        curr_soa = soa(db_id).(soa_ids{soa_which{db_id}(s_id)});
-        write_to_file(curr_soa ,fullfile(out_dir,[database '_' gt_sets{db_id} '_' soa_ids{soa_which{db_id}(s_id)} '.txt']))
-    end
-end
+% out_dir = '/out/dir/to/write/results/';
+% for db_id = 1:length(databases)
+%     for s_id=1:length(soa_which{db_id})
+%         database = databases{db_id};
+%         curr_soa = soa(db_id).(soa_ids{soa_which{db_id}(s_id)});
+%         write_to_file(curr_soa ,fullfile(out_dir,[database '_' gt_sets{db_id} '_' soa_ids{soa_which{db_id}(s_id)} '.txt']))
+%     end
+% end
