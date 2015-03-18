@@ -11,7 +11,7 @@ tic;
 toc;
 
 tic;
-% Test the 'accurate' version, which tackes around 30 seconds in mean
+% Test the 'accurate' version, which tackes around 20 seconds in mean
 [candidates_mcg, ucm2_mcg] = im2mcg(I,'accurate');
 toc;
 
