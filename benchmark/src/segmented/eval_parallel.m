@@ -22,10 +22,10 @@ end
 tmp = strfind(proposals_folder,filesep);
 if isempty(tmp)
     method_name = proposals_folder;
-    masks_dir = fullfile(root_dir, 'datasets', database, method_name);
+    proposals_dir = fullfile(root_dir, 'datasets', database, method_name);
 else
     method_name = proposals_folder(tmp(end)+1:end);
-    masks_dir = proposals_folder;
+    proposals_dir = proposals_folder;
 end
 
 % Results folder
@@ -48,7 +48,7 @@ parfor ii=1:num_images
     if ~exist(res_file, 'file')
 
         % Input file with candidates as labels
-        data_file = fullfile(masks_dir,[curr_id '.mat']);
+        data_file = fullfile(proposals_dir,[curr_id '.mat']);
 
         % Check if proposals are computed
         if ~exist(data_file, 'file')

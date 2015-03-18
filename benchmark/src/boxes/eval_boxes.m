@@ -48,6 +48,11 @@ if exist(stats_file, 'file')
 else
     disp(['RECOMPUTING: ' stats_file '.'])
     recompute = 1;
+    
+    % Does the folder exist?
+    if ~exist(fullfile(root_dir, 'datasets', database, method_name),'dir')
+        error(['Nothing found in: ' fullfile(root_dir, 'datasets', database, method_name)])
+    end
 end
 
 if recompute
