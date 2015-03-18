@@ -52,7 +52,7 @@ for ii=1:length(build_file)
 end
 
 %% Build COCO
-eval(['mex src/coco/private/gasonMex.cpp src/coco/private/gason.cpp -I/src/coco/private -I/usr/local/include -outdir ''' fullfile(root_dir, 'lib') '''' include_str])
+eval(['mex src/coco/private/gasonMex.cpp src/coco/private/gason.cpp -Isrc/coco/private -I/usr/local/include -outdir ''' fullfile(root_dir, 'lib') '''' include_str])
 
 %% Clear variables
 clear build_file ii include include_str
