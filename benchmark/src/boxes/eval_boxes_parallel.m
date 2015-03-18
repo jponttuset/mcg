@@ -68,6 +68,7 @@ parfor ii=1:num_images
         
         % Load boxes
         tmp = load(input_file);
+        boxes = []; %#ok<NASGU>
         if strcmp(method_name,'EB')
             boxes = [tmp.boxes(:,2), tmp.boxes(:,1), tmp.boxes(:,2)+tmp.boxes(:,4), tmp.boxes(:,1)+tmp.boxes(:,3)];
         elseif strcmp(method_name,'SeSe')
