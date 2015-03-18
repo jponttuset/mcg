@@ -17,6 +17,9 @@
 % This function builds all the MEX files needed.
 % Dependencies needed to build: Boost C++ libraries (http://www.boost.org)
 %
+% The code contains C++11 functionality, so you have to use a compiler that
+% supports the flag -std=c++11.
+% Some help on how to do it in: http://jponttuset.github.io/matlab2014-mex-flags/
 % ------------------------------------------------------------------------
 function build()
 % Check that 'mcg_root' has been set
