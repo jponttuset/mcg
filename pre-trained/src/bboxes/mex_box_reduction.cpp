@@ -49,14 +49,16 @@ void mexFunction( int nlhs, mxArray *plhs[],
     
     /* Input parameters */
     ConstMatlabMultiArray<double> boxes(prhs[0]);
+    ConstMatlabMultiArray<double> scores(prhs[1]);
     double J_th = 0.95;
-    if (nrhs>1) J_th = mxGetScalar(prhs[1]);
+    if (nrhs>2) J_th = mxGetScalar(prhs[2]);
 
     std::size_t n_boxes   = boxes.shape()[0];
 
     
     /* Scan all boxes */
     std::list<std::vector<int> > all_boxes;
+    std::list<double>            all_scores;
     for (std::size_t ii=0; ii<n_boxes; ++ii)
     {
         bool found = 0;
@@ -85,10 +87,11 @@ void mexFunction( int nlhs, mxArray *plhs[],
                 to_put.push_back(boxes[ii][kk]);
 
             all_boxes.push_back(to_put);
+            all_scores.push_back(scores[ii][0]);
         }
     }
     
-    /* Allocate output parameters */
+    /* Allocate output boxes */
     std::size_t n_boxes_2 = all_boxes.size();
     plhs[0] = mxCreateDoubleMatrix(n_boxes_2,boxes.shape()[1],mxREAL);
     MatlabMultiArray<double> boxes2(plhs[0]);
@@ -106,5 +109,15 @@ void mexFunction( int nlhs, mxArray *plhs[],
             curr_reg++;
         }
         curr_pair++;
-    }   
+    } 
+    
+    /* Allocate output scores */
+    plhs[1] = mxCreateDoubleMatrix(n_boxes_2,1,mxREAL);
+    MatlabMultiArray<double> scores2(plhs[1]);
+    
+    /* Fill scores2 */
+    std::size_t curr_score = 0;
+    std::list<double>::iterator list_it_scores = all_scores.begin();
+    for (; list_it_scores!=all_scores.end(); ++list_it_scores, ++curr_score)
+        scores2[curr_score][0] = *list_it_scores;
 }
