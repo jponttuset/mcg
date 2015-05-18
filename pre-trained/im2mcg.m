@@ -49,7 +49,7 @@ if nargin<3
 end
 
 % Load pre-trained Structured Forest model
-sf_model = loadvar(fullfile(mcg_root, 'datasets', 'models', 'sf_modelFinal.mat'),'model');
+sf_model = loadvar(fullfile(mcg_root,'src','external','piotr_edges','models','forest','modelBsds.mat'),'model');
 
 % Level of overlap to erase duplicates
 J_th = 0.95;

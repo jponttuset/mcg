@@ -78,7 +78,7 @@ eval(['mex ' file1 ' ' dep1 ' ' dep2 ' -output ' o_file1 ' -DMATLAB -O'])
 eval(['mex ' file2 ' ' dep1 ' ' dep2 ' -output ' o_file2 ' -DMATLAB -O'])
 
 %% Build structured forest files
-eval(['mex ' fullfile(mcg_root, 'src', 'external','structured_forest', 'edgesDetectMex.cpp') ' -outdir ' fullfile(mcg_root, 'lib') include_str])
+eval(['mex ' fullfile(mcg_root, 'src', 'external','piotr_edges', 'private', 'edgesDetectMex.cpp') ' -outdir ' fullfile(mcg_root, 'lib') include_str])
 
 %% Build piotr_toolbox files
 eval(['mex ' fullfile(mcg_root, 'src', 'external','piotr_toolbox',     'convConst.cpp') ' -outdir ' fullfile(mcg_root, 'lib') include_str])

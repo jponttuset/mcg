@@ -88,7 +88,7 @@ function [ucm2, times] = img2ucm(I, model, mult_Pb, sat_sPb, nvec, dthresh, ic_g
 % edge detection
 T=tic;
 % TODO: Only once at the beginning 4,2,1 0.5
-[E,~,O] = edgesDetect( I, model );  
+[E,O] = edgesDetect( I, model );  
 times(1)=toc(T);
 
 % continuous oriented watershed transform 
