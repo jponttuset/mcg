@@ -29,7 +29,7 @@ imshow(imdilate(ucm2_mcg,strel(ones(3))),[]), title('Accurate UCM (MCG)')
 
 %% Show Object Candidates results and bounding boxes
 % Candidates in rank position 11 and 12
-id1 = 3; id2 = 4;
+id1 = 11; id2 = 12;
 
 % Get the masks from superpixels and labels
 mask1 = ismember(candidates_mcg.superpixels, candidates_mcg.labels{id1});
