@@ -57,6 +57,14 @@ J_th = 0.95;
 % Max margin parameter
 theta = 0.7;
 
+% If the image is very big, to avoid running out of memory,
+% we force 'fast', which does not upsample the image
+if size(I,1)*size(I,2)>2e9 % 2 megapixel
+    mode = 'fast';
+    warning(['The image you are trying to segment using MCG might need too much memory because of its size (' num2str(size(image,1)) ',' num2str(size(image,2)) '). If you still want to try, comment lines 62-65 in im2mcg.m'])
+end
+
+
 if strcmp(mode,'fast')
     % Which scales to work on (MCG is [2, 1, 0.5], SCG is just [1])
     scales = 1;

@@ -45,6 +45,15 @@ param.ic_gamma  = all_parameters(5);
 if size(I,3)==1 % Grayscale image
     I = cat(3,I,I,I); % Otherwise edge_detect fails
 end
+if size(I,1)<15 || size(I,2)<15 % Tiny image
+    % Simply return an empty UCM with the appropriate sizes
+    ucm2 = zeros(2*size(I,1)+1,2*size(I,2)+1);
+    ucms = repmat(ucm2,[1,1,numel(scales)]);
+    elapsed_time = 0;
+    return
+end
+
+
 
 [param.tx, param.ty, ~] = size(I);
 
