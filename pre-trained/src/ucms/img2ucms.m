@@ -50,6 +50,8 @@ if size(I,1)<15 || size(I,2)<15 % Tiny image
     ucm2 = zeros(2*size(I,1)+1,2*size(I,2)+1);
     ucms = repmat(ucm2,[1,1,numel(scales)]);
     elapsed_time = 0;
+    warning(['The image you are trying to segment using MCG is too small (' num2str(size(I,1)) ',' num2str(size(I,2)) '). Returning an empty UCM'])
+
     return
 end
 
