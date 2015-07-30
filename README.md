@@ -1,7 +1,8 @@
 Multiscale Combinatorial Grouping
 ===
 MCG is the package code that implements the algorithms presented in:
- - Arbelaez P, Pont-Tuset J, Barron J, Marques F, Malik J,
+ 
+- Arbelaez P, Pont-Tuset J, Barron J, Marques F, Malik J,
  "Multiscale Combinatorial Grouping,"
  Computer Vision and Pattern Recognition (CVPR) 2014.
 
@@ -10,7 +11,9 @@ MCG is the package code that implements the algorithms presented in:
  arXiv:1503.00848, March 2015.
 
 
-Please consider citing the paper if you use this code.
+Please consider citing the papers if you use this code.
+
+'Full' and 'Pre-Trained' packages not compatible with Windows.
 
 More info in the project page:
 http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/mcg/
