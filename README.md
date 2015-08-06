@@ -12,9 +12,11 @@ MCG is the package code that implements the algorithms presented in:
 
 Please consider citing the papers if you use this code.
 
-'Full' and 'Pre-Trained' packages not compatible with Windows.
+CAUTION
 
-The 'full' package is not completely up to date, use it only of you need to re-train the Pareto front or the ranking in MCG, then use 'pre-trained' to do the actual computations.
+**The 'full' package is not completely up to date, use it only if you need to re-train the Pareto front or the ranking in MCG, then use 'pre-trained' to do the actual computations.**
+
+**'Full' and 'Pre-Trained' packages not compatible with Windows.**
 
 More info in the project page:
 http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/mcg/
