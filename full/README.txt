@@ -6,6 +6,9 @@
 %  June 2013
 % ------------------------------------------------------------------------ 
 
+CAUTION
+The 'full' package is not completely up to date, use it only if you need to re-train the Pareto front or the ranking in MCG, then use 'pre-trained' to do the actual computations.
+
 FIRST INSTALL
 - Change datasets/database_root_dir to point to your PASCAL2012 folder (the one with subfolders ImageSets, JPEGImages, etc.)
 - Run install.m from the root dir to add the needed paths and do some checks
