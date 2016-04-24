@@ -24,9 +24,9 @@ soa_type  = {ranked, ranked, ranked, single, single, single, single, single, sin
 soa_col   = {'k-', 'r-', 'c-', 'b+', 'gs', 'bo', '^r', 'm*', 'b>', 'k--', 'g-'};
 
 % Which soa at each database
-soa_which = {[1 2 3 4 5 6 7 8 9 10 11];
-             [1 2   4 5 6 7     10   ];
-             [1 2   4 5 6 7     10   ]};
+soa_which = {[1 2 3 4 5 6 7 9 10 11];
+             [1 2   4 5 6 7   10   ];
+             [1 2   4 5 6 7   10   ]};
 
 % Overlap levels
 overlap_levels = [0.5 0.7 0.85];
@@ -47,7 +47,7 @@ for db_id = 1:length(databases)
         
         % Load pre-computed results
         if ~exist(fullfile(root_dir,'results',database, [soa_id '_' database '_' gt_sets{db_id} '.mat']),'file')
-            error('Precomputed results not found: Have you downloaded them? Visit the MCG website and download the ''results'' folder')
+            error('Precomputed results not found: ''%s''\nHave you downloaded them? You can find them in:\n - https://data.vision.ee.ethz.ch/jpont/mcg/eval_results/pascal2012.zip\n - https://data.vision.ee.ethz.ch/jpont/mcg/eval_results/SBD.zip\n - https://data.vision.ee.ethz.ch/jpont/mcg/eval_results/COCO.zip\nDownload them and put them in a folder called ''results''.', fullfile(root_dir,'results',database, [soa_id '_' database '_' gt_sets{db_id} '.mat']))
         else
             soa(db_id).(soa_id) = eval_proposals(soa_id, database, gt_sets{db_id}, n_cands{soa_tp}); %#ok<SAGROW>
         end
@@ -67,7 +67,14 @@ for db_id = 1:length(databases)
            
         for s_id=1:length(soa_which{db_id})
             curr_soa = soa(db_id).(soa_ids{soa_which{db_id}(s_id)});
-            plot(curr_soa.mean_n_masks, curr_soa.(measures{jj}), soa_col{soa_which{db_id}(s_id)});
+            soa_tp = soa_type{soa_which{db_id}(s_id)};
+
+            if soa_tp==ranked
+                plot(curr_soa.mean_n_masks, curr_soa.(measures{jj}), soa_col{soa_which{db_id}(s_id)});
+            else
+                tmp = curr_soa.(measures{jj});
+                plot(curr_soa.mean_n_masks(end), tmp(end), soa_col{soa_which{db_id}(s_id)});
+            end
         end
 
         % Make plot nicer
@@ -113,7 +120,14 @@ for db_id = 1:length(databases)
     for ii = 1:length(overlap_levels)
         for s_id=1:length(soa_which{db_id})
             curr_soa = soa(db_id).(soa_ids{soa_which{db_id}(s_id)});
-            plot(curr_soa.mean_n_masks, curr_soa.rec_at_overlap(ii,:), soa_col{soa_which{db_id}(s_id)});
+            soa_tp = soa_type{soa_which{db_id}(s_id)};
+
+            if soa_tp==ranked
+                plot(curr_soa.mean_n_masks, curr_soa.rec_at_overlap(ii,:), soa_col{soa_which{db_id}(s_id)});
+            else
+                tmp = curr_soa.rec_at_overlap(ii,:);
+                plot(curr_soa.mean_n_masks(end), tmp(end), soa_col{soa_which{db_id}(s_id)});
+            end
         end
     end
 
