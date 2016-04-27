@@ -31,16 +31,20 @@ soa_which = {[1 2 3 4 5 6 7 9 10 11 12 13 14 15];
 
 %% Sweep all databases and load pre-computed results
 for db_id = 1:length(databases)
-   database = databases{db_id};
-
-   % Sweep all soa methods and store the results
-   for s_id=1:length(soa_which{db_id})
-       soa_id = soa_ids{soa_which{db_id}(s_id)};
-       soa_tp = soa_type{soa_which{db_id}(s_id)};
-       
-       % Load pre-computed results
-       soa(db_id).(soa_id) = eval_proposals(soa_id, database, gt_sets{db_id}); %#ok<SAGROW>
-   end   
+    database = databases{db_id};
+    
+    % Sweep all soa methods and store the results
+    for s_id=1:length(soa_which{db_id})
+        soa_id = soa_ids{soa_which{db_id}(s_id)};
+        soa_tp = soa_type{soa_which{db_id}(s_id)};
+        
+        % Load pre-computed results
+        if ~exist(fullfile(root_dir,'results',database, [soa_id '_' database '_' gt_sets{db_id} '.mat']),'file')
+            error('Precomputed results not found: ''%s''\nHave you downloaded them? You can find them in:\n - https://data.vision.ee.ethz.ch/jpont/mcg/eval/Pascal.zip\n - https://data.vision.ee.ethz.ch/jpont/mcg/eval/SBD.zip\n - https://data.vision.ee.ethz.ch/jpont/mcg/eval/COCO.zip\nDownload them and put them in a folder called ''results''.', fullfile(root_dir,'results',database, [soa_id '_' database '_' gt_sets{db_id} '.mat']))
+        else
+            soa(db_id).(soa_id) = eval_proposals(soa_id, database, gt_sets{db_id}); %#ok<SAGROW>
+        end
+    end
 end
 
 
