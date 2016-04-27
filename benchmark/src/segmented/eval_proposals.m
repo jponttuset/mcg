@@ -51,7 +51,7 @@ end
 if recompute
     %% Evaluate and save each image independently to be able to parallelize
     % You can adapt matlabpool to your system
-%    eval_parallel(results_folder, database, gt_set);
+    eval_parallel(results_folder, database, gt_set);
         
     %% Gather and save results
     % Load which images to consider
