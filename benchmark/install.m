@@ -30,35 +30,33 @@ end
 % Install own lib
 addpath(root_dir);
 addpath(fullfile(root_dir,'lib'));
-addpath(fullfile(root_dir,'datasets'));
 addpath(genpath(fullfile(root_dir,'src')));
 
 %% Check that the needed functions are compiled
 % Included in our code
-needed_files = {'mex_eval_labels','mex_eval_masks','mex_eval_blobs','gasonMex'};
+needed_files = {'mex_eval_labels','mex_eval_masks','mex_eval_blobs'};
 for ii=1:length(needed_files)
     if exist(needed_files{ii})~=3 %#ok<EXIST>
         error(['The needed function (' needed_files{ii} ') not found. Have you built the package properly?'])
     end
 end
 
-%% Check that the databases are available and show a warning if not
-dbs        = {'pascal2012',    'SBD',   'COCO'};
-im_folders = {'JPEGImages', 'images', 'images'};
-all_ok = 1;
+%% Check databases
+dbs = {'Pascal', 'SBD', 'COCO'};
 for ii=1:length(dbs)
-    db = dbs{ii};
-    if ~exist(fullfile(database_root_dir(db), im_folders{ii}),'dir')
-        all_ok = 0;
-        disp(['WARNING: Database ' db ' (folder ' im_folders{ii} ') not found in ' database_root_dir(db)])    
+    if ~exist(db_root_dir(dbs{ii}),'dir')
+        fprintf(2,['WARNING: Root folder for dataset ''' dbs{ii} ''' not found in ''' db_root_dir(dbs{ii}) ''', see ''check_dbs.m''.\n']);
+    elseif strcmp(dbs{ii},'COCO')
+        if ~exist(fullfile(db_root_dir('COCO'),'coco_api','MatlabAPI'),'dir')
+            fprintf(2,['WARNING: COCO API not found in ''' fullfile(db_root_dir('COCO'),'coco_api','MatlabAPI') ''', see ''gt_wrappers/README.md''.\n']);
+        else
+            % Include the COCO API
+            addpath(fullfile(db_root_dir('COCO'),'coco_api','MatlabAPI'));
+        end
     end
-end
-
-if ~all_ok
-    disp('-- You can disable this warning in install.m --')
 end
 
 %% Clear
 clear ii needed_files;
-disp('-- Successful installation of MCG. Enjoy! --');
+disp('-- Successful installation of MCG Benchmark. Enjoy! --');
 

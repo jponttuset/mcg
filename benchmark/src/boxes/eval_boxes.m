@@ -48,11 +48,6 @@ if exist(stats_file, 'file')
 else
     disp(['RECOMPUTING: ' stats_file '.'])
     recompute = 1;
-    
-    % Does the folder exist?
-    if ~exist(fullfile(root_dir, 'datasets', database, method_name),'dir')
-        error(['Nothing found in: ' fullfile(root_dir, 'datasets', database, method_name)])
-    end
 end
 
 if recompute
@@ -62,7 +57,7 @@ if recompute
         
     %% Gather and save results
     % Load which images to consider
-    im_ids = database_ids(database,gt_set);
+    im_ids = db_ids(database,gt_set);
     
     % Store and initialize
     stats.n_cands = n_cands;

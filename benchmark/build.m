@@ -17,11 +17,7 @@
 % This function builds all the MEX files needed.
 % Dependencies: Boost C++ libraries (http://www.boost.org)
 %
-% The code contains C++11 functionality, so you have to use a compiler that
-% supports the flag -std=c++11.
-% Some help on how to do it in: http://jponttuset.github.io/matlab2014-mex-flags/
 % ------------------------------------------------------------------------
-
 function build()
 %% Check that root_dir is set properly
 if ~exist(root_dir,'dir')
@@ -54,9 +50,6 @@ end
 for ii=1:length(build_file)
     eval(['mex ''' build_file{ii} ''' -outdir ''' fullfile(root_dir, 'lib') '''' include_str])
 end
-
-%% Build COCO
-eval(['mex src/coco/private/gasonMex.cpp src/coco/private/gason.cpp -Isrc/coco/private -I/usr/local/include -outdir ''' fullfile(root_dir, 'lib') '''' include_str])
 
 %% Clear variables
 clear build_file ii include include_str

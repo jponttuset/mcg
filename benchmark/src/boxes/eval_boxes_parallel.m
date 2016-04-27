@@ -42,7 +42,7 @@ if ~exist(res_dir,'dir')
 end
 
 % Load which images to consider
-im_ids = database_ids(database,gt_set);
+im_ids = db_ids(database,gt_set);
 
 % Sweep all images in parallel
 matlabpool open;
@@ -68,7 +68,6 @@ parfor ii=1:num_images
         
         % Load boxes
         tmp = load(input_file);
-        boxes = []; %#ok<NASGU>
         if strcmp(method_name,'EB')
             boxes = [tmp.boxes(:,2), tmp.boxes(:,1), tmp.boxes(:,2)+tmp.boxes(:,4), tmp.boxes(:,1)+tmp.boxes(:,3)];
         elseif strcmp(method_name,'SeSe')
@@ -91,7 +90,7 @@ parfor ii=1:num_images
         end
         
         % Load GT
-        gt = get_ground_truth(database,curr_id);
+        gt = db_gt(database,curr_id);
         n_objs = length(gt.masks);
         
         % Sweep all objects

@@ -22,10 +22,10 @@ end
 tmp = strfind(proposals_folder,filesep);
 if isempty(tmp)
     method_name = proposals_folder;
-    proposals_dir = fullfile(root_dir, 'datasets', database, method_name);
+    masks_dir = fullfile(root_dir, 'datasets', database, method_name);
 else
     method_name = proposals_folder(tmp(end)+1:end);
-    proposals_dir = proposals_folder;
+    masks_dir = proposals_folder;
 end
 
 % Results folder
@@ -35,10 +35,10 @@ if ~exist(res_dir,'dir')
 end
 
 % Load which images to consider
-im_ids = database_ids(database,gt_set);
+im_ids = db_ids(database,gt_set);
 
 % Sweep all images
-matlabpool open
+p = parpool;
 num_images = numel(im_ids);
 parfor ii=1:num_images
     curr_id = im_ids{ii};
@@ -48,7 +48,7 @@ parfor ii=1:num_images
     if ~exist(res_file, 'file')
 
         % Input file with candidates as labels
-        data_file = fullfile(proposals_dir,[curr_id '.mat']);
+        data_file = fullfile(masks_dir,[curr_id '.mat']);
 
         % Check if proposals are computed
         if ~exist(data_file, 'file')
@@ -59,20 +59,20 @@ parfor ii=1:num_images
         proposals = load(data_file);
         
         % Load GT
-        gt = get_ground_truth(database,curr_id);
+        gt = db_gt(database,curr_id);
 
         % Evaluate that result
         [jaccards,inters,false_pos,false_neg,true_areas] = eval_one(proposals, gt);
         
         % Store results
-        parsave(res_file,jaccards,inters,false_pos,false_neg,true_areas,gt.category)
+        parsave(res_file,jaccards,inters,false_pos,false_neg,true_areas,gt.category,gt.obj_id,gt.im_id)
     end
 end
-matlabpool close
+delete(p)
 end
 
 
-function parsave(res_file,jaccards,inters,false_pos,false_neg,true_areas,obj_classes) %#ok<INUSD>
-    save(res_file, 'jaccards','inters', 'false_pos', 'false_neg','true_areas','obj_classes');
+function parsave(res_file,jaccards,inters,false_pos,false_neg,true_areas,obj_classes,obj_ids,image_ids) %#ok<INUSD>
+    save(res_file, 'jaccards','inters', 'false_pos', 'false_neg','true_areas','obj_classes','obj_ids','image_ids');
 end
 
