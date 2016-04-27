@@ -67,7 +67,7 @@ function [ground_truth, gt_set, im, anns] = db_gt( database, image_id )
         im = imread(fullfile(db_root_dir(database), 'images', gt_set, [image_id '.jpg']));
         
         % Include the COCO API
-        addpath(fullfile(db_root_dir('COCO'),'coco_api','MatlabAPI'));
+        % addpath(fullfile(db_root_dir('COCO'),'coco_api','MatlabAPI'));
         
         % Get COCO api for instance annotations (we store it to the 'base'
         % workspace to avoid having to read it every time)

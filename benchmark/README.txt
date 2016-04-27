@@ -15,7 +15,8 @@
 % ------------------------------------------------------------------------
 
 FIRST INSTALL
-- Change datasets/database_root_dir.m to point to your PASCAL2012 folder (the one with subfolders ImageSets, JPEGImages, etc.) or the SBD or COCO folders.
+- Change src/gt_wrappers/db_root_dir.m to point to your PASCAL2012 folder (the one with subfolders ImageSets, JPEGImages, etc.) or the SBD or COCO folders.
+  Check src/gt_wrappers/README.md for more info on this
 - Run install.m from the root dir to add the needed paths and do some checks
 - If you need to re-build the library (the script install.m will tell if needed), run build.m
 
