@@ -13,22 +13,23 @@
 %    Computer Vision and Pattern Recognition (CVPR) 2014.
 % Please consider citing the paper if you use this code.
 % ------------------------------------------------------------------------
-function  write_to_file( stats, filename )
+function write_to_file(filename, headers, data )
 
-% Create the columns for different recall levels
-str_header  = 'ncands\tjac_class\tjac_instance';
-str_pattern = '%d\t%f\t%f';
-for ii=1:length(stats.overlap_levels)
-    str_header = [str_header '\trec_at_' num2str(stats.overlap_levels(ii))]; %#ok<AGROW>
+% Create header and pattern string
+assert(length(headers)==size(data,2))
+str_pattern = '%f';
+str_header  = headers{1};
+for ii=2:length(headers)
     str_pattern = [str_pattern '\t%f']; %#ok<AGROW>
+    str_header  = [str_header '\t' headers{ii}]; %#ok<AGROW>
 end
-str_header  = [str_header  '\n'];
 str_pattern = [str_pattern '\n'];
+str_header = [str_header '\n'];
 
-
+% Write to file
 fid = fopen(filename,'w');
 fprintf(fid, str_header);
-fprintf(fid, str_pattern, [stats.mean_n_masks; stats.jaccard_class; stats.jaccard_object; stats.rec_at_overlap]);
+fprintf(fid, str_pattern, data');
 fclose(fid);
 
 

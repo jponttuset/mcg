@@ -24,7 +24,7 @@ USAGE INSTALL
 - If you want to avoid this, add the paths permanently
 
 EVALUATION
-- See results_segm_proposals.m and results_box_proposals for an example of how to evaluate and show the benchmark results
+- See results_segm_proposals.m and results_box_proposals.m for an example of how to evaluate and show the benchmark results
 
 Enjoy!
 

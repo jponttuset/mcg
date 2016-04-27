@@ -46,11 +46,7 @@ for db_id = 1:length(databases)
        soa_tp = soa_type{soa_which{db_id}(s_id)};
        
        % Load pre-computed results
-       if ~exist(fullfile(root_dir,'results',database, [soa_id '_boxes_' gt_sets{db_id} '.mat']),'file')
-           error('Precomputed results not found: Have you downloaded them? Visit the MCG website and download the ''results'' folder')
-       else
-           soa(db_id).(soa_id) = eval_boxes(soa_id, database, gt_sets{db_id}, n_cands{soa_tp}); %#ok<SAGROW>
-       end
+       soa(db_id).(soa_id) = eval_boxes(soa_id, database, gt_sets{db_id}, n_cands{soa_tp}); %#ok<SAGROW>
    end   
 end
 
@@ -93,11 +89,11 @@ for db_id = 1:length(databases)
 end
 
 %% Write values to file
-% out_dir = '/out/dir/to/write/results/';
-% for db_id = 1:length(databases)
-%     for s_id=1:length(soa_which{db_id})
-%         database = databases{db_id};
-%         curr_soa = soa(db_id).(soa_ids{soa_which{db_id}(s_id)});
-%         write_boxes_to_file(curr_soa ,fullfile(out_dir,[database '_' gt_sets{db_id} '_' soa_ids{soa_which{db_id}(s_id)} '_boxes.txt']))
-%     end
-% end
+out_dir = '/Users/jpont/Publications/2014_PAMI_UCB/LaTeX-arXiv/data/obj_cands';
+for db_id = 1:length(databases)
+    for s_id=1:length(soa_which{db_id})
+        database = databases{db_id};
+        curr_soa = soa(db_id).(soa_ids{soa_which{db_id}(s_id)});
+        write_boxes_to_file(curr_soa ,fullfile(out_dir,[database '_' gt_sets{db_id} '_' soa_ids{soa_which{db_id}(s_id)} '_boxes.txt']))
+    end
+end
