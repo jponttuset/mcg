@@ -9,7 +9,11 @@ function [jaccards,inters,false_pos,false_neg,true_areas] = eval_one(proposals, 
         true_areas(kk) = sum(ground_truth.masks{kk}(:));
     end
 
-
+    % Case when proposals is a subfield
+    if isfield(proposals,'proposals')
+        proposals = proposals.proposals;
+    end
+    
     % Which type of result are we evaluating?
     % - Labels: Superpixel matrix + labels for each proposal
     % - Masks : 3D matrix of boolean masks
