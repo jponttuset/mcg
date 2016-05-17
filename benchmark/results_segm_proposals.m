@@ -21,10 +21,10 @@ soa_ids   = {'MCG','SCG','CI','GOP','GLS','SeSe','RIGOR','RP','ShSh','QT', 'CPMC
           %    1     2    3     4     5     6       7     8     9     10     11     12        13          14            15 
 ranked = 1; single = 2;
 soa_type  = {ranked, ranked, ranked, single, single, single, single, single, single, ranked, single, single, single, single, single};
-soa_col   = {'k-', 'r-', 'c-', 'b+', 'gs', 'bo', '^r', 'm*', 'b>', 'k--', 'g-', 'ks','rs','rs','rs','rs','b-','b--','r--','g--','m--'};
+soa_col   = {'k-', 'r-', 'c-', 'b+', 'gs', 'bo', '^r', 'm*', 'b>', 'k--', 'g-', 'ks','rs','rs','rs'};
 
 % Which soa at each database
-soa_which = {[1 2 3 4 5 6 7 9 10 11 12 13 14 15]; 
+soa_which = {[1 2 3 4 5 6 7 9 10 11 12 13 14 15 16]; 
              [1 2   4 5 6 7   10 11 12 13 14 15];
              [1 2   4 5 6 7   10    12 13 14 15]}; 
 
@@ -38,12 +38,13 @@ for db_id = 1:length(databases)
         soa_id = soa_ids{soa_which{db_id}(s_id)};
         soa_tp = soa_type{soa_which{db_id}(s_id)};
         
-        % Load pre-computed results
+        % Show warning if not found
         if ~exist(fullfile(root_dir,'results',database, [soa_id '_' database '_' gt_sets{db_id} '.mat']),'file')
-            error('Precomputed results not found: ''%s''\nHave you downloaded them? You can find them in:\n - https://data.vision.ee.ethz.ch/jpont/mcg/eval/Pascal.zip\n - https://data.vision.ee.ethz.ch/jpont/mcg/eval/SBD.zip\n - https://data.vision.ee.ethz.ch/jpont/mcg/eval/COCO.zip\nDownload them and put them in a folder called ''results''.', fullfile(root_dir,'results',database, [soa_id '_' database '_' gt_sets{db_id} '.mat']))
-        else
-            soa(db_id).(soa_id) = eval_proposals(soa_id, database, gt_sets{db_id}); %#ok<SAGROW>
+            fprintf(2,'Precomputed results not found: ''%s''\nHave you downloaded them? You can find them in:\n - https://data.vision.ee.ethz.ch/jpont/mcg/eval/Pascal.zip\n - https://data.vision.ee.ethz.ch/jpont/mcg/eval/SBD.zip\n - https://data.vision.ee.ethz.ch/jpont/mcg/eval/COCO.zip\nDownload them and put them in a folder called ''results''.\n', fullfile(root_dir,'results',database, [soa_id '_' database '_' gt_sets{db_id} '.mat']));
         end
+        
+        % Load pre-computed results or re-evaluate
+        soa(db_id).(soa_id) = eval_proposals(soa_id, database, gt_sets{db_id}); %#ok<SAGROW>
     end
 end
 
