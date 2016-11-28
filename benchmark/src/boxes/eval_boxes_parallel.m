@@ -45,7 +45,7 @@ end
 im_ids = db_ids(database,gt_set);
 
 % Sweep all images in parallel
-matlabpool open;
+p = parpool;
 num_images = numel(im_ids);
 parfor ii=1:num_images
     curr_id = im_ids{ii};
@@ -68,7 +68,9 @@ parfor ii=1:num_images
         
         % Load boxes
         tmp = load(input_file);
-        if strcmp(method_name,'EB')
+        if isfield(tmp,'boxes')
+            boxes = tmp.boxes;
+        elseif strcmp(method_name,'EB')
             boxes = [tmp.boxes(:,2), tmp.boxes(:,1), tmp.boxes(:,2)+tmp.boxes(:,4), tmp.boxes(:,1)+tmp.boxes(:,3)];
         elseif strcmp(method_name,'SeSe')
             boxes = tmp.boxes;
@@ -114,8 +116,7 @@ parfor ii=1:num_images
     end
 end
 
-matlabpool close
-
+delete(p);
 end
 
 

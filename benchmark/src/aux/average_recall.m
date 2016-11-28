@@ -1,7 +1,8 @@
 function ar = average_recall(J, overlap_levels)
 
 if ~exist('overlap_levels','var')
-    overlap_levels = 0.5:0.05:1; % Hosang et al. paper
+    % overlap_levels = 0.5:0.05:1; % Hosang et al. paper (boxes)
+    overlap_levels = 0.5:0.05:0.95; % MS-COCO
 end
 
 % Recall for all levels
