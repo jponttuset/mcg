@@ -49,7 +49,7 @@ for ii=1:length(ids)
             [~,s_id] = sort([proposals.score],'descend');
             proposals = proposals(s_id);
             boxes = reshape([proposals.bbox],[4,length(proposals)])';
-            % CONTINUE HERE: 0s? Size?
+            boxes = [boxes(:,2)+1 boxes(:,1)+1 boxes(:,2)+boxes(:,4) boxes(:,1)+boxes(:,3)];
         else
             tmp = load(input_file);
             if strcmp(method_name,'EB')
