@@ -65,7 +65,7 @@ for ii=1:length(ids)
                 boxes = labels2boxes(tmp.superpixels, tmp.labels);
             elseif isnumeric(tmp)
                 boxes = [tmp(:,2), tmp(:,1), tmp(:,4), tmp(:,3)];
-            elseif strcmp(method_name,'Obj') || strcmp(method_name,'RP')
+            elseif strcmp(method_name,'Obj') || strcmp(method_name,'RP') || strcmp(method_name,'RPN_VOC07') || strcmp(method_name,'RPN')
                 boxes = round([tmp.boxes(:,2), tmp.boxes(:,1), tmp.boxes(:,4), tmp.boxes(:,3)]);
                 boxes(:,boxes(:,1)<1) = 1;
                 boxes(:,boxes(:,2)<1) = 1;
