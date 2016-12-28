@@ -1,5 +1,8 @@
-Multiscale Combinatorial Grouping
-===
+For faster (0.8s/image) and improved hierarchical segmentation and proposals see "Convolutional Oriented Boundaries", ECCV 2016: http://www.vision.ee.ethz.ch/~cvlsegmentation/cob/
+
+
+**Multiscale Combinatorial Grouping**
+
 MCG is the package code that implements the algorithms presented in:
  - Pont-Tuset J, Arbelaez P, Barron J, Marques F, Malik J,
  "Multiscale Combinatorial Grouping for Image Segmentation and Object Proposal Generation,"
