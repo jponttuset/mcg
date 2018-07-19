@@ -28,7 +28,7 @@ if ~exist(mcg_root,'dir')
 end
 
 %% Include the generic paths and files to compile
-include{1} = fullfile(mcg_root, 'src', 'aux');  % To get matlab_multiarray.hpp
+include{1} = fullfile(mcg_root, 'src', 'aux_bak');  % To get matlab_multiarray.hpp
 if (strcmp(computer(),'PCWIN64') || strcmp(computer(),'PCWIN32'))
     include{2} = 'C:\Program Files\boost_1_55_0';  % Boost libraries (change it if necessary)
 else
@@ -51,10 +51,10 @@ build_file{end+1} = fullfile(mcg_root, 'src', 'cands'    ,'mex_get_tree_cands.cp
 build_file{end+1} = fullfile(mcg_root, 'src', 'cands'    ,'mex_prune_tree_to_regions.cpp');
 build_file{end+1} = fullfile(mcg_root, 'src', 'cands'    ,'mex_max_margin.cpp');
 build_file{end+1} = fullfile(mcg_root, 'src', 'cands'    ,'mex_hole_filling.cpp');
-build_file{end+1} = fullfile(mcg_root, 'src', 'aux'      ,'mex_intersect_hierarchies.cpp');
-build_file{end+1} = fullfile(mcg_root, 'src', 'aux'      ,'mex_ucm2hier.cpp');
-build_file{end+1} = fullfile(mcg_root, 'src', 'aux'      ,'mex_cands2masks.cpp');
-build_file{end+1} = fullfile(mcg_root, 'src', 'aux'      ,'mex_cands2labels.cpp');
+build_file{end+1} = fullfile(mcg_root, 'src', 'aux_bak'      ,'mex_intersect_hierarchies.cpp');
+build_file{end+1} = fullfile(mcg_root, 'src', 'aux_bak'      ,'mex_ucm2hier.cpp');
+build_file{end+1} = fullfile(mcg_root, 'src', 'aux_bak'      ,'mex_cands2masks.cpp');
+build_file{end+1} = fullfile(mcg_root, 'src', 'aux_bak'      ,'mex_cands2labels.cpp');
 build_file{end+1} = fullfile(mcg_root, 'src', 'external' ,'paretofront','paretofront.cpp');
 
 %% Build everything
