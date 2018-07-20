@@ -25,7 +25,7 @@ if ~exist(root_dir,'dir')
 end
 
 %% Include the generic paths and files to compile
-include{1} = fullfile(root_dir, 'src', 'aux');  % To get matlab_multiarray.hpp
+include{1} = fullfile(root_dir, 'src', 'aux_bak');  % To get matlab_multiarray.hpp
 if (strcmp(computer(),'PCWIN64') || strcmp(computer(),'PCWIN32'))
     include{2} = 'C:\Program Files\boost_1_55_0';  % Boost libraries (change it if necessary)
 else

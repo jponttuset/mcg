@@ -19,7 +19,7 @@ USAGE INSTALL
 - If you want to avoid this, add the paths permanently
 
 GENERALITIES
-- Three train subdivisions are provided, to validate the algorithm, if you want other subdivisions, run src/aux/create_train_samples.m
+- Three train subdivisions are provided, to validate the algorithm, if you want other subdivisions, run src/aux_bak/create_train_samples.m
 - Some partial results are stored automatically when computed. If loaded, the code will generally say it. If you need it to be recomputed, erase or rename that file.
 
 UCMs AT MULTIPLE SCALES
