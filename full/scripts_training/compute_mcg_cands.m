@@ -1,12 +1,12 @@
-% ------------------------------------------------------------------------ 
+% ------------------------------------------------------------------------
 %  Copyright (C)
 %  Universitat Politecnica de Catalunya BarcelonaTech (UPC) - Spain
 %  University of California Berkeley (UCB) - USA
-% 
+%
 %  Jordi Pont-Tuset <jordi.pont@upc.edu>
 %  Pablo Arbelaez <arbelaez@berkeley.edu>
 %  June 2014
-% ------------------------------------------------------------------------ 
+% ------------------------------------------------------------------------
 % This file is part of the MCG package presented in:
 %    Arbelaez P, Pont-Tuset J, Barron J, Marques F, Malik J,
 %    "Multiscale Combinatorial Grouping,"
@@ -38,10 +38,13 @@ assert(n_hiers==size(n_cands,2));
 im_ids = database_ids(params.database,params.gt_set_test);
 
 % Sweep all images
-matlabpool(4);
+num_workers = 32;
+if isempty(gcp('nocreate'))
+    parpool('local', num_workers)
+end
 num_images = length(im_ids);
 parfor im_id = 1:num_images
-    
+
     % File to store the candidates
     res_file = fullfile(res_dir,[im_ids{im_id} '.mat']);
 
@@ -72,12 +75,12 @@ parfor im_id = 1:num_images
 
         % Hole filling and complementary candidates
         [cands_hf, cands_comp] = hole_filling(double(f_lp), double(f_ms), cands); %#ok<NASGU>
-        
+
         % Select which candidates to keep (Uncomment just one line)
         cands = cands_hf;                       % Just the candidates with holes filled
         % cands = [cands_hf; cands_comp];         % Holes filled and the complementary
         % cands = [cands; cands_hf; cands_comp];  % All of them
-        
+
         % Compute base features
         b_feats = compute_base_features(f_lp, f_ms, all_ucms);
         b_feats.start_ths = start_ths;
@@ -98,13 +101,13 @@ parfor im_id = 1:num_images
         if isrow(scores)
             scores = scores';
         end
-        
+
         % Max margin
         candidates=[];
         [new_ids, mm_scores] = mex_max_margin(red_cands-1,scores,b_feats.intersections,params.theta); %#ok<NASGU>
         cand_labels = red_cands(new_ids,:);
         candidates.scores = scores(new_ids);
-        bboxes = bboxes(new_ids,:); 
+        bboxes = bboxes(new_ids,:);
 
         % Change the coordinates of bboxes to be coherent with
         % other results from other sources (sel_search, etc.)
@@ -113,17 +116,18 @@ parfor im_id = 1:num_images
         % Get the labels of leave regions that form each candidates
         candidates.superpixels = f_lp;
         candidates.labels = cands2labels(cand_labels,f_ms);
-        
+
         % Save
         parsave(res_file,candidates);
     end
 end
+delete(gcp('nocreate'))
 end
 
 function parsave(res_file,candidates)
-    scores = candidates.scores; %#ok<NASGU>
-    bboxes = candidates.bboxes; %#ok<NASGU>
-    superpixels = candidates.superpixels; %#ok<NASGU>
-    labels = candidates.labels; %#ok<NASGU>
-    save(res_file,'scores','bboxes','superpixels','labels');
+scores = candidates.scores; %#ok<NASGU>
+bboxes = candidates.bboxes; %#ok<NASGU>
+superpixels = candidates.superpixels; %#ok<NASGU>
+labels = candidates.labels; %#ok<NASGU>
+save(res_file,'scores','bboxes','superpixels','labels');
 end

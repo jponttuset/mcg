@@ -32,24 +32,50 @@ im_ids = database_ids(database,gt_set);
 model = loadvar(fullfile(root_dir, 'datasets', 'models', 'sf_modelFinal.mat'),'model');
 
 % Sweep all images in parallel
-matlabpool(4)
-parfor ii=1:length(im_ids)
-    im = get_image(database,im_ids{ii});
-    
-    % Check if it is not computed already
-    if ~exist(fullfile(res_dir,'multi',[im_ids{ii} '.mat']),'file')
+num_workers = 32;
+if verLessThan('matlab','8.3') %Pre-2014A code
+    if matlabpool('size') == 0
+        matlabpool(num_workers)
+    end
+    parfor ii=1:length(im_ids)
+        im = get_image(database,im_ids{ii});
         
-        % Call the actual code
-        [ucm2,ucms] = img2ucms(im, model, scales);
-
-        % Store ucms at each scale separately
-        parsave(fullfile(res_dir,'multi',[im_ids{ii} '.mat']),ucm2)
-        for jj=1:length(scales)
-            parsave(fullfile(res_dir,['scale_',sprintf('%1.2f',scales(jj))],[im_ids{ii} '.mat']),ucms(:,:,jj))
+        % Check if it is not computed already
+        if ~exist(fullfile(res_dir,'multi',[im_ids{ii} '.mat']),'file')
+            
+            % Call the actual code
+            [ucm2,ucms] = img2ucms(im, model, scales);
+    
+            % Store ucms at each scale separately
+            parsave(fullfile(res_dir,'multi',[im_ids{ii} '.mat']),ucm2)
+            for jj=1:length(scales)
+                parsave(fullfile(res_dir,['scale_',sprintf('%1.2f',scales(jj))],[im_ids{ii} '.mat']),ucms(:,:,jj))
+            end
         end
     end
+    matlabpool close
+else                    %2015A or later
+    if isempty(gcp('nocreate'))
+        parpool('local', num_workers)
+    end
+    parfor ii=1:length(im_ids)
+        im = get_image(database,im_ids{ii});
+        
+        % Check if it is not computed already
+        if ~exist(fullfile(res_dir,'multi',[im_ids{ii} '.mat']),'file')
+            
+            % Call the actual code
+            [ucm2,ucms] = img2ucms(im, model, scales);
+    
+            % Store ucms at each scale separately
+            parsave(fullfile(res_dir,'multi',[im_ids{ii} '.mat']),ucm2)
+            for jj=1:length(scales)
+                parsave(fullfile(res_dir,['scale_',sprintf('%1.2f',scales(jj))],[im_ids{ii} '.mat']),ucms(:,:,jj))
+            end
+        end
+    end
+    delete(gcp('nocreate'))
 end
-matlabpool close
 end
 
 function parsave(res_file, ucm2) %#ok<INUSD>

@@ -44,7 +44,10 @@ end
 im_ids = database_ids(database,gt_set);
 
 % Sweep all images and process them in parallel
-matlabpool(4);
+num_workers = 4;
+if isempty(gcp('nocreate'))
+    parpool('local', num_workers)
+end
 num_images = length(im_ids);
 parfor im_id = 1:num_images 
     % File to store the candidates
@@ -62,7 +65,7 @@ parfor im_id = 1:num_images
         parsave(res_file,candidates);
     end
 end
-matlabpool close
+delete(gcp('nocreate'))
 end
 
 function parsave(res_file,candidates)

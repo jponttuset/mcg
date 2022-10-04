@@ -44,7 +44,9 @@ end
 im_ids = database_ids(database,gt_set);
 
 % Sweep all images and process them in parallel
-matlabpool open;
+if isempty(gcp('nocreate'))
+    parpool("local")
+end
 parfor ii=1:length(im_ids)
     % Read image
     im = get_image(database,im_ids{ii});
@@ -59,8 +61,7 @@ parfor ii=1:length(im_ids)
         parsave(fullfile(res_dir,[im_ids{ii} '.mat']),ucm2)
     end
 end
-matlabpool close
-
+delete(gcp("nocreate"))
 end
 
 

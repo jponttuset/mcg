@@ -53,7 +53,7 @@ scg_eval = eval_labels('SCG',database,gt_set,n_cands);
 % dimension the number of candidates. Set 'compute_masks = 1' in im2mcg
 % to see an example.
 
-% This function calls a 'matlabpool' to evaluate the masks in parallel,
+% This function calls a 'parpool' to evaluate the masks in parallel,
 % you should adapt the number of workers to your system, since it can take
 % a while, depending on the number of candidates
 % (hours if you have thousands of candidates). 
