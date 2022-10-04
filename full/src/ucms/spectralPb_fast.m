@@ -124,8 +124,8 @@ D = sparse(x, x, S, wx, wy);
 clear S x;
 
 
-opts.issym=1;
-opts.isreal = 1;
+% opts.issym=1; %(D - A) + (10^-10) * speye(size(D)) is a sparse double not a handle
+% opts.isreal = 1; %(D - A) + (10^-10) * speye(size(D)) is a sparse double not a handle
 opts.disp=0;
 [EV, EVal] = eigs((D - A) + (10^-10) * speye(size(D)), D, n_ev, 'sm', opts);
 clear D A opts;
