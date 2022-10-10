@@ -45,7 +45,10 @@ end
 im_ids = database_ids(database,gt_set);
 
 % Sweep all images in parallel
-matlabpool(4)
+num_workers = 4;
+if isempty(gcp('nocreate'))
+        parpool('local', num_workers)
+    end
 num_images = numel(im_ids);
 parfor ii=1:num_images
     curr_id = im_ids{ii};
@@ -99,7 +102,7 @@ parfor ii=1:num_images
     end
 end
 
-matlabpool close
+delete(gcp('nocreate'))
 
 end
 
