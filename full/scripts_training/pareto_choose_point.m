@@ -14,6 +14,9 @@
 % Please consider citing the paper if you use this code.
 % ------------------------------------------------------------------------ 
 
+clc
+close all
+
 % This function defines all parameters to tune in the training of MCG
 params = sf_mUCM_multi_3sc_u_4r_12k_params();
 
@@ -27,10 +30,24 @@ pareto = pareto_learning(params);
 % Play with the following two number to get the desired point
 
 % Which measure used to get the Pareto
-pareto_meas = 2;  % Jaccard at class level
+prompt = "Set pareto meas [1:" + length(pareto.st) + "]: ";
+check_array = 1:length(pareto.st);
+
+pareto_meas = 0;  % Jaccard at class level
+while not(any(check_array(:) == pareto_meas) && isnumeric(pareto_meas))
+    pareto_meas = input(prompt);
+end
 
 % Which particular point in the curve we choose
-pareto_id = 64;   % Around 14k candidates
+num_masks = length(pareto.st{pareto_meas}{params.n_r_cand}.mean_n_masks);
+prompt = "Set pareto meas [1:" + num_masks + "]: ";
+check_array = 1:num_masks;
+
+pareto_id = 0;  % Jaccard at class level
+while not(any(check_array(:) == pareto_id) && isnumeric(pareto_id))
+    pareto_id = input(prompt);
+end
+
 
 figure;
 x_limit = 1e6;
@@ -62,9 +79,9 @@ for jj=1:length(measures)
     % Make plot nicer
     title(strrep(titles{jj},'_','\_'))
     if (params.n_r_cand==3)
-        legend({'Singletons same','Pairs same','Triplets same','Singletons diff','Pairs diff','Triplets diff'},4)
+        legend({'Singletons same','Pairs same','Triplets same','Singletons diff','Pairs diff','Triplets diff'},'Location', 'southeast')
     elseif (params.n_r_cand==4)
-        legend({'Singletons same','Pairs same','Triplets same','4-tuples','Singletons diff','Pairs diff','Triplets diff','4-tuples diff'},4)
+        legend({'Singletons same','Pairs same','Triplets same','4-tuples','Singletons diff','Pairs diff','Triplets diff','4-tuples diff'},'Location','southeast')
     end
     grid minor
     grid on
